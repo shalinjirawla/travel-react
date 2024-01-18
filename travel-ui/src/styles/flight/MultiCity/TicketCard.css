@@ -1,0 +1,88 @@
+.multiCityRightCard {
+    margin-left: 4%;
+}
+.multiCityRightCard .ant-card-bordered {
+    border: none;
+}
+
+.multiCityTicketCardStyle .ant-card-body {
+    padding: 1% 3% 2% 3%;
+    border-radius: 3px 3px 0 0; 
+    box-shadow: 0 0 10px lightgray;
+}
+
+.stickyYourTicketTCard {
+    top: 1rem;
+    z-index: 6;
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 2px 4px 0px;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    position: sticky !important;
+}
+
+.yourTicketHeading {
+    font-size: var(--secondary-font);
+    font-weight: var(--primary-fontWeight);
+}
+
+.multiCityFromDiv {
+    margin: 3% 0;
+}
+
+.multiCityAirLine {
+    font-size: var(--third-font);
+}
+.multyCitySecCol {
+    /* padding-left: 3%; */
+}
+.ticketDataFRow {
+    font-size: var(--third-font);
+}
+.ticketDataSRow {
+    font-weight: var(--primary-fontWeight);
+}
+.ticketDataSColumn {
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+}
+
+.multiTicketStopColor {
+    font-size: var(--small-font);
+    padding: 0 4%;
+}
+
+
+.multiCityYouPayDetails .ant-card-body {
+    background-color: var(--dark-color);
+    padding: 3%;
+    color: rgb(255, 255, 255);
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 0 10px lightgray;
+}
+
+.youPayFHeading {
+    color: white;
+    font-size: var(--secondary-font);
+    font-weight: var(--primary-fontWeight);
+}
+.youPayFPrice {
+    color: white;
+    font-size: var(--primary-font);
+    font-weight: var(--third-fontWeight);
+}
+.youPayFBtn {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    outline: none;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 3px;
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+    width: 100%;
+    cursor: pointer;
+}
+.youPayFBtn:not(:disabled):not(.youPayFBtn-disabled):hover {
+    color: rgb(255, 255, 255);
+    border-color: var(--primary-color);
+}

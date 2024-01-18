@@ -1,0 +1,111 @@
+.filterCard {
+    margin: 7% 1% 0 2%;
+    /* float: left; */
+    width: 25%;
+    border-radius: 3px;
+    /* display: flex; */
+    box-shadow: 0 0 10px 0 lightgray;
+    /* flex-direction: column; */
+    height: fit-content;
+}
+.headerPadding{
+    display: flex;
+    justify-content: space-between;
+}  
+.headingStyle {
+    font-size: var(--primary-font);
+    font-weight: var(--secondary-fontWeight);
+}
+.headingStyles {
+    color: rgb(113, 113, 113);
+}
+.resetStyleShow {
+    cursor: pointer;
+    color: rgb(34, 118, 227);
+    font-weight: var(--primary-fontWeight);
+}
+.justifyBetweens {
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+}
+.labelClass {
+    align-items: flex-start;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+.checkBoxFHideLabel .ant-checkbox+span {
+    padding-inline-start: 10px;
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+    cursor: pointer;
+}
+
+.borderBottom {
+    border-bottom: 1px solid rgb(240, 240, 240);
+    padding-top: 5%;
+    margin: 0 -6% 0 -6%;
+}
+.subHeading {
+    padding-top: 5%;
+}
+.flexWrap {
+    padding-top: 5%;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: flex;
+}
+.checkButtonClass {
+    background-color: rgb(243, 246, 248);
+    cursor: pointer;
+    border: none;
+    width: 45%;
+}
+.checkButtonClass.clicked {
+    background-color: var(--primary-color);
+    color: white;
+}
+.checkButtonClass:not(:disabled):not(.checkButtonClass-disabled):hover {
+    color: black;
+    border-color: white;
+}
+.checkButtonClass.clicked:not(:disabled):not(.checkButtonClass.clicked-disabled):hover {
+    color: white;
+    border-color: white
+}
+
+.justifyBetween {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.dF {
+    display: flex;
+}
+
+.subHeadingStyle {
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+}
+
+.subDiv {
+    margin-top: 5%;
+}
+
+.checkList {
+    width: 100%;
+    display: flex;
+    /* -webkit-box-pack: justify; */
+    justify-content: space-between;
+    /* -webkit-box-align: center; */
+    /* align-items: center; */
+    padding-bottom: 1rem;
+}
+.color {
+    color: rgb(113, 113, 113);
+}

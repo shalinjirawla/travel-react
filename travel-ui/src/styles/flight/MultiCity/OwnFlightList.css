@@ -1,0 +1,318 @@
+/* .multiCityFirstSortCard .ant-card .ant-card-bordered {
+    border: none !important;
+} */
+
+.multiCityFirstSortCard .ant-card-body {
+    /* background-color: var(--dark2-shadow); */
+    background-color: var(--dark-color);
+    padding: 1.5% 1%;
+    border-radius: 3px;
+    /* display: flex; */
+    /* position: sticky; */
+    /* top: 58px; */
+    /* z-index: 9; */
+}
+
+
+/* ----------------------------------- PopoverCard ------------------------------ */
+
+.popoverColStyle {
+    border-right: 1px solid var(--dark-color);
+}
+.popoverMTHeading {
+    color: white;
+    font-size: var(--third-font);
+    font-weight: var(--label-fontWeight);
+}
+
+.popoverLine {
+    border-right: 1px solid white;
+    padding: 3% 0 0;
+}
+
+.multiCPopoverStyle {
+    width: 12rem !important;
+}
+
+.checkBoxLabelPopover .ant-checkbox+span {
+    /* padding-inline-start: 10px;
+    padding-inline-end: 4px; */
+    /* position: relative; */
+    cursor: pointer;
+    /* line-height: 20px; */
+    /* display: inline-flex; */
+    font-weight: var(--label-fontWeight);
+    /* margin-bottom: 10%; */
+    /* padding-top: 7%; */
+    padding: 7% 1em;
+}
+
+.checkBoxLabelPopover .ant-checkbox .ant-checkbox-inner {
+    width: 20px;
+    height: 20px;
+}
+
+.checkBoxLabelPopover .ant-checkbox-checked .ant-checkbox-inner {
+    width: 20px;
+    height: 20px;
+}
+
+.checkBoxLabelPopover .ant-checkbox-inner::after {
+    width: 40%;
+    height: 70%;
+}
+
+/* ----------------------------------- SortingCard ------------------------------ */
+
+.multiCSortingStyle .ant-card-body {
+    background-color: rgb(236, 236, 236);
+    padding: 1% 1%;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.sortIcon {
+    font-size: var(--small-font);
+}
+
+
+/* ----------------------------------- DetailsCard ------------------------------ */
+
+.multiCDetailsCardStyle .ant-card-body {
+    border-radius: 3px;
+    display: flex;
+    box-shadow: 0 0 10px lightgray;
+    flex-direction: column;
+    padding: 1% 2%;
+}
+
+.multiCLeftCard {
+    width: 75%;
+}
+.multiCity-Color {
+    color: rgb(113, 113, 113);
+}
+.multiCity-Font {
+    font-size: var(--primary-font);
+    font-weight: var(--primary-fontWeight);
+}
+.multiCityDeparture-FontWight {
+    font-size: var(--primary-font);
+    font-weight: var(--third-fontWeight);
+    position: absolute;
+    right: 0;
+}
+.multiCityArrival-FontWight {
+    font-size: var(--primary-font);
+    font-weight: var(--third-fontWeight);
+    position: absolute;
+    right: 30%;
+}
+.multiCity-Duration {
+    font-size: var(--third-font);
+    font-weight: var(--third-fontWeight);
+}
+
+.multiCVerticalLine {
+    border-left: 1px solid black;
+    height: 4rem;
+}
+
+.multiCRightCard {
+    width: 20%;
+    padding: 0px 5px;
+    text-align: right;
+}
+.multiCityPrice-FontWight {
+    font-size: var(--primary-font);
+    font-weight: var(--third-fontWeight);
+}
+
+.multiCityFlightDetails {
+    margin-top: 1%;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.radioBtnStyle .ant-radio .ant-radio-inner{
+    border-color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+}
+.radioBtnStyle .ant-radio-checked .ant-radio-inner{
+    border-color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+}
+
+
+/* ----------------------------------- FlightDetailsTab ------------------------------ */
+
+.multiCflightDetailsTab {
+    /* background-color: rgb(248, 248, 248); */
+    margin-top: 1%;
+    /* padding: 1% 4% 0; */
+}
+
+.multicityTabColor .ant-tabs-tab {
+    font-size: var(--label-font) !important;
+    /* color: rgb(113, 113, 113) !important; */
+    color: black !important;
+}
+
+.multicityTabColor .ant-tabs-tab-active {
+    background-color: var(--dark-color) !important;
+}
+/* .multicityTabColor .ant-tabs-tab.ant-tabs-tab-active {
+    border-bottom: 3px solid var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+} */
+.multicityTabColor .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: white !important;
+}
+
+/* ------------- FlightDetailsFirstTab ------------- */
+
+.multiCityTabCardStyle {
+    background-color: white;
+    border-radius: 3px;
+}
+.tabCardFStyle .ant-card-body {
+    padding: 2%;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.multiFTabAir {
+    font-size: var(--label-font);
+}
+.multiFSmallFont {
+    font-size: var(--small-font);
+}
+.multiFRight {
+    padding-right: 3%;
+}
+.multiFStationTime {
+    font-size: var(--secondary-font);
+    padding-bottom: 5%;
+}
+
+.multiFlineHeight {
+    line-height: 1.2;
+}
+
+.multyCityDistanceTLine {
+    position: relative;
+    border-top: 1px dashed #d8d8d8;
+    width: 100%;
+}
+.multyCityDSpanTLine {
+    padding: 0 5%;
+    font-size: var(--primary-fontWeight);
+    line-height: 16px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    font-weight: var(--label-fontWeight);
+}
+.multyCityDotDTLine {
+    display: block;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+.multyCityArrowDTLine {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 3px solid transparent;
+    border-left: 6px solid var(--primary-color);
+    border-bottom: 3px solid transparent;
+    position: absolute;
+    right: -5px;
+    top: -3.5px;
+}
+
+.multyCityFDuration {
+    margin-top: 5%;
+}
+
+/* ------------- FlightDetailsSecondTab ------------- */
+
+.multiFairDetailCard .ant-card-body {
+    border-radius: 3px;
+    padding: 2%;
+    box-shadow: none;
+}
+
+.flight-sec-tab-style {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.multiCFairDetail .ant-descriptions-item-content {
+    width: 50%;
+}
+
+/* ------------- FlightDetailsThirdTab ------------- */
+
+.multiBaggageInfoCard .ant-card-body {
+    border-radius: 3px;
+    padding: 1% 2% 0;
+    box-shadow: none;
+}
+.multiCFName {
+    font-size: 16px;
+    font-weight: 500;
+}
+.multiCFCode {
+    font-size: 14px;
+    margin-left: 2%;
+}
+
+/* ------------- FlightDetailsFourthTab ------------- */
+
+.multiFirCanRuleCard .ant-card-body {
+    border-radius: 3px 3px 0 0;
+    padding: 2% 2%;
+    box-shadow: none;
+}
+
+.canRuleHeading {
+    font-size: var(--third-font);
+}
+
+.tagMTParRef {
+    background-color: rgb(233, 252, 243);
+    border-radius: 3px;
+    padding: 1% 10%;
+    color: rgb(24, 161, 96);
+    font-size: var(--label-font);
+    font-weight: 700;
+    border: none;
+}
+
+.multiSecCanRuleCard .ant-card-body {
+    border-radius: 0 0 3px 3px;
+    padding: 1% 0 2% 4%;
+    box-shadow: none;
+}
+
+.multiCityFTable {
+    width: 90%;
+}
+.canChargeHeading {
+    font-weight: 500;
+    margin-bottom: 3%;
+}
+.ant-pagination-item-link {
+    color: white !important;
+}

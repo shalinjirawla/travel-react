@@ -1,0 +1,482 @@
+.FlightMainContent {
+    /* background-color: var(--primary-color); */
+    /* height: 40vh; */
+    /* width: 100%; */
+    /* border-bottom-left-radius: 75%;
+    border-bottom-right-radius: 75%; */
+}
+.flightBackgroud {
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* z-index: -2; */
+    height: 20rem;
+    width: 100%;
+    border-bottom-left-radius: 75%;
+    border-bottom-right-radius: 75%;
+}
+
+.flightHeader {
+    color: #fff;
+    padding: 1%;
+    /* font-size: 20px; */
+    font-size: var(--primary-font);
+    text-align: center;
+}
+
+.flightBookCard {
+    /* box-shadow: 0 0 10px 0px rgb(65, 65, 65); */
+    box-shadow: 0 0 10px 0px gray;
+    border-radius: 7px;
+    padding: 0 2%;
+    margin: 0 5%;
+}
+.flightSearchCard {
+    margin-bottom: 4%;
+}
+.recentFlightSearchCard {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.flightInput .ant-row {
+    display: block;
+}
+
+/* .flightInput .ant-row .ant-form-item-label {
+    width: 35%;
+    text-align: left;
+} */
+.flightInput .ant-form-item-label {
+    position: absolute;
+    z-index: 999;
+    top: -25%;
+    left: 5%;
+    background: #fff;
+    padding: 0 3%;
+    /* width: 20%; */
+}
+
+.pLabel p {
+    margin: 0;
+    margin-bottom: 2%;
+}
+
+.addFlightForm .ant-input-affix-wrapper {
+    border-radius: 5px;
+}
+
+.addFlightForm :where(.css-dev-only-do-not-override-uh3grp).ant-form-item .ant-form-item-label >label::after {
+    content: none;
+}
+
+/* .addFlightForm .ant-radio-wrapper {
+    font-size: 14px !important;
+} */
+
+.addFlightForm .ant-form-item-label label {
+    font-size: var(--third-font) !important;
+}
+
+.fareRadio .ant-radio-button-wrapper {
+    font-size: var(--third-font);
+    margin: 0 1%;
+}
+.fareRadio .ant-radio-button-wrapper-checked {
+    font-size: var(--third-font);
+    background-color: var(--shadow-color);
+    font-weight: bold;
+}
+
+.flightRadio .ant-radio-wrapper {
+    margin: 0 2% 0 0;
+    font-size: var(--secondary-font) !important;
+    padding: 0.5% 0.5%;
+}
+.flightRadio .ant-radio-wrapper-checked {
+    background-color: var(--shadow-color);
+    padding: 0.5% 2%;
+    color: var(--primary-color);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.ant-radio-group {
+    width: 100%;
+}
+
+.classRadio .ant-radio-button-wrapper {
+    /* margin: 0 2%; */
+    /* border-radius: 10px; */
+    /* border: none !important; */
+    /* font-size: var(--third-font); */
+    font-size: var(--label-font);
+}
+.classRadio .ant-radio-button-wrapper-checked {
+    font-size: var(--third-font);
+    background-color: var(--shadow-color);
+    font-weight: bold;
+}
+
+.searchFlightBtn {
+    min-width: 125%;
+    min-height: 3rem !important;
+    /* font-size: 20px; */
+    font-size: var(--primary-font);
+    border-radius: 3px;
+    box-shadow: 0 0 40px 0px lightgray;
+    position: absolute;
+    right: 180%;
+    /* right: 80%; */
+    top: -0.5rem;
+    z-index: 1;
+}
+
+.tcontentHeader {
+    position: absolute;
+    top: -26%;
+    background-color: #fff;
+    padding: 1% 1.5%;
+    left: 4%;
+}
+.tcontent {
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    padding: 2% 5%;
+    height: 4rem;
+}
+.tcontent p {
+    margin: 0;
+    margin-top: -7px;
+    margin-left: 3px;
+    font-size: var(--secondary-font);
+}
+.flightInputInside {
+    /* margin: -10.5% 0; */
+    position: absolute;
+    width: 100%;
+    top: -2.5rem;
+}
+
+/* ------------ Count wrapper --------------------- */
+
+.wrapper {
+    /* border: 1px solid var(--primary-color); */
+    border: 1px solid lightgray;
+    width: 60%;
+    height: 35px;
+    padding: 0 5px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.minusIcon {
+    font-size: var(--primary-font) !important;
+    position: relative;
+    top: 15%;
+    width: 30%;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.plusIcon {
+    font-size: var(--primary-font);
+    text-align: center;
+    position: relative;
+    top: 15%;
+    width: 30%;
+    color: var(--primary-color);
+}
+
+.plusminus {
+    width: 30%;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    color: var(--primary-color);
+}
+
+.num {
+    /* height: 100%; */
+    width: 55%;
+    margin: auto;
+    text-align: center;
+    color: var(--primary-color);
+    border: none;
+    font-size: var(--primary-font);
+}
+
+/* ----------------------- Specific ------------------------ */
+
+/* :where(.css-dev-only-do-not-override-95uuys).ant-input-lg { */
+:where(.css-dev-only-do-not-override-uh3grp).ant-input-lg {
+/* :where(.css-dev-only-do-not-override-uh3grp).ant-select-single.ant-select-lg .ant-select-selector { */
+    padding: 2.5px 20px;
+    font-size: var(--primary-font);
+    /* line-height: 2.571429; */
+    line-height: 3.2;
+    border-radius: 2px;
+    /* border: none; */
+    border: 1px solid lightgray;
+    /* box-shadow: 0 0 9px 0px lightgray; */
+}
+
+.addFlightForm .ant-select-selector {
+    /* width: 100%; */
+    height: 4rem !important;
+    padding: 0 10% !important;
+    /* position: absolute; */
+    /* top: -0.7rem; */
+}
+.fromToSelectCol .ant-form-item-label {
+    top: -35%
+}
+
+/* .searchSelect {
+    height: 4rem !important;
+} */
+
+.addFlightForm .searchSelect .ant-select-selector .ant-select-selection-search-input {
+    /* font-size: 18px !important; */
+    height: 50px !important;
+    padding: 0 6% !important;
+    margin-top: 2.5% !important;
+}
+
+.flightInput .ant-form-item-control > div:nth-child(2) {
+    position: absolute;
+    top: 4rem;
+}
+
+.deptReturnDatePicker .ant-picker-input>input {
+    font-size: var(--secondary-font);
+    font-weight: var(--secondary-fontWeight);
+}
+
+.ant-picker .ant-picker-input >input:placeholder-shown {
+    font-weight: var(--label-fontWeight);
+}
+
+/* :where(.css-dev-only-do-not-override-95uuys).ant-picker { */
+.addFlightForm .ant-picker {
+    padding: 5.5px 11px;
+    font-size: var(--primary-font);
+    line-height: 3.571429;
+    border-radius: 2px;
+    /* border: none; */
+    border: 1px solid lightgray;
+    height: 4rem;
+    width: 98%;
+    /* box-shadow: 0 0 9px 0px lightgray; */
+}
+
+.ant-select-item-option-selected {
+    background-color: var(--primary-color) !important;
+}
+
+.commonDateStyle .ant-picker-panel {
+    width: 20rem;
+}
+.commonDateStyle .ant-picker-header {
+    width: 20rem;
+    font-size: var(--secondary-font);
+    padding: 2%;
+}
+.commonDateStyle .ant-picker-content {
+    width: 18.7rem !important;
+    font-size: var(--secondary-font);
+}
+
+/* .commonDateStyle .ant-picker-header-view {
+    font-size: var(--secondary-font);
+} */
+.commonDateStyle thead {
+    font-size: var(--third-font);
+}
+.commonDateStyle thead th {
+    color: grey !important;
+}
+.commonDateStyle .ant-picker-cell-inner {
+    font-weight: var(--secondary-fontWeight);
+    padding: 10% 25%;
+    height: auto !important;
+}
+.commonDateStyle .ant-picker-footer {
+    font-size: var(--secondary-font);
+    font-weight: var(--primary-fontWeight);
+    padding: 2%;
+}
+
+/* ----------------------- Multi City ------------------------ */
+.multiTravelPopupCol {
+    margin-top: 1.6%;
+}
+
+/* ---------------------------- Offers Card --------------------------------- */
+
+.offerCustomBarBtn {
+    border: none !important;
+    min-width: 5%;
+    margin: 0 1%;
+}
+.offerCustomBarBtnActive {
+    background-color: var(--shadow-color);
+    color: var(--primary-color);
+}
+.insideOfferCardDiv {
+    padding: 5% 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 22rem;
+    margin: 4%;
+    cursor: pointer;
+    box-shadow: 0 0 7px 0 lightgray;
+    border-radius: 7px;
+}
+.insideOfferCardDiv img {
+    /* width: 50%; */
+    height: 7rem;
+    margin: 0 2%;
+}
+.offersCarousel li {
+    width: auto !important;
+    margin: 0 0.2% !important;
+    /* position: unset !important; */
+}
+.react-multi-carousel-list{
+    position: unset !important;
+}
+.react-multiple-carousel__arrow {
+    position: absolute !important;
+}
+.react-multiple-carousel__arrow--left {
+    left: calc(-3% + 1px) !important;
+}
+.react-multiple-carousel__arrow--right {
+    right: calc(-3% + 1px) !important;
+}
+
+/* --------------------------------- Recent Search Card -------------------------- */
+.recentSearchDiv {
+    padding: 1% 2%;
+}
+.recentSearchDiv h2 {
+    font-size: var(--secondary-font);
+    color: gray;
+}
+.recentSearchCard {
+    width: 15rem;
+    border-radius: 7px;
+    cursor: pointer;
+    /* box-shadow: 0 0 5px 0 lightgray; */
+    /* margin: 2%; */
+}
+.recentSearchCard .ant-card-body {
+    padding: 4%;
+}
+.recentSearchCard h4 {
+    margin: 8% 0 0 0;
+}
+.recentSearchCard p {
+    margin: 5% 0 0 0;
+}
+
+
+/* -------------------------------------------- Flight List Page ----------------------------------- */
+
+.travelBoxCard {
+    width: 32rem;
+    /* padding: 2%; */
+}
+.labelBox {
+    padding: 0px 0px 1rem;
+    font-size: var(--secondary-font);
+    font-weight: 500;
+}
+.btnBox {
+    width: 4rem;
+    height: 2rem;
+    padding: 0px 1rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 4px 0px;
+    border-radius: 4rem;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.btnIcon {
+    color: blue;
+    position: relative;
+    top: 0rem;
+    opacity: 1;
+}
+.numberCount {
+    color: blue;
+    font-weight: 500;
+    font-size: var(--secondary-font);
+    padding-top: 1.3rem;
+}
+.travelDoneBtn {
+    min-width: 20%;
+    margin: 4% 8% 0 8%;
+    font-size: var(--secondary-font);
+    /* padding: 1.2rem 1.5rem;
+    border-radius: 0.3rem;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(255, 109, 56);
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 1.3rem; */
+}
+.dropdownBtn {
+    margin-top: 5%;
+}
+
+/* -------------------------------- Offer Detail Page ------------------------------- */
+.offerDetailPage {
+    padding: 2%;
+}
+.offerDetailPage .ant-descriptions-item-label, .offerDetailPage .ant-descriptions-item-content {
+    font-size: var(--secondary-font);
+}
+
+/* ------------------------------------ Search Select -------------------------------- */
+
+/* .searchPopupSelect .ant-select-dropdown .ant-select-item-option {
+    padding: 4% !important;
+} */
+.searchPopupSelect .ant-select-item-option {
+    padding: 0 !important;
+}
+/* .ant-select-item .ant-select-item-option {
+    padding: 2% 4% !important;
+} */
+.searchPopupSelect .ant-select-item-option-content {
+    /* font-size: 16px !important; */
+    font-size: var(--secondary-font) !important;
+    /* font-weight: 500 !important; */
+    padding: 6% 4% !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid lightgray;
+}
+.searchSelect .ant-select-selection-item {
+    font-size: var(--secondary-font) !important;
+    font-weight: 700 !important;
+}
+.searchSelect .ant-select-selection-placeholder {
+    font-size: var(--secondary-font) !important;
+}
+
+

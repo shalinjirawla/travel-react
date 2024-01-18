@@ -1,0 +1,68 @@
+.filterTCard {
+    width: 20rem;
+    border-radius: 3px;
+    /* display: flex; */
+    box-shadow: 0 0 10px 0 lightgray;
+    /* flex-direction: column; */
+    height: fit-content;
+}
+
+
+/* -------------------------------- Heading --------------------------- */
+
+.headingTStyle {
+    margin-bottom: 3%;
+    font-size: var(--secondary-font);
+    font-weight: var(--third-fontWeight);
+    line-height: 22px;
+    /* letter-spacing: 0; */
+    /* text-align: left; */
+}
+
+
+/* -------------------------------- Heading & ClearAll --------------------------- */
+
+.filterTHead {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 2% 0;
+    border-top: 1px solid #c2c2c2;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.filterTHeading {
+    font-weight: var(--third-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 22px;
+    color: #141823;
+}
+
+.filterClearAll {
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--label-font);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+
+/* -------------------------------- Checkbox --------------------------- */
+
+.filterTOption {
+    margin: 6% 0;
+    /* padding: 0; */
+}
+
+.filterTItem {
+    margin-bottom: 6%;
+}
+
+.checkBoxLabel .ant-checkbox+span {
+    padding-inline-start: 10px;
+    /* padding-inline-end: 4px; */
+    /* position: relative; */
+    cursor: pointer;
+    /* line-height: 20px; */
+    /* display: inline-flex; */
+    font-weight: var(--third-fontWeight);
+}

@@ -1,0 +1,56 @@
+.trainBackgroud {
+    height: 18rem !important;
+}
+
+.trainTatkalRadio .ant-radio-wrapper {
+    font-size: var(--third-font) !important;
+    /* padding: 0.5% 0.5%; */
+    padding: 1% 2%;
+    justify-content: center;
+    min-width: 7rem;
+}
+.trainTatkalRadio .ant-radio-wrapper-checked {
+    background-color: var(--shadow-color);
+    /* padding: 0.5% 2%; */
+    padding: 1% 1%;
+    color: var(--primary-color);
+    border-radius: 3px;
+    /* font-weight: bold; */
+}
+
+.openTatkalOnRadio {
+    position: relative;
+    font-size: var(--third-font);
+    top: 0.5em;
+    left: 8px;
+    background-color: lightgreen;
+    width: fit-content;
+    padding: 0 1%;
+    border-radius: 8px;
+}
+
+
+.addFlightForm .trainStatusSelect .ant-select-selector .ant-select-selection-search-input {
+    height: 50px !important;
+    padding: 0 8% !important;
+    padding-bottom: 0.8rem !important;
+    margin-top: 2.5% !important;
+}
+.trainStatusPopupSelect .ant-select-item-option {
+    padding: 0 !important;
+}
+.trainStatusPopupSelect .ant-select-item-option-content {
+    font-size: var(--primary-color) !important;
+    padding: 3% 2% !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid lightgray;
+}
+.trainStatusSelect .ant-select-selection-item {
+    /* font-size: 20px !important; */
+    font-size: var(--primary-color) !important;
+    font-weight: 700 !important;
+}
+.trainStatusSelect .ant-select-selection-placeholder {
+    /* font-size: 20px !important; */
+    font-size: var(--primary-color) !important;
+}

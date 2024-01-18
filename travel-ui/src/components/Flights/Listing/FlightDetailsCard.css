@@ -1,0 +1,306 @@
+.detailsCard {
+    margin-top: 7%;
+    margin-right: 2%;
+    width: 73%;
+    /* border-radius: 3px; */
+    display: flex;
+    flex-direction: column;
+}
+
+.cardStyle {
+    border-radius: 3px;
+    display: flex;
+    box-shadow: 0 0 10px lightgray;
+    flex-direction: column;
+    padding: 0 0.51%;
+}
+.mapCard {
+    cursor: pointer;
+}
+.mapCard .ant-card-body {
+    padding: 0.9% 1% !important;
+}
+.cardLine .ant-card-body {
+    padding: 0 !important;
+    border-radius: 3px !important;
+    display: flex;
+    box-shadow: 0 0 10px lightgray;
+    flex-direction: column;
+}
+.dateSelectedCard .ant-card-body {
+    padding: 0.5%;
+}
+
+.viewBtn { 
+    /* padding: 0rem 1rem; */
+    border-radius: 3px;
+    /* display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center; */
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary-color);
+    color: rgb(255, 255, 255);
+    font-weight: var(--primary-fontWeight);
+    /* margin-bottom: 5%; */
+}
+/* .buttonCenter {
+    padding-left: 24%;
+} */
+
+.labelStyle {
+    color: rgb(24, 161, 96);
+    /* position: relative; */
+    /* padding-right: 35%; */
+}
+
+.labelColor {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+
+/* ----------------------------------- DynamicDate ------------------------------ */
+
+.dateIcon {
+    display: flex;
+    font-size: var(--secondary-font);
+}
+.dateTrainCol {
+    padding: 6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ----------------------------------- Icon ------------------------------ */
+
+.labelFont {
+    font-size: var(--label-font);
+    cursor: pointer;
+}
+
+
+/* ----------------------------------- Card ------------------------------ */
+
+.headingHeight {
+    height: 1.5em;
+}
+.roundTripHeaderCard .headingHeight {
+    margin-top: 3%;
+}
+
+
+/* ----------------------------------- button ------------------------------ */
+
+.viewBtn:not(:disabled):not(.viewBtn-disabled):hover {
+    color: white;
+    border-color: white;
+}
+
+
+/* ----------------------------------- SortDate ------------------------------ */
+
+.divLine {
+    border-right: 1px solid rgb(231, 235, 239);
+    cursor: pointer;
+    padding: 2.5% 0 2.5% 0;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 0;
+}
+
+.colorChange {
+    color: var(--primary-color);
+}
+.sortIcon {
+    font-size: var(--label-font);
+}
+
+/* ----------------------------------- CheapestTag ------------------------------ */
+
+.justifyEnd {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+.dF {
+    display: flex;
+    margin: -0.9% -0.9% 0 0;
+}
+.tagColor {
+    background-image: linear-gradient(134.97deg, rgb(27, 149, 100) 0%, rgb(57, 213, 70) 100%);
+    color: rgb(255, 255, 255);
+    position: relative;
+    z-index: 0;
+    border-radius: 0px 5px 0px 100px;
+    padding: 1% 7% 1% 1rem;
+}
+.tagFont {
+    font-size: var(--label-font);
+}
+
+/* ------------------------------------- Return Data Page ------------------------ */
+
+.roundTripOffersDiv {
+    margin-bottom: 2%;
+}
+.roundTripOffersDiv .main-2 {
+    -webkit-box-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    flex: 1 1 0%;
+}
+.roundTripOffersDiv .p {
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+}
+.roundTripOffersDiv .in-box {   
+    display: flex;
+    align-items: center;
+    height: 3rem;
+}
+.roundTripOffersDiv .span {
+    border-radius: 2px;
+    border: 2px solid;
+    border-color: rgb(252, 190, 91);
+    height: 2.5rem;
+}
+.roundTripOffersDiv h4 {
+    margin-bottom: 1%;
+}
+.roundTripOffersDiv .img {
+    max-width: 100%;
+    max-height: 25px;
+    padding-right: 0.5rem;
+}
+.roundTripOffersDiv .pLabel {
+    margin: auto;
+    color: rgb(113, 113, 113);
+}
+.roundTripOffersDiv .card_1 {
+    padding: 0% 4%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;     
+    width: 93%;
+    cursor: pointer;    
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 1px 0 gray;
+}
+.roundTripOffersDiv .card_1:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* background-color: rgb(213, 224, 238);;   */
+}
+.roundTripOffersDiv .left {
+    padding-left: 5%;
+}
+
+/* ------------------------ Selection Card --------------------- */
+.rTripCardStyle {
+    border-radius: 3px;
+    display: flex;
+    box-shadow: 0 0 10px lightgray;
+    flex-direction: column;
+}
+.stickySelectCard {
+    top: 7rem;
+    z-index: 6;
+    /* line-height: 1; */
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 2px 4px 0px;
+    border-radius: 0.5rem;
+    background: rgb(255, 255, 255);
+    position: sticky !important;
+    /* padding: 1rem; */
+}
+
+.rTripCardStyle {
+    padding: 0;
+    border-radius: 3px;
+    display: flex;
+    box-shadow: 0 0 10px lightgray;
+    flex-direction: column;
+}
+.spanSDate {
+    color: black;
+    line-height: 18px;
+}
+.spanHDate {
+    color: white;
+    line-height: 18px;
+}
+.spanSPColor {
+    color: rgb(113, 113, 113);
+    line-height: 18px;
+    /* padding-left: 7%; */
+}
+.spanSColor {
+    color: rgb(113, 113, 113);
+    line-height: 18px;
+}
+/* .spanSHour {
+    padding-left: 7%;
+} */
+.spanSTime {
+    font-size: var(--primary-font);
+    font-weight: var(--third-fontWeight);
+    line-height: 18px;
+}
+.spanSFont {
+    font-size: var(--tritary-font);
+    font-weight: var(--third-fontWeight);
+}
+.divSelLine {
+    border-right: 1px solid rgb(231, 235, 239);
+    cursor: pointer;
+    padding: 3.5% 0 2.5% 0;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.divBorderDashed {
+    border-right: 1px dashed rgb(194, 194, 194);
+    cursor: pointer;
+    padding: 3.5% 0 2.5% 0;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.rTripBtn {
+    width: 80%;
+    /* min-width: 40%; */
+    font-weight: var(--third-fontWeight) !important;
+    /* min-height: 35px !important; */
+    /* margin: 2%; */
+    color: white;
+    /* background-color: rgb(34, 118, 227);
+    border-color: rgb(34, 118, 227); */
+    border-radius: 3px;
+    font-size: var(--primary-font);
+}
+
+/* ----------------------------------- FlightDetailsTab ------------------------------ */
+
+.flightDetailsFTab {
+    margin-top: 1%;
+}
+/* .flightDetailsFTab .ant-tabs-top >.ant-tabs-nav::before {
+    border: none;
+} */
+
+/* ------------- FlightDetailsFourthTab ------------- */
+
+.flightDetailSecCanRuleCard {
+    border-radius: 0 0 3px 3px;
+    /* padding-left: 2%; */
+    padding: 1% 0 1% 4%;
+    box-shadow: none;
+}

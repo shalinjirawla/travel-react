@@ -1,0 +1,97 @@
+.listMainTDiv {
+    margin: 0 5.7%;
+    display: flex;
+}
+
+.cardHeaderStyleT {
+    padding: 0 5%;
+    background-color: var(--primary-color);
+}
+
+
+/* -------------------------------- labelHeaderStyle --------------------------- */
+
+.labelHeaderTStyle {
+    color: #fff;
+    font-weight: var(--primary-fontWeight);
+    /* opacity: 0.6; */
+}
+
+
+/* -------------------------------- InputStyle --------------------------- */
+
+.swapSelectTStyle {
+    font-size: var(--medium-icon-size);
+    background: #fff;
+    padding: 10%;
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--primary-color);
+    box-shadow: 0 0 4px 0 lightgray;
+}
+
+
+/* -------------------------------- BackgroundStyle --------------------------- */
+
+.backgroundTStyle {
+    background-color: var(--dark-shadow)!important;
+    color: white !important;
+    border-color: var(--dark-shadow) !important;
+}
+
+.backgroundTStyle .ant-select-selector {
+    background-color: var(--dark-shadow) !important;
+    color: white !important;
+    border-color: var(--dark-shadow) !important;
+}
+.backgroundTStyle .ant-select-selection-item {
+    color: white !important;
+    font-size: var(--secondary-font) !important;
+    font-weight: 700 !important;
+}
+
+.backgroundTStyle .ant-picker-input>input::placeholder {
+    color: white !important;
+    font-size: var(--secondary-font) !important;
+    font-weight: var(--third-fontWeight) !important;
+}
+
+.backgroundTStyle .ant-picker-input >input {
+    color: white !important;
+    font-size: var(--secondary-font) !important;
+    font-weight: var(--third-fontWeight) !important;
+}
+
+.backgroundTStyle .ant-select-arrow .anticon > svg {
+    fill: var(--dark-shadow) !important;
+}
+.backgroundTStyle .ant-picker-suffix .anticon > svg {
+    fill: var(--dark-shadow) !important;
+    cursor: auto !important;
+}
+
+.trainOptionStyle .ant-select-item-option-content {
+    font-size: var(--third-font) !important;
+    font-weight: var(--primary-fontWeight) !important;
+    padding: 1% !important;
+}
+
+
+/* -------------------------------- SearchButton --------------------------- */
+
+.updateSearchTBtn {
+    width: 100%;
+    /* min-width: 40%; */
+    /* margin: 0 1%; */
+    font-weight: 700 !important;
+    min-height: 40px !important;
+    /* color: black; */
+    border-color: var(--primary-color);
+    border-radius: 3px;
+    font-size: var(--primary-font);
+} 
+
+.updateSearchTBtn:not(:disabled):not(.updateSearchTBtn-disabled):hover {
+    color: black;
+    border-color: var(--primary-color);
+}

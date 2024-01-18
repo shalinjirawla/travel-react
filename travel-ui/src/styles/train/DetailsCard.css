@@ -1,0 +1,394 @@
+/* ----------------------------------- DynamicDate ------------------------------ */
+
+.cardTStyle {
+    border-radius: 3px;
+    /* display: flex; */
+    /* box-shadow: 0 0 10px lightgray; */
+    /* flex-direction: column; */
+}
+
+.cardTStyle .ant-card-body {
+    padding: 0 !important;
+    border-radius: 3px !important;
+    /* display: flex; */
+    box-shadow: 0 0 10px lightgray;
+    /* flex-direction: column; */
+}
+
+.divDateIcon {
+    border-radius: 3px;
+    /* width: 36px; */
+    background-color: #d1e5ff;
+    /* border: 0.5px solid #2276e3; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    cursor: pointer;
+    height: 4.5rem;
+}
+
+.dateTColumn {
+    cursor: pointer;
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+    min-width: 6.9rem;
+    text-align: center;
+}
+
+/* .dynamicTDate {
+    padding-left: 7%;
+    cursor: pointer;
+    text-align: center;
+} */
+/* .dynamicTPrice {
+    cursor: pointer;
+    text-align: center;
+} */
+
+.dotStyle {
+    padding-left: 85%;
+}
+
+.dotLowAvlStyle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dotLowAvl {
+    background-color: #ff1515;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    align-self: flex-end;
+}
+
+.dotMediumAvl {
+    background-color: #ffc24a;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    align-self: flex-end;
+}
+
+
+.divTLine {
+    border-right: 1px solid #c2c2c2;
+    cursor: pointer;
+    padding: 5.7% 0 3% 0;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* ----------------------------------- sortedBy ------------------------------ */
+
+.sortingDiv {
+    padding: 1% 0;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+.paraTClass {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--primary-font);
+    line-height: 20px;
+    color: #647a97;
+}
+
+.sortedByTSelect {
+    /* align-self: flex-end; */
+    margin-top: 2%;
+}
+
+.labelSortedByTStyle {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+    color: rgb(100, 122, 151);
+}
+
+.backgroundSortedByTStyle .ant-select-selector {
+    color: var(--primary-color) !important;
+    border-radius: 3px !important;
+    font-size: var(--third-font) !important;
+}
+.backgroundSortedByTStyle .ant-select-selection-item {
+    font-weight: var(--third-fontWeight) !important;
+}
+.sortedByTOptionStyle .ant-select-item-option-content {
+    font-size: var(--third-font) !important;
+    font-weight: var(--primary-fontWeight) !important;
+    padding: 1% !important;
+}
+
+
+/* ----------------------------------- trainDetailsCard ------------------------------ */
+
+.detailsTCard {
+    /* margin: 0 0 0 2%; */
+    margin-left: 2%;
+    width: 70%;
+    /* border-radius: 3px; */
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+
+.cardTLine {
+    padding: 0 !important;
+    border-radius: 3px !important;
+    /* display: flex; */
+    box-shadow: 0 0 10px lightgray;
+    /* flex-direction: column; */
+}
+.cardTLine .ant-card-body {
+    padding: 0 2% !important;
+}
+
+
+.tripCardTNumber {
+    font-size: var(--tritary-font);
+    font-weight: var(--third-fontWeight);
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* text-align: left; */
+}
+.tripCardTStation {
+    font-size: var(--tritary-font);
+    font-weight: var(--third-fontWeight);
+    line-height: 24px;
+    /* text-align: left; */
+}
+.viewRouteTLink {
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 16px;
+    text-align: end;
+}
+.hoverTLink:hover {
+    color: #ff6d38;
+}
+.dayTWeek {
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--third-font);
+    line-height: 16px;
+    color: #777;
+    text-align: center;
+}
+.eachTDay {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--third-font);
+    line-height: 16px;
+    color: #141823;
+    /* text-align: center; */
+}
+
+.stationTTime {
+    font-weight: var(--third-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+    /* text-align: left; */
+}
+/* .alignItem {
+    align-items: center;
+} */
+.alignSelf {
+    align-self: baseline;
+}
+.stationTName {
+    font-weight: var(--third-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+    /* text-align: center; */
+}
+.stationTSName {
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+    /* text-align: center; */
+    color: rgba(53,53,53,.5);
+}
+
+.subTCard {
+    cursor: pointer;
+}
+.cardTUp {
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.subTCard .ant-card-body {
+    padding: 0 5%;
+    border-radius: 3px !important;
+}
+.backgoundTFirstCard {
+    background-color: rgb(254, 251, 242);
+    border-color: rgb(254, 251, 242);
+    padding: 0 2%;
+}
+.classTName {
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+}
+.classTPrice {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+}
+.viewCardMTAvl {
+    margin: 15% 0;
+    /* min-width: 35%; */
+}
+.backgoundTSecondCard {
+    background-color: rgb(254, 245, 225);
+    border-color: rgb(254, 245, 225);
+    padding: 0 2%;
+}
+.gClassTName {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--third-font);
+    line-height: 16px;
+}
+.gClassTTime {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--label-font);
+    line-height: 14px;
+    color: #647a97;
+}
+.backgoundTThirdCard {
+    background-color: #eff3f8;
+    border-color: #eff3f8;
+    padding: 0 2%;
+}
+.gClassTConfirmed {
+    text-align: center;
+    color: #141823;
+    font-weight: var(--label-fontWeight);
+    margin: 1% 0;
+}
+
+.availableTrain {
+    /* border: none; */
+    /* outline: none; */
+    cursor: pointer;
+    font-weight: var(--third-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+    color: var(--primary-color);
+    /* background-color: transparent; */
+    /* margin: 5% 0; */
+}
+
+
+.distanceTLine{
+    position: relative;
+    border-top: 1px solid #d8d8d8;
+    width: 250px;
+}
+.dSpanTLine {
+    padding: 0 5%;
+    font-size: var(--third-font);
+    line-height: 16px;
+    color: #c2c2c2;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    font-weight: var(--label-fontWeight);
+}
+.dotDTLine {
+    display: block;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #d8d8d8;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+.arrowDTLine {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 3px solid transparent;
+    border-left: 6px solid #d8d8d8;
+    border-bottom: 3px solid transparent;
+    position: absolute;
+    right: -5px;
+    top: -3.5px;
+}
+
+
+/* ----------------------------------- viewAvailableCard ------------------------------ */
+
+.cardTabTLine {
+    margin-bottom: 0.5%; 
+}
+.cardTabTLine .ant-card-body {
+    padding: 0 !important;
+    border-radius: 3px !important;
+    /* display: flex; */
+    box-shadow: 0 0 10px lightgray;
+    /* flex-direction: column; */
+}
+
+.fontT {
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--third-font);
+    line-height: 16px;
+}
+.fontTF {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--third-font);
+    line-height: 16px;
+}
+
+.tabTDay {
+    color: #141823 !important;
+}
+.tabTDate {
+    font-weight: var(--label-fontWeight);
+    font-size: var(--third-font);
+    line-height: 16px;
+    /* margin-left: 7%; */
+    color: #647a97 !important;
+}
+
+.backgroundTVAStyle {
+    background-color: rgb(255, 235, 238);
+}
+
+.tagTTatkal {
+    padding: 3% 14% 4% 14%;
+    background-color: #647a97;
+    border-radius: 3px;
+    font-size: var(--third-font);
+    font-weight: var(--label-fontWeight);
+    line-height: 11px;
+    color: #fff;
+    /* text-align: center; */
+}
+
+.bookNowTBtn {
+    font-weight: var(--third-fontWeight);
+    font-size: var(--secondary-font);
+    line-height: 18px;
+    color: var(--primary-color);
+    /* display: flex; */
+    /* align-items: center; */
+}
+
+.sortTBNIcon {
+    font-size: var(--label-font);
+    font-weight: var(--primary-fontWeight);
+    padding: 3% 0 0 5%;
+}

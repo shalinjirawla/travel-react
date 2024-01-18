@@ -1,0 +1,52 @@
+.navBtn {
+    display: flex;
+    align-items: center;
+    font-size: var(--primary-font);
+    min-width: 7rem;
+    cursor: pointer;
+    /* justify-content: space-between; */
+    /* color: var(--primary-color);
+    border-bottom: 9px solid var(--primary-color);
+    background-color: var(--shadow-color); */
+    padding: 0 3%;
+    /* border: 1px solid var(--primary-color); */
+    /* min-width: 30%;
+    min-height: 35px !important;
+    font-size: 14px;
+    margin: 0 2%; */
+    /* border-radius: 40px;
+    color: var(--primary-color); */
+}
+.navBtnActive {
+    color: var(--primary-color);
+    border-bottom: 9px solid var(--primary-color);
+    background-color: var(--shadow-color);
+}
+
+.navBtn span {
+    margin-left: 0.5rem;
+    font-weight: 600;
+    font-size: var(--secondary-font);
+}
+
+.activeNavBtn {
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    min-width: 30%;
+    border-radius: 40px;
+    margin: 0 2%;
+    /* padding: 2%; */
+    font-size: var(--secondary-font);
+    color: #fff;
+}
+.activeNavBtn:hover {
+    color: #fff !important;
+}
+
+.navbarLoginBtn {
+    min-width: 10%;
+}
+
+.loginBtn {
+    width: 100%;
+}

@@ -1,0 +1,35 @@
+.multiHeadingCol {
+    height: 3rem;
+    width: 15rem;
+}
+
+.headingCard {
+    margin-top: 1%;
+}
+
+.comboCard .ant-card-body {
+    padding: 0.9% 1%;
+}
+
+.comboCardFirstRow {
+    margin-bottom: 1%;
+}
+
+.insideColLineheight {
+    line-height: 1.3;
+}
+.comboViewBtn {
+    min-height: 30px !important;
+}
+
+
+.multiComboTime {
+    font-size: var(--secondary-font);
+    padding-bottom: 3%;
+}
+
+.multiSecCanRuleComboCard .ant-card-body {
+    border-radius: 0 0 3px 3px;
+    padding: 1% 0 2% 4%;
+    box-shadow: none;
+}

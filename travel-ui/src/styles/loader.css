@@ -1,0 +1,25 @@
+
+.customLoader svg {
+    box-shadow: 0 1px 10px hsl(0, 0%, 0%);
+}
+
+.customLoader svg {
+    display: block;
+    width: 250px;
+    height: auto;
+}
+
+/* button {
+    font-family: inherit;
+    border: none;
+    border-radius: 5px;
+    background: #242539;
+    color: #4dc498;
+    text-shadow: 0 1px 5px hsla(0, 0%, 0%, 0.1);
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    font-size: 1.1rem;
+    transition-property: opacity, visibility, transform;
+    transition-duration: 0.25s;
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+} */

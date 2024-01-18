@@ -1,0 +1,205 @@
+.listMainDiv {
+    margin: 1% 2%;
+    margin-bottom: 0;
+    display: flex;
+}
+.returnDtCheckbox .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: var(--dark-shadow) !important;
+    border-color: var(--dark-shadow) !important;
+}
+.flightCardStyle {
+    /* margin: 0 -4% 0 -4%; */
+    position: fixed;
+    width: 100%;
+    /* left: 4%;
+    top: 7%;
+    right: 0%; */
+    z-index: 1000;
+}
+.cardHeaderStyle {
+    /* padding-left: 3%; */
+    padding: 0 3%;
+    /* background-color: rgb(34, 116, 224); */
+    background-color: var(--primary-color);
+}
+.updateSearchBtn {
+    background-color: rgb(255, 255, 255);
+    /* margin: 0% 0 0 -25%; */
+    height: 2.3rem;
+    width: 100%;
+    color: var(--primary-color);
+    /* display: flex;
+    -webkit-box-align: center;
+    align-items: center; */
+    /* -webkit-box-pack: center; */
+    /* justify-content: center; */
+    cursor: pointer;
+    border: none;
+    font-weight: var(--primary-fontWeight);
+    border-radius: 3px;
+    font-size: var(--secondary-font);
+}
+.boxCard {
+    width: 21rem;
+}
+.labelBox {
+    padding: 0px 0px 1rem;
+    font-size: var(--secondary-font);
+    font-weight: var(--primary-fontWeight);
+}
+.btnBox {
+    width: 4rem;
+    height: 2rem;
+    padding: 0px 1rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 4px 0px;
+    border-radius: 4rem;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.btnIcon {
+    color: blue;
+    position: relative;
+    top: 0rem;
+    opacity: 1;
+}
+.numberCount {
+    color: blue;
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--secondary-font);
+    padding-top: 1.3rem;
+}
+.doneBtn {
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: var(--primary-fontWeight);
+    font-size: var(--secondary-font);
+}
+.dropdownBtn {
+    margin-top: 5%;
+}
+.deptDateCol {
+    margin-top: 1.7%;
+}
+.listAddBtn {
+    border: none;
+    background-color: var(--shadow-color);
+}
+.listRemoveIcon {
+    font-size: 20px;
+    margin-left: 4%;
+    /* box-shadow: 0 0 5px gray; */
+    border: none;
+    border-radius: 5px;
+    color: gray;
+    padding: 2.5%;
+    /* background-color: rgb(255, 250, 250); */
+    background-color: var(--shadow-color);
+}
+
+.defSelectOptionStyle .ant-select-item-option-content {
+    font-size: var(--third-font) !important;
+    /* font-weight: 500 !important; */
+    padding: 6% 4% !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid lightgray;
+}
+
+.defSelectOptionStyle .ant-select-item-option {
+    padding: 0 !important;
+}
+.defSelect .ant-select-selection-item {
+    font-size: var(--third-font) !important;
+    font-weight: var(--primary-fontWeight) !important;
+}
+
+/* -------------------------------- Swap --------------------------- */
+
+.swapStyle {
+    padding-left: 3.5%;
+}
+
+
+/* -------------------------------- Color --------------------------- */
+
+.labelHeaderStyle {
+    color: white;
+    font-weight: var(--primary-fontWeight);
+    opacity: 0.6;
+}
+
+
+/* -------------------------------- BackgroundColor --------------------------- */
+
+.backgroundStyle .ant-select-selector {
+    background-color: var(--dark-shadow) !important;
+    color: white !important;
+    border-color: var(--dark-shadow) !important;
+}
+.backgroundStyle .ant-select-selection-placeholder {
+    color: white;
+}
+.backgroundStyle .ant-select-selection-item {
+    color: white !important;
+}
+.backgroundStyle .ant-picker-input>input::placeholder {
+    color: white !important;
+}
+.backgroundStyle {
+    background-color: var(--dark-shadow) !important;
+    color: white !important;
+    border-color: var(--dark-shadow) !important;
+    width: 100%;
+}
+
+.backgroundStyle:not(:disabled):not(.backgroundStyle-disabled):hover {
+    color: white;
+    border-color: white;
+}
+
+.backgroundStyle .ant-picker-input >input {
+    color: white !important;
+}
+
+.backgroundStyle .ant-select-arrow .anticon > svg {
+    fill: var(--dark-shadow) !important;
+}
+.backgroundStyle .ant-picker-suffix .anticon > svg {
+    fill: var(--dark-shadow) !important;
+    cursor: auto !important;
+}
+
+.commonSubDateStyle {
+    font-size: var(--third-font);
+}
+
+
+/* -------------------------------- DatePicker --------------------------- */
+
+.showDate {
+    opacity: 0.3;
+}
+
+
+/* -------------------------------- UpdateSearchButton --------------------------- */
+
+.updateSearchBtn:not(:disabled):not(.updateSearchBtn-disabled):hover {
+    color: var(--primary-color);
+    border-color: white;
+}
+.doneBtn:not(:disabled):not(.updateSearchBtn-disabled):hover {
+    color: white;
+    border-color: white;
+}

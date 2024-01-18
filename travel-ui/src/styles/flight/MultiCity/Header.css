@@ -1,0 +1,112 @@
+/* -------------------------------- BackgroundColor --------------------------- */
+
+.multyCityListMainDiv {
+    margin: 1% 12%;
+    /* display: flex; */
+}
+
+.multiCityFStyle {
+    background-color: var(--primary-color);
+}
+
+.multiCHeaderCard .ant-card-body {
+    padding: 1% 12% 0 12%;
+    background-color: var(--primary-color);
+}
+.multiCFHeading {
+    color: white;
+    font-size: var(--primary-font) !important;
+    font-weight: var(--secondary-fontWeight);
+}
+
+.m-Top {
+    margin-top: 1%;
+}
+.multiFlightRadio .ant-radio-button-wrapper {
+    font-size: var(--secondary-font);
+    font-weight: var(--label-fontWeight);
+    color: rgb(155, 155, 155);
+    border-radius: 3px;
+    border-color: white !important;
+    cursor: pointer;
+}
+.multiFlightRadio .ant-radio-button-wrapper-checked {
+    font-size: var(--secondary-font);
+    font-weight: var(--primary-fontWeight);
+    color: white;
+    background-color: rgb(255, 100, 33) !important;
+    border-color: rgb(255, 100, 33) !important;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.secondMultiCFHeading {
+    color: white;
+    margin-top: 1%;
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+}
+.multiFlightSceduleRadioCombo .ant-radio-button-wrapper {
+    color: #fff !important;
+}
+.multiFlightSceduleRadio .ant-radio-button-wrapper {
+    font-size: var(--third-font);
+    /* font-weight: var(--primary-fontWeight); */
+    padding: 0 4% 11% 4%;
+    /* color: white; */
+    color: var(--dark-color);
+    border-radius: 3px;
+    /* background-color: rgb(85, 127, 183);
+    border-color: rgb(85, 127, 183); */
+    background-color: var(--back-color);
+    border-color: var(--back-color);
+    cursor: pointer;
+}
+.multiFlightSceduleRadio .ant-radio-button-wrapper-checked {
+    font-size: var(--third-font);
+    padding: 0 4% 11% 4%;
+    color: var(--dark-color);
+    background-color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.readOnlyRadio .ant-radio-button-wrapper, .readOnlyRadio .ant-radio-button-wrapper-checked {
+    background-color: transparent !important;
+    border: none;
+    cursor: default;
+}
+
+.modifyTBtn {
+    /* background-color: var(--dark-color); */
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    padding: 0 2%;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    font-size: var(--third-font);
+}
+.modifyTBtn:hover {
+    border: 1px solid #fff;
+    color: #fff;
+}
+.modifyTBtn:not(:disabled):not(.modifyTBtn-disabled):hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.textAlignEnd {
+    text-align: end;
+}
+
+
+/* ------------------ Specific -------------------------- */
+.multicitySegment .ant-segmented-item-selected {
+    background-color: var(--dark-color);   
+    color: #fff;
+}
+.multicitySegment .ant-segmented-item .ant-segmented-item-label {
+    font-size: var(--secondary-font);
+}
