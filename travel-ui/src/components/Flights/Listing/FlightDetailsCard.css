@@ -61,6 +61,33 @@
     cursor: pointer;
 }
 
+.FlightListCardRowH2 {
+    font-size: 15px;
+}
+.FlightListCardRowLabel {
+    font-size: 11px;
+}
+.priceListRadioGrp h2 {
+    font-size: var(--secondary-font);
+}
+
+.flightListCardDurationLabel {
+    margin-top: 2%;
+}
+
+.fareDetailListDivider {
+    margin: 0% 0;
+    min-width: 140%;
+}
+
+.fareDetailListInsideDiv {
+    line-height: 1.2;
+    margin-left: 10%;
+    width: max-content;
+}
+.insidePopoverSelect {
+    width: 95% !important;
+}
 
 /* ----------------------------------- DynamicDate ------------------------------ */
 
@@ -80,7 +107,6 @@
     font-size: var(--label-font);
     cursor: pointer;
 }
-
 
 /* ----------------------------------- Card ------------------------------ */
 
@@ -303,4 +329,11 @@
     /* padding-left: 2%; */
     padding: 1% 0 1% 4%;
     box-shadow: none;
+}
+
+/* ------------------------------------- Flight Fare Details -------------------------- */
+
+.bookBtnInFareList {
+    min-height: 1rem !important;
+    min-width: 80%;
 }

@@ -53,14 +53,26 @@
   display: flex;
   justify-content: space-between;
 }
+.flexFlowRow {
+  flex-flow: row;
+}
 .m-0 {
   margin: 0;
 }
 .mAuto {
   margin: auto;
 }
+.marginVerticalAuto {
+  margin: auto 0;
+}
+.width100 {
+  width: 100%;
+}
 .overflowH {
   overflow: hidden;
+}
+.visibilityHide {
+  visibility: hidden;
 }
 .fontMedium {
   font-size: var(--secondary-font);

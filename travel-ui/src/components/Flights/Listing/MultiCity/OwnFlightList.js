@@ -586,7 +586,7 @@ const OwnFlightList = () => {
                                 </Popover>
                             </Col>
                             <div className='popoverLine'></div>
-                            <Col xl={7} lg={8} md={8} sm={8} xs={8}>
+                            <Col xl={9} lg={8} md={8} sm={8} xs={8}>
                                 <Popover overlayClassName='multiCPopoverStyle' content={departureContent} placement="bottom">
                                     <div className='textAlignCenter cursorP'>
                                         <h3 className='popoverMTHeading'>Departure from Ahmedabad <DownOutlined className='sortIcon' /></h3>

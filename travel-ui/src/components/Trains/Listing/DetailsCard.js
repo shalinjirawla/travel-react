@@ -332,7 +332,7 @@ const DetailsCard = () => {
                     <Col xl={1} lg={1} md={1} sm={1} xs={1}><div className='divDateIcon' onClick={handleLeftClick}><LeftOutlined className='dateIcon' /></div></Col>
                     <Col xl={22} lg={22} md={22} sm={22} xs={22}>     
                         <Card className='cardTStyle'>
-                            <Row align='middle' justify='space-between'>
+                            <Row align='middle' className='flexFlowRow' justify='space-between'>
                                 {dynamicDates.map((date, index) => (
                                     <Col key={index} xl={3} lg={3} md={3} sm={3} xs={3}
                                         className='dateTColumn'

@@ -1,39 +1,40 @@
 import { DownOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-import { Button, Col, Divider, Form, Input, Popover, Radio, Row } from "antd";
-import TextInput from "../../TextInput";
+import { useContext, useEffect, useState } from "react";
+import { Col, Popover, Radio, Row } from "antd";
 import AppButton from "../../AppButton";
 import { classOptions } from "../../../Constants";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible, onDone }) => {
 
+    const { isTablet } = useContext(AuthContext)??{};
     const [adultCounter, setAdultCounter] = useState(1);
     const [childCounter, setChildCounter] = useState(0);
     const [infantCounter, setInfantCounter] = useState(0);
     const [selectedClass, setSelectedClass] = useState('economy');
-    // const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         if (currTraveller) {
-            setAdultCounter(currTraveller?.adult??1);
-            setChildCounter(currTraveller?.child??0);
-            setInfantCounter(currTraveller?.infant??0);
-            setSelectedClass(currTraveller?.currClass??'economy');
+            onReset();
         }
     }, [JSON.stringify(currTraveller)]);
+    
+    const onReset = () => {
+        setAdultCounter(currTraveller?.adult??1);
+        setChildCounter(currTraveller?.child??0);
+        setInfantCounter(currTraveller?.infant??0);
+        setSelectedClass(currTraveller?.currClass??'economy');
+    };
 
     const getDisplayValue = (adult, child, infant, currClass) => {
         let text = `${adult} Adult, `;
         if (child > 0) text = text + `${child} Child, `;
         if (infant > 0) text = text + `${infant} Infant`;
-        // text = text + `${currClass}`
-        // return text;
         return `<h2>${text}</h2> \n<p>${classOptions.find(o => o.value === currClass)?.label}</p>`;
     };
 
     const handleChangeValues = (adult, child, infant, currClass) => {
-        flightForm.setFieldValue("flightTraveller", getDisplayValue(adult, child, infant, currClass));
-        // setCurrTraveller({ adult: adult, child: child, infant: infant, class: currClass });
+        flightForm.setFieldValue("flightTraveller", { adult: adult, child: child, infant: infant, currClass: currClass });
     };
 
     const onClassChangeOptions = ({ target: { value } }) => {
@@ -51,7 +52,6 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
             (type === 'infant' && infantCounter <= 8) ? infantCounter + 1 : infantCounter,
             selectedClass
         );
-
     };
     const totalPassengers = adultCounter + childCounter + infantCounter;
     const handleMinus = (type) => {
@@ -70,7 +70,7 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
         <div>
             <div className='travelBoxCard'>
                 <Row>
-                <Col xl={8} lg={6} md={6} sm={6} xs={6}>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
                         <Row justify='center'><h3 style={{ color: ((totalPassengers <= 9 || adultCounter === 1) && infantCounter <= adultCounter) ? '' : 'red' }}>Adult</h3></Row>
                         <Row justify='center' className="pLabel"><p>(Aged 12+ yrs)</p></Row>
                         <div className='wrapper'>
@@ -88,7 +88,7 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                             />
                         </div>
                     </Col>
-                    <Col xl={8} lg={6} md={6} sm={6} xs={6}>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
                         <Row justify='center'><h3 style={{ color: (totalPassengers <= 9 || childCounter === 0) ? '' : 'red' }}>Children</h3></Row>
                         <Row justify='center' className="pLabel"><p>(Aged 2-12 yrs)</p></Row>
                         <div className='wrapper'>
@@ -106,7 +106,7 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                             />
                         </div>
                     </Col>
-                    <Col xl={8} lg={6} md={6} sm={6} xs={6}>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
                         <Row justify='center'><h3 style={{ color: ((totalPassengers <= 9 || infantCounter === 0) && infantCounter <= adultCounter) ? '' : 'red' }}>Infants</h3></Row>
                         <Row justify='center' className="pLabel"><p>(Below 2 yrs)</p></Row>
                         <div className='wrapper'>
@@ -127,12 +127,12 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                 </Row>
                 {/* <Divider /> */}
                 <Row align='middle' justify='center'>
-                    <Col xl={22} lg={{ span: 15 }} md={{ span: 15 }} sm={{ span: 15 }} xs={{ span: 15 }} className='dropdownBtn'>
+                    <Col xl={22} lg={22} md={22} sm={22} xs={22} className='dropdownBtn'>
                         <Row align='middle'>
-                            <Col xl={5} lg={4} md={4} sm={4} xs={4}>
+                            <Col xl={5} lg={5} md={5} sm={5} xs={5}>
                                 <h3>Travel Class </h3>
                             </Col>
-                            <Col xl={19} lg={20} md={20} sm={20} xs={20}>
+                            <Col xl={19} lg={19} md={19} sm={19} xs={19}>
                                 <Radio.Group className='classRadio' size='large' options={classOptions} onChange={onClassChangeOptions} value={selectedClass} optionType="button" />
                             </Col>
                         </Row>
@@ -141,7 +141,7 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                     </Col>
                 </Row>
                 <Row justify='end'>
-                    <Col xl={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 20 : 24} lg={20} md={20} sm={20} xs={20}>
+                    <Col xl={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 20 : 24} lg={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 20 : 24} md={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 20 : 24} sm={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 20 : 24} xs={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 20 : 24}>
                         {/* <AppButton onClick={() => setIsVisible(false)} className='travelDoneBtn appPrimaryButton' label='Done' /> */}
                         {(totalPassengers <= 9 && infantCounter <= adultCounter) ? (
                             <AppButton
@@ -153,7 +153,7 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                                 label='Done'
                             />
                         ) : (
-                            <p style={{ textAlign: 'center', fontSize: '14px' }}><b>{totalPassengers <= 9 ? 'You must have atleast one adult per infant' : 'Looking to make a booking for more than 9 people?'}</b></p>
+                            <p className='totalFPassengers'><b>{totalPassengers <= 9 ? 'You must have atleast one adult per infant' : 'Looking to make a booking for more than 9 people?'}</b></p>
                         )}
                     </Col>
                 </Row>
@@ -164,44 +164,15 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
     return (
         <Popover
             trigger="click"
-            onOpenChange={() => setIsVisible(!isVisible)}
+            onOpenChange={() => { setIsVisible(!isVisible); onReset(); }}
             open={isVisible}
             content={content}
             arrow={false}
             placement='bottomLeft'
         >
-            {/* <Button size='large'>1 Traveller(s), Economy</Button> */}
-            {/* <TextInput
-                name="flightTraveller"
-                type='text'
-                size='large'
-                defaultVal={getDisplayValue(adultCounter, childCounter, infantCounter, selectedClass)}
-                typeMsg='The input is not valid Name!'
-                required={false}
-                // placeholder='To :'
-                label='Travellers & Class'
-            /> */}
-            <h3 className="tcontentHeader">Travellers & Class</h3>
+            {!isTablet && <h3 className="tcontentHeader">Travellers & Class</h3>}
             <div className="tcontent" dangerouslySetInnerHTML={{ __html: getDisplayValue(adultCounter, childCounter, infantCounter, selectedClass) }} />
-            <DownOutlined style={{ position: 'absolute', fontSize: '18px', color: '#003b95', top: '40%', right: '4%' }} />
-            {/* <Form.Item
-                name="flightTraveller"
-                className="createUserTextInput"
-                // initialValue={getDisplayValue(adultCounter, childCounter, infantCounter, selectedClass)}
-                initialValue={`Helloooo \n<p>New Line</p><p>asas</p>`}
-                type='text'
-                label="Travellers & Class"
-            >
-                <TextArea
-                    size='large'
-                    autoSize={{ minRows: 2, maxRows: 2 }}
-                    // dangerouslySetInnerHTML={{ __html: '<h2>1 Adult \n <p>Premium Economy</p></h2>' }}
-
-                    // autoSize={true}
-                    // maxLength={20}
-                    // rows={2}
-                />
-            </Form.Item> */}
+            <DownOutlined style={{ position: 'absolute', fontSize: '18px', color: '#003b95', top: isTablet ? '18%' : '38%', right: isTablet ? '5%' : '4%' }} />
         </Popover>
     )
 

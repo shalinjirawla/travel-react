@@ -187,44 +187,21 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         setDurationValue(hoursMinutes);
     };
 
-    const minutesToHoursAndMinutesForReturn = (minutes) => {
-        const hours = Math.floor(minutes / 60);
-        const remainingMinutes = minutes % 60;
-        return `${hours}h ${remainingMinutes}m`;
-    };
     const minuteHoursForReturn = () => {
-        const hoursMinutes = returnDurationRangeSlider.map(minutesToHoursAndMinutesForReturn);
+        const hoursMinutes = returnDurationRangeSlider.map(minutesToHoursAndMinutes);
         setReturnDurationValue(hoursMinutes);
     };
 
-    const handleButtonClickForDeparture = (id) => {
-        setButtonClickedForDeparture((prevCheckboxes) =>
+    const handleButtonClick = (id, setFunc) => {
+        setFunc((prevCheckboxes) =>
             prevCheckboxes.map((btn) =>
                 btn.id === id ? { ...btn, isChecked: !btn.isChecked } : btn
             )
         );
     };
-    const handleButtonClickForReturn = (id) => {
-        setButtonClickedForReturn((prevCheckboxes) =>
-            prevCheckboxes.map((btn) =>
-                btn.id === id ? { ...btn, isChecked: !btn.isChecked } : btn
-            )
-        );
-    };
-
-    const handleButtonClickForStops = (id) => {
-        setButtonClickedForStops((prevCheckboxes) =>
-            prevCheckboxes.map((btn) =>
-                btn.id === id ? { ...btn, isChecked: !btn.isChecked } : btn
-            )
-        );
-    };
-    const handleButtonClickForReturnStops = (id) => {
-        setButtonClickedForReturnStops((prevCheckboxes) =>
-            prevCheckboxes.map((btn) =>
-                btn.id === id ? { ...btn, isChecked: !btn.isChecked } : btn
-            )
-        );
+    
+    const resetCheckByFunc = (setFunc) => {
+        setFunc((prevCheckboxes) => prevCheckboxes.map((checkbox) => ({ ...checkbox, isChecked: false })));
     };
 
     const handleChangeHide = (e) => {
@@ -232,15 +209,15 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
     };
     const handleResetAll = () => {
         setHideChecked(false);
-        setButtonClickedForDeparture((prevCheckboxes) => prevCheckboxes.map((checkbox) => ({ ...checkbox, isChecked: false })));
-        setButtonClickedForReturn((prevCheckboxes) => prevCheckboxes.map((checkbox) => ({ ...checkbox, isChecked: false })));
-        setButtonClickedForStops((prevCheckboxes) => prevCheckboxes.map((checkbox) => ({ ...checkbox, isChecked: false })));
-        setButtonClickedForReturnStops((prevCheckboxes) => prevCheckboxes.map((checkbox) => ({ ...checkbox, isChecked: false })));
+        resetCheckByFunc(setButtonClickedForDeparture);
+        resetCheckByFunc(setButtonClickedForReturn);
+        resetCheckByFunc(setButtonClickedForStops);
+        resetCheckByFunc(setButtonClickedForReturnStops);
+        resetCheckByFunc(setAirlinesCheckbox);
         setPriceRangeSlider([5000, 50000]);
         setReturnPriceRangeSlider([4000, 40000]);
         setDurationRangeSlider([15, 1440]);
         setReturnDurationRangeSlider([30, 1410]);
-        setAirlinesCheckbox((prevCheckboxes) => prevCheckboxes.map((checkbox) => ({ ...checkbox, isChecked: false })));
     };
 
     const handleChangeHideForAirlines = (id) => {
@@ -256,33 +233,19 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         );
     };
 
-    const handleChangeHidePriceSlider = (values) => {
-        console.log('price change value===', values);
-        handleFilterValues('price', values);
-        setPriceRangeSlider(values);
+    const handleChangeSlider = (type, values, setFunc) => {
+        handleFilterValues(type, values);
+        setFunc(values);
     };
+
     const handleResetForPriceSlider = () => {
         setPriceRangeSlider([5000, 50000]);
-    };
-    const handleChangeHideReturnPriceSlider = (values) => {
-        console.log('price change value===', values);
-        handleFilterValues('price', values);
-        setReturnPriceRangeSlider(values);
     };
     const handleResetForReturnPriceSlider = () => {
         setReturnPriceRangeSlider([4000, 40000]);
     };
-
-    const handleChangeHideDurationSlider = (values) => {
-        handleFilterValues('duration', values);
-        setDurationRangeSlider(values);
-    };
     const handleResetForDurationSlider = () => {
         setDurationRangeSlider([15, 1440]);
-    };
-    const handleChangeHideReturnDurationSlider = (values) => {
-        handleFilterValues('duration', values);
-        setReturnDurationRangeSlider(values);
     };
     const handleResetForReturnDurationSlider = () => {
         setReturnDurationRangeSlider([30, 1410]);
@@ -291,7 +254,6 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
     return (
         <Card className='filterCard'>
             <div>
-
                 <div>
                     <div className='headerPadding'>
                         <div>
@@ -313,13 +275,13 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                 <FilterButton
                     btnHeading='Departure'
                     options={isButtonClickedForDeparture}
-                    handleClick={(id) => handleButtonClickForDeparture(id)}
+                    handleClick={(id) => handleButtonClick(id, setButtonClickedForDeparture)}
                 />
                 {selectedFlightOption === 'roundtrip' &&
                     <FilterButton
                         btnHeading='Return'
                         options={isButtonClickedForReturn}
-                        handleClick={(id) => handleButtonClickForReturn(id)}
+                        handleClick={(id) => handleButtonClick(id, setButtonClickedForReturn)}
                     />
                 }
 
@@ -328,13 +290,13 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                 <FilterButton
                     btnHeading={selectedFlightOption !== 'roundtrip' ? 'Stops' : 'Onward Stops'}
                     options={isButtonClickedForStops}
-                    handleClick={(id) => handleButtonClickForStops(id)}
+                    handleClick={(id) => handleButtonClick(id, setButtonClickedForStops)}
                 />
                 {selectedFlightOption === 'roundtrip' &&
                     <FilterButton
                         btnHeading='Return Stops'
                         options={isButtonClickedForReturnStops}
-                        handleClick={(id) => handleButtonClickForReturnStops(id)}
+                        handleClick={(id) => handleButtonClick(id, setButtonClickedForReturnStops)}
                     />
                 }
 
@@ -353,7 +315,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                             max={50000}
                             defaultValue={priceRangeSlider}
                             value={priceRangeSlider}
-                            onChange={handleChangeHidePriceSlider}
+                            onChange={(val) => handleChangeSlider('price', val, setPriceRangeSlider)}
                             className='sliderStyle'
                             tooltip={{ formatter: null }}
                         />
@@ -371,7 +333,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 max={40000}
                                 defaultValue={returnPriceRangeSlider}
                                 value={returnPriceRangeSlider}
-                                onChange={handleChangeHideReturnPriceSlider}
+                                onChange={(val) => handleChangeSlider('price', val, setReturnPriceRangeSlider)}
                                 className='sliderStyle'
                                 tooltip={{ formatter: null }}
                             />
@@ -394,7 +356,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                             max={1440}
                             defaultValue={durationRangeSlider}
                             value={durationRangeSlider}
-                            onChange={handleChangeHideDurationSlider}
+                            onChange={(val) => handleChangeSlider('duration', val, setDurationRangeSlider)}
                             className='sliderStyle'
                             tooltip={{ formatter: null }}
                         />
@@ -412,7 +374,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 max={1410}
                                 defaultValue={returnDurationRangeSlider}
                                 value={returnDurationRangeSlider}
-                                onChange={handleChangeHideReturnDurationSlider}
+                                onChange={(val) => handleChangeSlider('duration', val, setReturnDurationRangeSlider)}
                                 className='sliderStyle'
                                 tooltip={{ formatter: null }}
                             />

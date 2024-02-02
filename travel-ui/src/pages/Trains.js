@@ -64,6 +64,7 @@ const Trains = () => {
     };
     
     const handleDateChange = (val, date) => {
+        if (val) trainAddForm.setFields([{ name: 'trainDeptDate', errors: undefined }]);
         if (date === dayjs().format('DD/MM/YYYY')) trainAddForm.setFieldValue('trainTatkal', 'today');
         else if (date === dayjs().add(1, 'day').format('DD/MM/YYYY')) trainAddForm.setFieldValue('trainTatkal', 'tomorrow');
         else if (date === dayjs().add(2, 'day').format('DD/MM/YYYY')) trainAddForm.setFieldValue('trainTatkal', 'dayAfterTomorrow');
@@ -75,7 +76,6 @@ const Trains = () => {
         // setTrainStationList(temp);
     };
     const handleFromToChange = (val) => {};
-    const handleFlightSearch = () => {};
     const handleStationFromSelect = (val) => {
         setCurrFrom(val);
     };
@@ -92,6 +92,24 @@ const Trains = () => {
         trainAddForm.setFieldValue('trainTo', from);
     };
 
+    const handleTrainSearch = () => {
+        const { trainFrom, trainTo, trainDeptDate } = trainAddForm.getFieldsValue();
+        if (!trainFrom || !trainTo || !trainDeptDate) {
+            let tempErr = [];
+            if (!trainFrom) tempErr.push({ name: 'trainFrom', errors: ['Source Required!'] });
+            if (!trainTo) tempErr.push({ name: 'trainTo', errors: ['Destination Required!'] });
+            if (!trainDeptDate) tempErr.push({ name: 'trainDeptDate', errors: ['Departure Date Required!'] });
+            if (tempErr?.length > 0) trainAddForm.setFields(tempErr);
+        } else {
+            navigate('/train-listing', {
+                state: {
+                    selectedTrainOption: selectedTrainOption,
+                    searchDetails: trainAddForm.getFieldsValue()
+                }
+            });
+        }
+    };
+
     return (
         <div className='FlightMainContent'>
             <div className='flightBackgroud trainBackgroud'></div>
@@ -105,7 +123,6 @@ const Trains = () => {
                     className="addFlightForm"
                     scrollToFirstError
                 >
-                    {/* <h2>Book Domestic and International Flight Tickets</h2> */}
                     <Row>
                         <Col xl={24} lg={24} md={24} sm={24} xs={24}>
                             <Radio.Group size='large' className='flightRadio' options={trainOptions} onChange={onChangeOptions} value={selectedTrainOption} />
@@ -115,10 +132,9 @@ const Trains = () => {
                     <br />
                     {selectedTrainOption === 'book' &&
                         <>
-                            {/* <InitialSearchContent /> */}
                             <Row justify='space-between' align='top'>
                                 <Col className='flightInput' xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={23} lg={24} md={24} sm={24} xs={24}>
+                                    <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                         <Selectable
                                             name="trainFrom"
                                             size='large'
@@ -166,7 +182,7 @@ const Trains = () => {
                                     </Col>
                                 </Col>
                                 <Col className='flightInput' xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={23} lg={24} md={24} sm={24} xs={24}>
+                                    <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                         <Selectable
                                             name="trainTo"
                                             size='large'
@@ -189,19 +205,10 @@ const Trains = () => {
                                             data={trainStationList}
                                             handleSelectChange={handleStationToSelect}
                                         />
-                                        {/* <TextInput
-                                            name="flightTo"
-                                            type='text'
-                                            size='large'
-                                            typeMsg='The input is not valid Name!'
-                                            required={false}
-                                            // placeholder='To :'
-                                            label='To'
-                                        /> */}
                                     </Col>
                                 </Col>
-                                <Col className='flightInput' xl={4} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput' xl={23} lg={24} md={24} sm={24} xs={24}>
+                                <Col className='flightInput' xl={4} lg={4} md={4} sm={4} xs={4}>
+                                    <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}>
                                         <Form.Item
                                             name='trainDeptDate'
                                             label='Departure'
@@ -214,14 +221,15 @@ const Trains = () => {
                                                 popupClassName='commonDateStyle'
                                                 size='large'
                                                 onChange={handleDateChange}
+                                                // onChange={(d) => d && trainAddForm.setFields([{ name: 'trainDeptDate', errors: undefined }])}
                                                 // placeholder='Departure Date'
                                                 format='DD/MM/YYYY'
                                             />
                                         </Form.Item>
                                     </Col>
                                 </Col>
-                                <Col xl={8} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={16} lg={24} md={24} sm={24} xs={24}>
+                                <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                                    <Col className='flightInput fromToSelectCol' xl={16} lg={16} md={16} sm={16} xs={16}>
                                         <Selectable
                                             name="trainClass"
                                             size='large'
@@ -245,7 +253,6 @@ const Trains = () => {
                                             handleSelectChange={handleClassSelect}
                                         />
                                     </Col>
-                                    {/* <Radio.Group size='large' className='trainTatkalRadio' options={tatkalOptions} onChange={onTatkalChangeOptions} value={selectedTatkal} /> */}
                                 </Col>
                             </Row>
                             {/* <Radio.Group size='large' className='trainTatkalRadio' options={tatkalOptions} onChange={onTatkalChangeOptions} value={selectedTatkal} /> */}
@@ -275,8 +282,8 @@ const Trains = () => {
                     }
                     {selectedTrainOption === 'PNRstatus' &&
                         <Row justify='space-between' align='top'>
-                            <Col className='flightInput' xl={12} lg={12} md={12} sm={12} xs={6}>
-                                <Col className='flightInput fromToSelectCol' xl={23} lg={24} md={24} sm={24} xs={24}>
+                            <Col className='flightInput' xl={12} lg={12} md={12} sm={12} xs={12}>
+                                <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                     <TextInput
                                         name="trainPNR"
                                         type='text'
@@ -293,8 +300,8 @@ const Trains = () => {
                     }
                     {selectedTrainOption === 'trainStatus' &&
                         <Row justify='space-between' align='top'>
-                            <Col className='flightInput' xl={12} lg={12} md={12} sm={12} xs={6}>
-                                <Col className='flightInput fromToSelectCol trainStatusCol' xl={23} lg={24} md={24} sm={24} xs={24}>
+                            <Col className='flightInput' xl={12} lg={12} md={12} sm={12} xs={12}>
+                                <Col className='flightInput fromToSelectCol trainStatusCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                     <Selectable
                                         name="trainNumberStatus"
                                         size='large'
@@ -320,21 +327,14 @@ const Trains = () => {
                             </Col>
                         </Row>
                     }
-                    <br /><br />
+                    <br />
                     <Row justify='space-between' align='bottom'>
                         <Col xl={16} lg={16} md={16} sm={16} xs={16}></Col>
                         <Col xl={5} lg={5} md={5} sm={5} xs={5}>
                             <AppButton
                                 className='appPrimaryButton searchFlightBtn'
                                 label={selectedTrainOption === 'book' ? 'Search Trains' : 'Check Status'}
-                                onClick={() => {
-                                    handleFlightSearch();
-                                    navigate('/train-listing', {
-                                        state: {
-                                            
-                                        }
-                                    });
-                                }}
+                                onClick={handleTrainSearch}
                             />
                         </Col>
                     </Row>
@@ -342,7 +342,6 @@ const Trains = () => {
             </Card>
             <RecentSearches />
             {/* <OffersCard /> */}
-            {/* <AppFooter /> */}
         </div>
     )
 }

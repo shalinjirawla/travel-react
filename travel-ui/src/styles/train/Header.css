@@ -47,19 +47,19 @@
 .backgroundTStyle .ant-select-selection-item {
     color: white !important;
     font-size: var(--secondary-font) !important;
-    font-weight: 700 !important;
+    font-weight: var(--primary-fontWeight) !important;
 }
 
 .backgroundTStyle .ant-picker-input>input::placeholder {
     color: white !important;
     font-size: var(--secondary-font) !important;
-    font-weight: var(--third-fontWeight) !important;
+    font-weight: var(--primary-fontWeight) !important;
 }
 
 .backgroundTStyle .ant-picker-input >input {
     color: white !important;
     font-size: var(--secondary-font) !important;
-    font-weight: var(--third-fontWeight) !important;
+    font-weight: var(--primary-fontWeight) !important;
 }
 
 .backgroundTStyle .ant-select-arrow .anticon > svg {

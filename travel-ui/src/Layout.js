@@ -1,13 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {
-    DownOutlined,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, Button, theme, ConfigProvider, Dropdown, Modal, message } from 'antd';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Layout, Menu, Button, theme, ConfigProvider, Dropdown, Modal, message, Row } from 'antd';
 import logo from './images/logo.png';
 import MainRoutes from './Routes';
 import { AuthContext } from './context/AuthProvider';
@@ -16,10 +9,7 @@ import './styles/navbar.css';
 import AppButton from './components/AppButton';
 import Login from './pages/Login';
 import AppModal from './components/AppModal';
-import CIcon from '@coreui/icons-react';
-import { cilFlightTakeoff } from '@coreui/icons';
 import { BsAirplaneFill, BsBuilding, BsBusFrontFill, BsFillLuggageFill, BsFillTrainFrontFill } from "react-icons/bs";
-import AppFooter from './pages/Footer';
 
 const Layouts = () => {
 
@@ -34,7 +24,7 @@ const Layouts = () => {
 
     const navBtnList = [
         {
-            icon: <BsAirplaneFill />,
+            icon: <BsAirplaneFill size={50} />,
             label: 'Flights',
             key: 1,
             navigateTo: '/flights'
@@ -116,7 +106,6 @@ const Layouts = () => {
 
     const HeaderCustomBtn = ({ label, icon, classNm = '', click }) => {
         return (
-            // <AppButton className={classNm ? classNm : 'navBtn'} label={label} />
             <div className={classNm} onClick={click}>
                 {/* <DownOutlined /> */}
                 {/* <CIcon icon={cilFlightTakeoff} style={{ color: 'red', fontSize: '16px' }} size="sm"/> */}
@@ -145,65 +134,36 @@ const Layouts = () => {
             >
                 <Layout className='mainLayout'>
                     <Layout>
-                        <Header className='header' style={{ background: colorBgContainer }}>
+                        <Header
+                            className='header'
+                            style={{
+                                background: colorBgContainer,
+                                flexDirection: isTablet ? 'column' : 'row',
+                                height: isTablet ? '5.5rem' : null
+                            }}
+                        >
                             <div className='navbar d-flex-between'>
                                 <div className='d-flex-between'>
                                     <img src={logo} className="logoIcon" alt="logo" />
                                     {/* <h2>LOGO</h2> */}
-                                    <div className='d-flex'>
-                                        {navBtnList && navBtnList?.length > 0 && navBtnList.map((o, i) => {
-                                            return (
-                                                <HeaderCustomBtn
-                                                    key={i}
-                                                    icon={o.icon}
-                                                    label={o.label}
-                                                    classNm={(activeNavKey === o.key) ? 'navBtn navBtnActive' : 'navBtn'}
-                                                    click={() => {
-                                                        setActiveNavKey(o.key);
-                                                        navigate(o.navigateTo);
-                                                    }}
-                                                />
-                                            )
-                                        })}
-                                        {/* <AppButton 
-                                            label='Flights'
-                                            shape='round'
-                                            onClick={() => {
-                                                setActiveNavKey(1);
-                                                navigate('/flights');
-                                            }}
-                                            className={activeNavKey === 1 ? 'appPrimaryButton navBtn' : 'appButton navBtn'}
-                                            // style={{ fontSize: '14px' }}
-                                            />
-                                        <AppButton 
-                                            label='Trains'
-                                            shape='round'
-                                            onClick={() => setActiveNavKey(2)}
-                                            className={activeNavKey === 2 ? 'appPrimaryButton navBtn' : 'appButton navBtn'}
-                                            // style={{ fontSize: '14px' }}
-                                            />
-                                        <AppButton 
-                                            label='Hotels'
-                                            shape='round'
-                                            onClick={() => setActiveNavKey(3)}
-                                            className={activeNavKey === 3 ? 'appPrimaryButton navBtn' : 'appButton navBtn'}
-                                            // style={{ fontSize: '14px' }}
-                                            />
-                                        <AppButton 
-                                            label='Trips'
-                                            shape='round'
-                                            onClick={() => setActiveNavKey(4)}
-                                            className={activeNavKey === 4 ? 'appPrimaryButton navBtn' : 'appButton navBtn'}
-                                            // style={{ fontSize: '14px' }}
-                                            />
-                                        <AppButton 
-                                            label='Bus'
-                                            shape='round'
-                                            onClick={() => setActiveNavKey(5)}
-                                            className={activeNavKey === 5 ? 'appPrimaryButton navBtn' : 'appButton navBtn'}
-                                            // style={{ fontSize: '14px' }}
-                                        /> */}
-                                    </div>
+                                    {!isTablet && 
+                                        <div className='d-flex'>
+                                            {navBtnList && navBtnList?.length > 0 && navBtnList.map((o, i) => {
+                                                return (
+                                                    <HeaderCustomBtn
+                                                        key={i}
+                                                        icon={o.icon}
+                                                        label={o.label}
+                                                        classNm={(activeNavKey === o.key) ? 'navBtn navBtnActive' : 'navBtn'}
+                                                        click={() => {
+                                                            setActiveNavKey(o.key);
+                                                            navigate(o.navigateTo);
+                                                        }}
+                                                    />
+                                                )
+                                            })}
+                                        </div>
+                                    }
                                 </div>
                                 {user &&
                                     <Dropdown menu={{ items }} >
@@ -234,6 +194,24 @@ const Layouts = () => {
                                     />
                                 }
                             </div>
+                            {isTablet &&
+                                <div className='d-flex alignSelf navTabBtnMainDiv'>
+                                    {navBtnList && navBtnList?.length > 0 && navBtnList.map((o, i) => {
+                                        return (
+                                            <HeaderCustomBtn
+                                                key={i}
+                                                icon={o.icon}
+                                                label={o.label}
+                                                classNm={(activeNavKey === o.key) ? 'navTabBtn navTabBtnActive' : 'navTabBtn'}
+                                                click={() => {
+                                                    setActiveNavKey(o.key);
+                                                    navigate(o.navigateTo);
+                                                }}
+                                            />
+                                        )
+                                    })}
+                                </div>
+                            }
                         </Header>
                         <Content
                             style={{

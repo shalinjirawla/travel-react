@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 // import Login from './pages/Login';
@@ -17,8 +17,23 @@ import Bill from './components/Trains/bookingDetails/Bill';
 import MultiCityList from './components/Flights/Listing/MultiCity/MultiCityList';
 
 const MainRoutes = () => {
-  const { user, currentRole } = useContext(AuthContext) ?? {};
+  const { user, currentRole, setIsMobile, setIsTablet, setIsDesktop, setIs1000, setIs930 } = useContext(AuthContext) ?? {};
   const navigate = useNavigate();
+
+  const handleWindowSizeChange = () => {
+    setIsMobile(window.innerWidth <= 481);
+    setIsTablet(window.innerWidth <= 768);
+    setIsDesktop(window.innerWidth >= 769);
+    setIs1000(window.innerWidth <= 1100);
+    setIs930(window.innerWidth <= 930);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, []);
 
   return (
     <>

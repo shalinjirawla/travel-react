@@ -1,12 +1,14 @@
 import { Col, DatePicker, Form, Row } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Selectable from '../Selectable';
 import { CloseOutlined, MinusCircleOutlined, PlusCircleOutlined, SwapOutlined, SwapRightOutlined } from '@ant-design/icons';
 import TravelClassPopover from './Listing/TravelClassPopover';
 import AppButton from '../AppButton';
+import { AuthContext } from '../../context/AuthProvider';
 
-const MultiCityForm = ({ airportsList, selectedFlightOption }) => {
-    const [multiCityAddForm] = Form.useForm();
+const MultiCityForm = ({ airportsList, multiCityAddForm, selectedFlightOption }) => {
+
+    const { isDesktop, isTablet, is930 } = useContext(AuthContext);
     const [multiCityList, setMultiCityList] = useState([
         {
             flightFrom: null,
@@ -29,9 +31,9 @@ const MultiCityForm = ({ airportsList, selectedFlightOption }) => {
                     // <Temp module='material' fields={fields} add={add} remove={remove} />
                     <>
                         {fields.map(({ key, name, ...restField }) => (
-                            <Row justify='space-between' align='middle'>
+                            <Row justify='space-between' align='middle' className='multiCityFormRow'>
                                 <Col className='flightInput' xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={23} lg={24} md={24} sm={24} xs={24}>
+                                    <Col className='flightInput fromToSelectCol multiCityInput' xl={23} lg={23} md={23} sm={23} xs={23}>
                                         <Selectable
                                             name={[name, "flightFrom"]}
                                             size='large'
@@ -58,19 +60,11 @@ const MultiCityForm = ({ airportsList, selectedFlightOption }) => {
                                                 );
                                             }}
                                         />
-                                        {/* <TextInput
-                                            name="flightFrom"
-                                            size='large'
-                                            type='text'
-                                            typeMsg='The input is not valid Name!'
-                                            required={false}
-                                            // placeholder='From :'
-                                            label='From'
-                                        /> */}
                                         <SwapRightOutlined
                                             style={{
                                                 position: 'absolute',
-                                                top: '40%',
+                                                // top: '40%',
+                                                top: '25%',
                                                 fontSize: '20px',
                                                 background: '#fff',
                                                 // background: 'transparent',
@@ -87,7 +81,7 @@ const MultiCityForm = ({ airportsList, selectedFlightOption }) => {
                                     </Col>
                                 </Col>
                                 <Col className='flightInput' xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={23} lg={24} md={24} sm={24} xs={24}>
+                                    <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                         <Selectable
                                             name={[name, "flightTo"]}
                                             size='large'
@@ -113,29 +107,21 @@ const MultiCityForm = ({ airportsList, selectedFlightOption }) => {
                                         //     label: d.text,
                                         // }))}
                                         />
-                                        {/* <TextInput
-                                            name="flightTo"
-                                            type='text'
-                                            size='large'
-                                            typeMsg='The input is not valid Name!'
-                                            required={false}
-                                            // placeholder='To :'
-                                            label='To'
-                                        /> */}
                                     </Col>
                                 </Col>
-                                <Col className='flightInput deptDateCol' xl={selectedFlightOption === 'roundtrip' ? 3 : 4} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput' xl={23} lg={24} md={24} sm={24} xs={24}>
+                                <Col className='flightInput deptDateCol' xl={is930 ? 5 : 4} lg={is930 ? 5 : 4} md={is930 ? 5 : 4} sm={is930 ? 5 : 4} xs={is930 ? 5 : 4}>
+                                    <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}>
                                         <Form.Item
                                             name={[name, 'flightDeptDate']}
                                             label='Departure'
                                             className="createUserTextInput"
                                         // initialValue={defaultPurchaseOrder ? dayjs(new Date(defaultPurchaseOrder?.PODate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
-                                        // rules={[{ required: false, message: 'PO Date is required' }]}
+                                        // rulesew3={[{ required: false, message: 'PO Date is required' }]}
                                         >
                                             <DatePicker
                                                 className='deptReturnDatePicker'
                                                 popupClassName='commonDateStyle'
+                                                onChange={(val) => val && multiCityAddForm.setFields([{ name: ['multiCityList', key, 'flightDeptDate'], errors: undefined }])}
                                                 size='large'
                                                 // placeholder='Departure Date'
                                                 format='DD/MM/YYYY'
@@ -145,8 +131,9 @@ const MultiCityForm = ({ airportsList, selectedFlightOption }) => {
                                 </Col>
                                 <Col
                                     className='flightInput mAuto'
-                                    xl={selectedFlightOption === 'roundtrip' ? 6 : 8} lg={6} md={6} sm={6} xs={6}
-                                    style={{ marginTop: (name === 0) ? '1.6%' : null }}
+                                    xl={is930 ? 7 : 8} lg={is930 ? 7 : 8} md={is930 ? 7 : 8} sm={is930 ? 7 : 8} xs={is930 ? 7 : 8}
+                                    // style={{ marginTop: (name === 0) ? '0.5%' : isTablet ? '2.7%' : null }}
+                                    style={{ marginTop: (name === 0) ? '0.4rem' : '1rem' }}
                                 >
                                     {name === 0 && <TravelClassPopover flightForm={multiCityAddForm} />}
                                     <Row justify='start'>

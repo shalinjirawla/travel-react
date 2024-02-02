@@ -34,8 +34,6 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
         }
     }, [JSON.stringify(currSearchFlightList)]);
 
-    console.log('data', allFlightList);
-
     const formatListFunc = async (list) => {
         let returnArr = [];
         let formatArr = list?.trips?.map((o, i) => {
@@ -212,25 +210,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
             return date.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
         });
     };
-
-    const handleLeftClick = () => {
-        const dateOfToday = new Date();
-        if (startDate > dateOfToday) {
-            const newStartDate = new Date(startDate);
-            newStartDate.setDate(startDate.getDate() - 7);
-            setStartDate(newStartDate);
-        }
-    };
-    const handleRightClick = () => {
-        const newStartDate = new Date(startDate);
-        newStartDate.setDate(startDate.getDate() + 7);
-        setStartDate(newStartDate);
-    };
     const dynamicDates = generateDynamicDates(startDate, 12);
-
-    const handleDateClick = (date) => {
-        setSelectedDate(date);
-    };
 
     const getTodayDate = () => {
         const today = new Date();
@@ -312,7 +292,6 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
             let list = (type === 'oneway') ? allFlightList : allReturnList;
             list = list.map((o, i) => {
                 if (o.id === record.id) {
-                    // console.log('checkedd', i);
                     // o.isChecked = true;
                     return { ...o, isChecked: true }
                 } else {
@@ -449,7 +428,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                         <Row align='top' justify='space-between'>
                             <div></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleFromSortClick('DEPARTURE', 'from')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleFromSortClick('DEPARTURE', 'from')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedFromColumn === 'DEPARTURE' ? 'colorChange' : ''} `}>
                                         DEPARTURE {selectedFromColumn === 'DEPARTURE' && (isAscendingFrom ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -458,7 +437,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                             </Col>
                             <div className='divLine'></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleFromSortClick('DURATION', 'from')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleFromSortClick('DURATION', 'from')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedFromColumn === 'DURATION' ? 'colorChange' : ''} `}>
                                         DURATION {selectedFromColumn === 'DURATION' && (isAscendingFrom ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -467,7 +446,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                             </Col>
                             <div className='divLine'></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleFromSortClick('ARRIVAL', 'from')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleFromSortClick('ARRIVAL', 'from')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedFromColumn === 'ARRIVAL' ? 'colorChange' : ''} `}>
                                         ARRIVAL {selectedFromColumn === 'ARRIVAL' && (isAscendingFrom ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -476,7 +455,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                             </Col>
                             <div className='divLine'></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleFromSortClick('PRICE', 'from')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleFromSortClick('PRICE', 'from')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedFromColumn === 'PRICE' ? 'colorChange' : ''} `}>
                                         PRICE {selectedFromColumn === 'PRICE' && (isAscendingFrom ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -574,7 +553,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                         <Row align='top' justify='space-between'>
                             <div></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleToSortClick('DEPARTURE', 'to')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleToSortClick('DEPARTURE', 'to')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedToColumn === 'DEPARTURE' ? 'colorChange' : ''} `}>
                                         DEPARTURE {selectedToColumn === 'DEPARTURE' && (isAscendingTo ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -583,7 +562,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                             </Col>
                             <div className='divLine'></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleToSortClick('DURATION', 'to')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleToSortClick('DURATION', 'to')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedToColumn === 'DURATION' ? 'colorChange' : ''} `}>
                                         DURATION {selectedToColumn === 'DURATION' && (isAscendingTo ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -592,7 +571,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                             </Col>
                             <div className='divLine'></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleToSortClick('ARRIVAL', 'to')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleToSortClick('ARRIVAL', 'to')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedToColumn === 'ARRIVAL' ? 'colorChange' : ''} `}>
                                         ARRIVAL {selectedToColumn === 'ARRIVAL' && (isAscendingTo ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>
@@ -601,7 +580,7 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                             </Col>
                             <div className='divLine'></div>
                             <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <div onClick={() => handleToSortClick('PRICE', 'to')} className='divCenter textAlignCenter'>
+                                <div onClick={() => handleToSortClick('PRICE', 'to')} className='divCenter textAlignCenter cursorP'>
                                     <h4 className={`headingHeight ${selectedToColumn === 'PRICE' ? 'colorChange' : ''} `}>
                                         PRICE {selectedToColumn === 'PRICE' && (isAscendingTo ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
                                     </h4>

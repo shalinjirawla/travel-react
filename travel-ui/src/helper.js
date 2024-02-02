@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const handleTaxInputForPercentage = (e, form, fieldName) => {
     // if (!/[0-9|.|%]/.test(event.key)) {
     // if (!/^((?!0)\d{1,3}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/.test(event.key)) {
@@ -108,4 +110,8 @@ export const sortedListForArraival = (arr, sortBy, firstParam, secondParam) => {
         return sortBy === 'dsc' ? timeB - timeA : timeA - timeB;
     });
     return arr;
+};
+
+export const disabledFromToday = (current) => {
+    return current && current < dayjs().startOf('day');
 };

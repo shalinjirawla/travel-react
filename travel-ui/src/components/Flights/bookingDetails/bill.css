@@ -1,129 +1,99 @@
-.card {
-    margin: 0;
+.all {
     padding: 0;
-    width: 61%;
-    border-radius: 8px;
-    margin: 1.5% 5%;
+    margin: 0;
+}
+.reviewBackground {
+    border-radius: 0 !important;
+    height: 17rem !important;
+}
+.card {
+    width: 95%;
+    border-radius: 5px;
+    margin: 1% 0 2% 5%;
     box-shadow: 0 0 3px 0 lightgray;
 }
-.container{
-    padding-top: 5%;
+.card-fare {
+    width: 75%;
+    border-radius: 5px;
+    margin: 1.58% 5%;
+    box-shadow: 0 0 3px 0 lightgray;
 }
-.input-1{
+.flight-main-class{
+    padding: 0% 0% 0% 3%;
+}
+.input-email {
     display: flex;
-    padding-bottom: 2%;
+    /* padding-bottom: 2%; */
     justify-content: left;
 }
-.cardPadding {
-    width: 60%;
-    border-radius: 8px;
-    margin: 1% 0% 3% 5%;
-    box-shadow: 0 0 3px 0 lightgray;  
+.email {
+    padding: 1% 0% 0% 4%;
+    margin: 0;
 }
 .arrew {
     display: contents;
     align-items: center;
     position: relative;
-  }
-  .dashed-hr {
+}
+.dashed-hr {
     border: 1px dashed gray;
     width: 45%;
     margin: 10px 0;
-  }
-.ahm{
-    padding-top: 3%;
-  } 
-  .bold-text {
+}
+.bold-text {
     white-space: nowrap;
     font-weight: bold;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  .arrow-start{
-    width: 10px;
+    margin: 0 1%;
+}
+.arrow-start {
+    width: 2%;
     height: 10px;
     border-radius: 50%;
     background-color: rgb(176, 176, 176);
     margin-left: 3%;
-  }
-  .arrow-end {
+}
+.arrow-end {
     border-style: solid;
     border-color: transparent transparent transparent rgb(176, 176, 176);
     border-width: 7px 0px 7px 11px;
     padding-right: 3%;
-  }
-.card1 {
-    width: 25%;
-    border-radius: 8px;
-    margin: 1% 2%;
-    box-shadow: 0 0 3px 0 lightgray;
-}
-.back{  
-    background-color: var(--primary-color);
-    width: 100%;    
-    height: 17rem;
-    background-color: var(--primary-color);
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20rem;
-    width: 100%;
 }
 .backHeading1 {
     color: white;
-    font-weight: var( --third-fontWeight); 
-    padding: 2% 5%;
-}
-.main {
-    display: flex;
-    flex-direction: row;
-    /* margin: 1% 0% 0% 0%; */
-    /* height: 23rem; */
-}
-.main-2{
-    margin-top: -2.5%;
+    font-weight: var( --third-fontWeight);
+    padding: 2% 6.5%;
+    position: relative;
+    z-index: 1;
 }
 .checkbox{
     margin-top: 1%;
     font-size: var(--secondary-font);
 }
-.logo { 
-    margin-top: -2%;
+.logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.logo1{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -5%;
-}
-.logo2{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -2%;
-    height: 50px;
 }
 .date {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 0rem; 
-    padding: 3% 0% 6% 0%;
 }
-.flight{
-    font-weight: 500;
+.inbox {
+    padding-top: 2%;
+    align-items: baseline;
+}
+.flight {
+    font-weight: var( --primary-fontWeight);
     color: #777;
-    font-size: 18px;
+    font-size: var(--primary-font);
 }
 .colored-p {
     background-color: lightblue;
-    padding: 10px;
+    padding: 1%;
+    margin-top: 1%;
     border-radius: 5px;
-    font-size: 14px;
-    height: 2.8rem;
+    font-size: var(--third-font);
 }
 .colored-v {
     font-weight: 'bold';
@@ -139,111 +109,113 @@
     color: rgb(0, 162, 173);
     font-weight: var(--primary-fontWeight);
 }
+.fare{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+.num12{
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    font-weight: var(--secondary-fontWeight);
+}
 .txt{
     font-size: var(--third-font);
-    font-weight: var(--primary-fontWeight);
+    font-weight: var(--third-fontWeight);
 }
 .num1{
     font-size: var(--third-font);
     font-weight: var(--primary-fontWeight);
+    margin-right: 2.5%;
+    /* padding-bottom: 5%; */
 }
 .total{
     font-weight: var(--third-fontWeight);
-    font-size: 1.1rem;
+    font-size: var(--primary-font);
+    margin: 0;
     color:var(--primary-color);
 }
 .total1{
     font-weight: var( --third-fontWeight);
     font-size: 24px;
+    margin: 0;
     color:var(--primary-color);
 }
 .add .ant-input{
-    height: 3rem;
     border: 1px solid lightgray;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: var(--secondary-font);
+    font-weight: var(--secondary-fontWeight);
 }
 .add {
-    height: 3rem;
-    font-size: 16px;
-    font-weight: 600;
+    height: 2.2rem;
+    font-size: var(--secondary-font);
+    font-weight: var(--secondary-fontWeight);
+    color: darkred;
 }
 .add .ant-select-selector{
-    height: 3rem;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: var(--secondary-font);
+    font-weight: var(--secondary-fontWeight);
 }
 .add .ant-select-selection-item{
-    font-weight: 600;
-
+    font-weight: var(--secondary-fontWeight);
 }
 .selectDrop {
-    margin-top: 1.5% !important;
+    /* margin-top: 1.5% !important; */
+    padding-top: 2% !important;
 }
-.appButton1 {
-    color: white;
-    background-color:var(--primary-color);
-    width: 20%;
-    font: 357 1.01rem / 1.185 Rubik, sans-serif;
-    cursor: pointer;
-    border-radius: 5px;
-
+.cancelatiobn-button {
+    min-width: 20%;
+    min-height: 2rem !important;
 }
-.empty {
-    border-radius: 8px;
-    width: 100%;
-}
-.erew {
+.cancle-information {
     font-weight: bold;
     font-size: var(--primary-font);
     margin-bottom: 0;
     margin-top: 0;
 }
-.ere {
+.cancle-charge {
     margin-top: 0px;
     font-weight: var(--primary-fontWeight);
     font-size: var(--third-font);
 }
-.input  {
-    display: flex;
-    margin-top: 10px;
-}
 .check .ant-card-body   {
     font-size: var(--third-font);
-}
-.pin{
-    width: 100%;
-}
-.input1 {
-    margin-right: 10px;
 }
 .select{
     flex: 1px;
 }
-.input-field {
+.input-email-address {
+    /* width: 42%;
+    margin-left: 2.2%; */
+    width: 43%;
+    height: 2rem;
+    font-size: var(--secondary-font);
+    font-weight: var(--secondary-fontWeight);
+}
+.input-mobile {
     width: 42%;
-    margin-left: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    /* margin-left: 1%; */
+    font-size: var(--secondary-font);
+    font-weight:var(--primary-fontWeight) ;
 }
-.input-field1 {
-    width: 42%;  
-    font-size: 16px;
-    font-weight: 500;
- }
+/* .input-mobile input {
+    height: 2rem;
+}
 .form-item-label {
-     margin: 20px 10px 0px 0px;
- }
-.main2 {
-    margin-bottom: 10px;
-}
+    margin: 3% 1% 0 0;
+} */
 .pin {
     font-weight: bold;
     font-size: var(--primary-font);
     margin-bottom: 0;
     margin-top: 0%;
 }
-
+.title {
+    font-size: var(--third-font);
+    font-weight: var(--secondary-fontWeight);
+}
 .gst {
     margin: 0;
     font-size: var(--third-font);
@@ -253,19 +225,398 @@
     line-height: 14px;
     color: #777;
 }
-
 .note {
     background-color: lightblue;
 }
 .note p {
     padding: 5px;
-  }
-.input2 {
-    width: 250px;
-    margin-right: 8px;
 }
 .button{
     float: right;
-    width: 20%;
+    min-width:  30%;
     margin-top: 1%;
+}
+.meal-header-1 {
+    background-color: rgb(255, 255, 255);
+    padding: 0px 0.5rem;
+    border-radius: 3px;
+    padding-left: 0%;
+}
+.meal-flight {
+    padding-left: 2%;
+    padding-bottom: 0.2%;
+    margin-bottom: 3%;
+    box-shadow: rgb(236, 235, 235) 0px 0px 4px 0px;
+}
+.meal-header {
+    margin: 0;
+    color: rgb(34, 118, 227);
+    font-size: var(--primary-font);
+    font-weight: var(--primary-fontWeight);
+    padding-top: 1%;
+}
+.card-seat{
+    max-width: 100%;
+}
+.food-image{
+    width: 19%;
+}
+.food{
+    display: flex;
+    gap: 5%;
+    padding-left: 4%;
+    align-items: center;
+}
+.meal-amount {
+    font-size: 1rem;
+    font-weight: var(--primary-fontWeight);
+}
+.wrapper-1 {
+    border: 1px solid lightgray;
+    width: 44%;
+    padding: 0 5px;
+    display: flex;
+    border-radius: 10px;
+}
+.price-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.meal-price {
+    font-size: var(--primary-font);
+    font-weight: var(--secondary-fontWeight);
+}
+.button-payment {
+    margin: 0;
+    margin-top: 2%;
+    width: 100%;
+}
+.container-with-scroll {
+    overflow-y: auto;
+    max-height: 22rem;
+}
+.details-collapse{
+    align-items: baseline;
+}
+.card2{
+    padding-top: 1%;
+}
+.base-fair{
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+}
+.middle-fair{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fare-adult{
+    padding-bottom: 1%;
+}
+
+/* -------------------------------- AddOns --------------------------- */
+
+.skipToPayment {
+    color: white;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    font-size: var(--third-font);
+    font-weight: var(--third-fontWeight);
+    border-radius: 3px;
+    padding: 0 5%;
+    width: 40%;
+    border-color: var(--primary-color);
+}
+.skipToPayment:not(:disabled):not(.skipToPayment-disabled):hover {
+    color: rgb(255, 255, 255);
+    border-color: var(--primary-color);
+}
+.seatsTitle {
+    font-size: var(--third-font);
+    font-weight: var(--third-fontWeight);
+}
+.seatFCard {
+    padding: 0 2%;
+}
+.addOndFTabsStyle .ant-tabs-tab {
+    color: black !important;
+}
+.frontMainDiv {
+    scroll-behavior: smooth;
+    position: static;
+    overflow: hidden auto;
+    max-height: 580px;
+    background: linear-gradient(rgb(208, 232, 243) 0px, rgb(196, 228, 242) 58%, rgb(132, 184, 216) 99%);
+    width: 100%;
+    -webkit-box-flex: 0;
+    border-radius: 5px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.curveFWrap {
+    width: 100%;
+    height: 13rem;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+.curveFTop {
+    width: 120%;
+    height: 443%;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    left: -10%;
+    top: 1%;
+}
+.curveFLayerOne {
+    background-color: rgb(187, 221, 242);
+    top: 3%;
+    opacity: 0.3;
+}
+.curveFLayerTwo {
+    background-color: white;
+    top: 44%;
+    width: 149%;
+    left: -25%;
+}
+.curveFDivider {
+    width: 1%;
+    height: 44%;
+    background: white;
+    left: calc(50% - 6px);
+    position: absolute;
+    top: 1%;
+}
+.frontFPlane {
+    letter-spacing: 5px;
+    color: rgb(194, 194, 194);
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--third-font);
+}
+.frontFBelowDiv {
+    background-color: white;
+    width: 100%;
+}
+.seatFRow {
+    position: relative;
+    padding: 0.5% 6%;
+}
+.selectSpaceSeat {
+    width: 20px;
+    height: 20px;
+}
+.curveFWrapBack {
+    height: 10rem;
+}
+.curveFBottom {
+    bottom: 20%;
+    top: unset;
+    height: 280%;
+}
+.selectFSeat {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.cursorAuto {
+    cursor: auto !important;
+}
+.notReservedSeat {
+    color: white;
+    background-color: rgb(194, 194, 194);
+    border-color: rgb(194, 194, 194) !important;
+}
+.selectFSeatDiv {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.selectFSeatDiv.clickedOrange {
+    background-color: orange;
+    color: white;
+    border-color: orange;
+}
+.selectFSeatDiv.clickedRed {
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+.selectFSeatRound {
+    border: 1px solid green;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.selectFSeatRound.clickedGreen {
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+.selectPerFSeat {
+    position: absolute;
+    width: 22px;
+    top: calc(50% - 8px);
+    font-style: normal;
+    line-height: 15px;
+    text-align: center;
+}
+.filterFSeatByPrice {
+    opacity: 0.3;
+    cursor: auto;
+}
+.rightFCol {
+    padding-left: 5%;
+}
+.passengerFStyle {
+    font-size: var(--third-font);
+    font-weight: var(--secondary-fontWeight);
+    margin-left: 2%;
+}
+.seatByFPrice {
+    margin-top: 10%;
+}
+.rowFSeatTitle {
+    font-size: var(--small-font);
+    font-weight: var(--secondary-fontWeight);
+    letter-spacing: 2px;
+}
+.seatFBox {
+    padding: 0% 3%;
+    cursor: pointer;
+}
+.perSeatFBox {
+    margin: 3% 0;
+}
+.selectPerFSeatTitle {
+    position: absolute;
+    width: 19px;
+    left: calc(50% - 14px);
+    top: calc(50% - 8px);
+    font-style: normal;
+    line-height: 17px;
+    text-align: center;
+}
+.borderFOrange {
+    border-color: orange;
+}
+.borderFRed {
+    border-color: red;
+}
+
+/* ---------------------------------- Hide ------------------------------- */
+
+.hide-ticket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.hide-edit {
+    color: rgb(22, 107, 211);
+    cursor: pointer;
+    padding-right: 3%;
+    margin: 0;
+    font-size: var(--third-font);
+    font-weight: var(--third-fontWeight);
+}
+.pin-1 {
+    font-weight: bold;
+    font-size: var(--primary-font);
+    padding-left: 1%;
+    margin: 0;
+}
+.inside-ticket-card {
+    width: 100%;
+    border-radius: 5px;
+    margin: 1.5% 0.5%;
+    box-shadow: 0 0 3px 0 lightgray;
+}
+.hide-lower {
+    padding-left: 2%;
+}
+.hide-first {
+    width: 151%;
+}
+.cancle-card {
+    padding: 2%;
+}
+.hide-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sign-down {
+    margin: 0;
+}
+.sign {
+    margin-right: 4%;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgb(229, 243, 255);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.hide-left {
+    padding-left: 0.5%;
+    margin: 0;
+    background-color: rgb(229, 243, 255);
+    border-radius: 4px;
+    width: 16%;
+    font-size: var(--third-font);
+    font-weight: var( --secondary-fontWeight);
+    color: rgb(34, 118, 227);
+}
+.hide-div {
+    display: flex;
+    gap: 10px;
+}
+.hide-city{
+    color: rgb(113, 113, 113);
+    font-size: var(--primary-font);
+}
+.hide-time{
+    font-size: var(--primary-font);
+    font-weight: var( --secondary-fontWeight);
+    color: black;
+}
+.time{
+    font-size: var(--third-font);
+    font-weight: var(--primary-fontWeight);
+    color: black;
+}
+.pop-card{
+    background-color: rgb(247, 247, 247);
+    padding: 2% 0% 2% 5%;
+    border-radius: 16px;
+    margin: 1%;
+}
+.pop-btn{
+    width: 48%;
+}
+.popup-button{
+    padding-top: 2%;
+}
+.pop-main{
+    max-height: 280px;
+    overflow-y: auto;
+}
+.ant-descriptions .ant-descriptions-item-container{
+    display: grid;
+}
+.confirmModal .ant-modal-close{
+    position: absolute;
+    top: 5%;
+    left: 92%;
 }

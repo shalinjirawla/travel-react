@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     font-size: var(--primary-font);
-    min-width: 7rem;
+    min-width: 6.5rem;
     cursor: pointer;
     /* justify-content: space-between; */
     /* color: var(--primary-color);
@@ -49,4 +49,28 @@
 
 .loginBtn {
     width: 100%;
+}
+
+.navTabBtnMainDiv {
+    margin-left: 2%;
+}
+.navTabBtn {
+    padding: 0% 5%;
+    /* border: 1px solid gray; */
+    border-radius: 3px;
+    background-color: var(--shadow-color);
+    color: var(--primary-color);
+    font-weight: var(--secondary-fontWeight);
+    height: 1.7rem;
+    display: flex;
+    align-items: center;
+    min-width: 32%;
+    margin: 1.2% 2%;
+}
+.navTabBtnActive {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.navTabBtn span {
+    margin-left: 10%;
 }

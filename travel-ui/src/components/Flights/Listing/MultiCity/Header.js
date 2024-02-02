@@ -5,17 +5,6 @@ import Button from '../../../AppButton';
 
 const Header = ({ selectedSegment, onSegmentChange }) => {
 
-    const multiCityOptions = [
-        {
-            label: 'Flight Combinations',
-            value: 'flightCombinations',
-        },
-        {
-            label: 'Select your own Flights',
-            value: 'ownFlights',
-        }
-    ];
-
     const multiCitySceduleOptions = [
         {
             label:  <>
@@ -42,11 +31,9 @@ const Header = ({ selectedSegment, onSegmentChange }) => {
     const [selectedFlightSceduleOption, setSelectedFlightSceduleOption] = useState('fromScedule');
 
     const onMultiCityChange = ({ target: { value } }) => {
-        console.log('radio checked', value);
         setSelectedFlightOption(value);
     };
     const onMultiCitySceduleChange = ({ target: { value } }) => {
-        console.log('radio checked', value);
         setSelectedFlightSceduleOption(value);
     };
 

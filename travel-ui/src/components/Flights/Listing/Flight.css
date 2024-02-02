@@ -90,6 +90,9 @@
 .dropdownBtn {
     margin-top: 5%;
 }
+.doneFPBtn {
+    padding: 0 1.5%;
+}
 .deptDateCol {
     margin-top: 1.7%;
 }
@@ -199,7 +202,17 @@
     color: var(--primary-color);
     border-color: white;
 }
+
+
+/* -------------------------------- Popover --------------------------- */
+
 .doneBtn:not(:disabled):not(.updateSearchBtn-disabled):hover {
     color: white;
     border-color: white;
+}
+
+.totalFPassengers {
+    font-size: var(--third-font);
+    text-align: center;
+    color: red;
 }

@@ -76,7 +76,7 @@
 } */
 
 .addFlightForm .ant-form-item-label label {
-    font-size: var(--third-font) !important;
+    font-size: var(--third-font);
 }
 
 .fareRadio .ant-radio-button-wrapper {
@@ -158,6 +158,10 @@
     width: 100%;
     top: -2.5rem;
 }
+.fareTypeRow {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
 
 /* ------------ Count wrapper --------------------- */
 
@@ -234,7 +238,9 @@
 .fromToSelectCol .ant-form-item-label {
     top: -35%
 }
-
+.inputHeight {
+    height: 4rem;
+}
 /* .searchSelect {
     height: 4rem !important;
 } */
@@ -249,6 +255,23 @@
 .flightInput .ant-form-item-control > div:nth-child(2) {
     position: absolute;
     top: 4rem;
+}
+
+.multiCityFormRow {
+    height: 6rem;
+}
+.multiCityFormRow .filterItemDrop {
+    height: 4rem;
+}
+.multiCityFormRow .fromToSelectCol .ant-form-item-label {
+    top: -25%
+}
+.multiCityFormRow .deptDateCol {
+    height: 5.1rem;
+    margin-top: 0;
+}
+.multiCityFormRow .multiTravelPopupCol {
+    margin-top: 0;
 }
 
 .deptReturnDatePicker .ant-picker-input>input {
@@ -479,4 +502,91 @@
     font-size: var(--secondary-font) !important;
 }
 
+/* -------------------------------------------- Media Queries -------------------------- */
 
+@media only screen and (max-width: 1310px) {
+    .fareTypeRow h3 {
+        /* font-size: var(--label-font); */
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 1180px) {
+    .flightBackgroud {
+        height: 17rem;
+    }
+}
+@media only screen and (max-width: 1050px) {
+    .searchFlightBtn {
+        min-width: 150%;
+        right: 160%;
+    }
+    .fareRadio .ant-radio-button-wrapper, .fareRadio .ant-radio-button-wrapper-checked {
+        font-size: var(--label-font);
+    }
+    .fareTypeRow h3 {
+        font-size: var(--third-font);
+    }
+    .deptReturnDatePicker .ant-picker-input>input {
+        font-size: var(--third-font) !important;
+    }
+    .addFlightForm .ant-picker {
+        font-size: var(--secondary-font) !important;
+        height: 3.5rem !important;
+    }
+    .addFlightForm .ant-select-selector {
+        height: 3.5rem !important;
+    }
+    .tcontent {
+        height: 3.5rem;
+    }
+}
+@media only screen and (max-width: 860px) {
+    .searchFlightBtn {
+        min-width: 180%;
+        right: 150%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .searchPopupSelect .ant-select-item-option-content {
+        padding: 2% 1% !important;
+        font-weight: 600 !important;
+    }
+    .addFlightForm .ant-select-selector {
+        height: 2.5rem !important;
+        padding: 0 5% !important;
+    }
+    .addFlightForm .searchSelect .ant-select-selector .ant-select-selection-search-input {
+        font-size: var(--secondary-font) !important;
+        height: 25px !important;
+        padding: 0 4% !important;
+        margin-top: 1.5% !important;
+    }
+    .filterItemDrop {
+        margin-bottom: 4px !important;
+    }
+    .addFlightForm .ant-picker {
+        height: 2.5rem !important;
+    }
+    .commonDateStyle .ant-picker-panel {
+        width: 17rem;
+    }
+    .commonDateStyle .ant-picker-header {
+        width: 17rem;
+        font-size: var(--secondary-font);
+        padding: 2%;
+    }
+    .commonDateStyle .ant-picker-content {
+        width: 16rem !important;
+        font-size: var(--secondary-font);
+    }
+    .tcontent {
+        height: 2.5rem !important;
+    }
+    .tcontent h2 {
+        font-size: var(--secondary-font) !important;
+        margin-top: -2% !important;
+    }
+    .tcontent p {
+        font-size: var(--label-font) !important;
+    }
+}

@@ -11,6 +11,11 @@ const AuthProvider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [permissions, setPermissions] = useState([]);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 481);
+    const [isTablet, setIsTablet] = useState(window.innerWidth <= 768);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 769);
+    const [is1000, setIs1000] = useState(window.innerWidth <= 1100);
+    const [is930, setIs930] = useState(window.innerWidth <= 930);
 
     const checkAndSetAllValues = () => {
         if (localStorage.getItem('token')) {
@@ -56,7 +61,17 @@ const AuthProvider = ({ children }) => {
                 currUserData,
                 setCurrUserData,
                 currentRole,
-                setCurrentRole
+                setCurrentRole,
+                isMobile,
+                setIsMobile,
+                isTablet,
+                setIsTablet,
+                isDesktop,
+                setIsDesktop,
+                is1000,
+                setIs1000,
+                is930,
+                setIs930
             }}
         >
             {children}

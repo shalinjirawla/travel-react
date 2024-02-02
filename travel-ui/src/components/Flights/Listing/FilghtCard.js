@@ -9,12 +9,10 @@ import TravelClassPopover from './TravelClassPopover';
 import dayjs from 'dayjs';
 import { airportData } from '../../../JSON/airports';
 
-const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails }) => {
+const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails, travellers }) => {
 
     const { Option, OptGroup } = Select;
     const [defFlightForm] = Form.useForm();
-    // const [selectedFlightOption, setSelectedFlightOption] = useState('onewaytrip');
-    // const [selectedFare, setSelectedFare] = useState('regular');
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [currentSearchData, setCurrentSearchData] = useState(null);
 
@@ -44,54 +42,12 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails 
         }
     }, [JSON.stringify(searchDetails)]);
 
-    // const flightOptions = [
-    //     { label: 'One Way Trip', value: 'onewaytrip' },
-    //     { label: 'Round Trip', value: 'roundtrip' },
-    // ];
-
-    // const fareOptions = [
-    //     { label: 'REGULAR', value: 'regular' },
-    //     { label: 'Armed Forces', value: 'student' },
-    //     { label: 'Senior Citizen', value: 'seniorCitizen' },
-    //     { label: 'STUDENT', value: 'student' },
-    //     { label: 'Doctors & Nurses', value: 'doctorsAndNurses' },
-    // ];
-
-    // const onChangeOptions = ({ target: { value } }) => { setSelectedFlightOption(value); };
-    // const onFareChangeOptions = ({ target: { value } }) => { setSelectedFare(value); };
-
     const onChange = (e) => { setShowDatePicker(e.target.checked); };
 
-    // const [filterTable, setFilterTable] = useState(fetchFlightList);
-    // const onSearch = (value) => {
-    //     const filterData = fetchFlightList.filter((o) => Object.keys(o).some((k) => String(o[k])
-    //     .toLowerCase()
-    //     .includes(value.toLowerCase())));
-    //     setFilterTable(filterData);
-    // };
-
-    // const [disableOptions, setDisableOptions] = useState(true);
-    // const onSearch = (inputValue) => {
-    //     setDisableOptions(inputValue.trim() === '');
-    // };
-
-    // const [searchQuery, setSearchQuery] = useState('');
-    // const [filterTable, setFilterTable] = useState(fetchFlightList);
-    // const onSearch = (value) => {
-    //     setSearchQuery(value);
-    // };
-    // const filteredOptions = filterTable.filter((option) =>
-    //     option.label.toLowerCase().includes(searchQuery.toLowerCase())
-    // );
-
-    // const [fromValue, setFromValue] = useState('Ahmedabad, India');
-    // const [toValue, setToValue] = useState('Mumbai, India');
     const handleSwapClick = () => {
         let from = defFlightForm.getFieldValue('defFlightFrom'), to = defFlightForm.getFieldValue('defFlightTo');
         defFlightForm.setFieldValue('defFlightFrom', to);
         defFlightForm.setFieldValue('defFlightTo', from);
-        // setFromValue(toValue);
-        // setToValue(fromValue);
     };
 
     return (
@@ -110,63 +66,34 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails 
                     <Row align='middle' justify='space-between'>
                         <Col xl={3} lg={{ span: 3 }} md={{ span: 3 }} sm={{ span: 3 }} xs={{ span: 3 }}>
                             <Col xl={23} lg={23} md={23} sm={23} xs={23}>
-                                {/* {currentSearchData && currentSearchData?.legs[0]?.departureCity?.code && */}
-                                {/* {searchDetails && searchDetails?.flightFrom && */}
-                                    <>
-                                        <label className='labelHeaderStyle'>FROM</label>
-                                        <Form.Item
-                                            name='defFlightFrom'
-                                            className='backgroundStyle'
-                                            // initialValue={currentSearchData?.legs[0]?.departureCity?.code}
-                                            // initialValue={searchDetails?.flightFrom}
-                                        >
-                                            {/* <Search
-                                                placeholder="Search by location or airport"
-                                                allowClear
-                                                // enterButton
-                                                size="large"
-                                                onSearch={onSearch}
-                                            /> */}
-                                            <Select
-                                                showSearch
-                                                size="large"
-                                                style={{ width: 200 }}
-                                                placeholder="Search by location or airport"
-                                                // value={fromValue}
-                                                // onChange={(value) => setFromValue(value)}
-                                                className='defSelect'
-                                                popupClassName='defSelectOptionStyle'
-                                                // optionFilterProp="children"
-                                                // filterOption={(input, option) =>
-                                                //     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                                // }
-                                                // options={fetchFlightList} 
-
-                                                // options={filterTable}
-
-                                                // filterOption={false}
-                                                // options={filteredOptions}
-                                                // onSearch={onSearch}
-
-                                                // options={fetchFlightList.map((option) => ({
-                                                //     ...option,
-                                                //     disabled: disableOptions,
-                                                // }))}
-                                                // notFoundContent={searchQuery && fetchFlightList.length === 0 ? "No matching results" : null}
+                                <>
+                                    <label className='labelHeaderStyle'>FROM</label>
+                                    <Form.Item
+                                        name='defFlightFrom'
+                                        className='backgroundStyle'
+                                        // initialValue={currentSearchData?.legs[0]?.departureCity?.code}
+                                        // initialValue={searchDetails?.flightFrom}
+                                    >
+                                        <Select
+                                            showSearch
+                                            size="large"
+                                            style={{ width: 200 }}
+                                            placeholder="Search by location or airport"
+                                            className='defSelect'
+                                            popupClassName='defSelectOptionStyle'
                                             >
-                                                {airportData && airportData.map((item, i) => {
-                                                    return (
-                                                        <>
-                                                            <Option key={i} value={item._id}>
-                                                                {item.label} - {item.code}
-                                                            </Option>
-                                                        </>
-                                                    );
-                                                })}
-                                            </Select>
-                                        </Form.Item>
-                                    </>
-                                {/* } */}
+                                            {airportData && airportData.map((item, i) => {
+                                                return (
+                                                    <>
+                                                        <Option key={i} value={item._id}>
+                                                            {item.label} - {item.code}
+                                                        </Option>
+                                                    </>
+                                                );
+                                            })}
+                                        </Select>
+                                    </Form.Item>
+                                </>
                             </Col>
                         </Col>
                         <Col xl={1} className='swapStyle labelHeaderStyle'><SwapOutlined onClick={handleSwapClick} /></Col>
@@ -267,7 +194,7 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails 
                                 <label className='labelHeaderStyle'>PASSENGER & CLASS</label>
                                 <Form.Item>
                                     {/* <Space wrap> */}
-                                        <PopoverFlight currentSearchData={currentSearchData} searchDetails={searchDetails} />
+                                        <PopoverFlight currentSearchData={currentSearchData} travellers={travellers} searchDetails={searchDetails} />
                                         {/* <TravelClassPopover /> */}
                                     {/* </Space> */}
                                 </Form.Item>

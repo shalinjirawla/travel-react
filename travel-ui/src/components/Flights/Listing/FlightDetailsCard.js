@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './FlightDetailsCard.css';
-import { Badge, Card, Col, Row } from 'antd';
-import { DownOutlined, LeftOutlined, RightOutlined, UpOutlined } from '@ant-design/icons';
+import { Badge, Card, Col, Divider, Radio, Row, Space } from 'antd';
+import { DownCircleFilled, DownOutlined, LeftOutlined, RightOutlined, UpOutlined } from '@ant-design/icons';
 import Button from '../../AppButton';
 import { useNavigate } from 'react-router-dom';
 import { getIndianMoneyFormat, sortByDuration, sortedListForField } from '../../../helper';
 import { airportData } from '../../../JSON/airports';
 import FlightSubDetails from './FlightSubDetails';
+import FlightSubFareDetails from './FlightSubFareDetails';
 
-const FlightDetailsCard = ({ currSearchFlightList }) => {
+const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
 
     const navigate = useNavigate();
     const [startDate, setStartDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
     const [todayDate, setTodayDate] = useState(null);
     const [isAscendingSortColumn, setIsAscendingSortColumn] = useState(true);
-    const [isAscendingFlightDetails, setIsAscendingFlightDetails] = useState(true);
+    const [isFlightDetailsShow, setIsFlightDetailsShow] = useState(false);
+    const [isFareDetailsShow, setIsFareDetailsShow] = useState(false);
     const [selectedColumn, setSelectedColumn] = useState('PRICE');
     const [selectedCardTab, setSelectedCardTab] = useState(0);
     const [allFlightList, setAllFlightList] = useState([]);
@@ -107,10 +109,19 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
 
     const handleFlightDetailsClick = (index) => {
         if (index !== selectedCardTab) {
-            setIsAscendingFlightDetails(true);
-            setIsAscendingFlightDetails((prevIsAscending) => !prevIsAscending);
+            setIsFlightDetailsShow((prevIsAscending) => prevIsAscending);
         } else {
-            setIsAscendingFlightDetails((prevIsAscending) => !prevIsAscending);
+            setIsFlightDetailsShow((prevIsAscending) => !prevIsAscending);
+        }
+        setSelectedCardTab(index);
+    };
+
+    const handleViewFares = (index) => {
+        if (index !== selectedCardTab) {
+            // setIsFareDetailsShow(true);
+            setIsFareDetailsShow((prevIsAscending) => prevIsAscending);
+        } else {
+            setIsFareDetailsShow((prevIsAscending) => !prevIsAscending);
         }
         setSelectedCardTab(index);
     };
@@ -200,91 +211,7 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
         const numericPrice = parseInt(price.replace('₹', '').trim().replace(/,/g, ''), 10);
         return numericPrice < 40000;
     };
-    
-    const flightDetails = [
-        {
-            airLine: 'Air India',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '17:35',
-            duration: '1h 30m',
-            arrival: '19:05',
-            price: '₹ 10,439',
-        },
-        {
-            airLine: 'Vistara',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:40',
-            duration: '1h 30m',
-            arrival: '20:10',
-            price: '₹ 11,460',
-        },
-        {
-            airLine: 'IndiGo',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:15',
-            duration: '1h 30m',
-            arrival: '19:35',
-            price: '₹ 12,224',
-        },
-        {
-            airLine: 'Vistara',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:40',
-            duration: '1h 30m',
-            arrival: '20:10',
-            price: '₹ 11,460',
-        },
-        {
-            airLine: 'IndiGo',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:15',
-            duration: '1h 30m',
-            arrival: '19:35',
-            price: '₹ 12,224',
-        },
-        {
-            airLine: 'Vistara',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:40',
-            duration: '1h 30m',
-            arrival: '20:10',
-            price: '₹ 11,460',
-        },
-        {
-            airLine: 'IndiGo',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:15',
-            duration: '1h 30m',
-            arrival: '19:35',
-            price: '₹ 12,224',
-        },
-        {
-            airLine: 'Vistara',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:40',
-            duration: '1h 30m',
-            arrival: '20:10',
-            price: '₹ 11,460',
-        },
-        {
-            airLine: 'IndiGo',
-            from: 'AMD Ahmedabad, India',
-            to: 'BOM Mumbai, India',
-            departure: '18:15',
-            duration: '1h 30m',
-            arrival: '19:35',
-            price: '₹ 12,224',
-        },
-    ];
-    
+
     const findCheapestPrice = (details) => {
         if (details?.length > 0) {
             let price = details[0]?.fareDetails?.price?.totalAmount;
@@ -309,19 +236,17 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
                             {dynamicDates.map((date, index) => (
                                 <>
                                     <Col key={index} xl={{ span: 1.5 }} lg={{ span: 1.5 }} md={{ span: 1.5 }} sm={{ span: 1.5 }} xs={{ span: 1.5 }}
+                                        className='dateTrainCol'
                                         style={{
                                             color: selectedDate === date ? 'rgb(45, 103, 178)' : '',
                                             backgroundColor: selectedDate === date ? 'rgb(235 235 235)' : 'transparent',
-                                            cursor: 'pointer',
-                                            // padding: '20px 6px 20px 6px',
-                                            padding: '6px 6px 6px 6px',
                                             fontSize: selectedDate === date ? '15px' : '13px',
                                             fontWeight: selectedDate === date ? '500' : ''
                                         }}
                                         onClick={() => handleDateClick(date)}
                                     >
-                                        <label className='dynamicDate'>{date}</label><br />
-                                        <label className='dynamicPrice' style={{ color: isPriceBelow40000(getPriceForDate(date)) ? 'green' : '' }}>{getPriceForDate(date)}</label>
+                                        <label className='cursorP'>{date}</label><br />
+                                        <label className='cursorP' style={{ color: isPriceBelow40000(getPriceForDate(date)) ? 'green' : '' }}>{getPriceForDate(date)}</label>
                                     </Col>
                                 </>
                             ))}
@@ -385,33 +310,7 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
             </Card>
             <br />
 
-            {/* <Card className='cardStyle'> 
-                <Row align='middle' justify='space-between'>
-                    <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <h4 className='headingHeight'>DEPARTURE</h4>
-                        <label className='labelFont'>earliest @ 17:35</label>
-                    </Col>
-                    <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <h4 className='headingHeight'>DURATION</h4>
-                        <label className='labelFont'>fastest @ 1hrs 20m</label>
-                    </Col>
-                    <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <h4 className='headingHeight'>ARRIVAL</h4>
-                        <label className='labelFont'>today @ 19:05</label>
-                    </Col>
-                    <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <h4 className='headingHeight'>PRICE</h4>
-                        <label className='labelFont'>cheapest @ 10,439</label>
-                    </Col>
-                    <Col xl={{ span: 5 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <h4 className='headingHeight'>BEST</h4>
-                        <label className='labelFont'>1hrs 25m, 0 stops - 10,439</label>
-                    </Col>
-                </Row>
-            </Card><br /> */}
-
-
-            {allFlightList.map((data, index) => (
+            {/* {allFlightList.map((data, index) => (
                 <>
                     <Badge.Ribbon
                         style={{
@@ -422,13 +321,6 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
                         text="Cheapest"
                     >
                         <Card className='cardStyle mapCard' key={index}>
-                            {/* {data.price === cheapestPrice && (
-                                <div className='dF justifyEnd'>
-                                    <div className="dF">
-                                        <Tag className='tagColor'><span className='tagFont'>Cheapest</span></Tag>
-                                    </div>
-                                </div>
-                            )} */}
                             <Row align='middle' justify='space-between'>
                                 <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
                                     <label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label>
@@ -459,22 +351,20 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
                                     <h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2>
                                 </Col>
                                 <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }} className='divCenter'>
-                                    {/* <div className='buttonCenter'> */}
-                                        <Button className='viewBtn' onClick={() => navigate('/flight-booking-details')} label='VIEW FARES' />
-                                    {/* </div> */}
+                                    <Button className='viewBtn' onClick={() => navigate('/flight-booking-details')} label='VIEW FARES' />
                                 </Col>
                             </Row>
                             <br/>
                             <Row align='middle' justify='space-between'>
                                 <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                                    <label className='labelColor' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined className='sortIcon' />) || (selectedCardTab === index && (!isAscendingFlightDetails ? <UpOutlined className='sortIcon' /> : <DownOutlined className='sortIcon' />))}</label>
+                                    <label className='labelColor' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined className='sortIcon' />) || (selectedCardTab === index && (!isFlightDetailsShow ? <UpOutlined className='sortIcon' /> : <DownOutlined className='sortIcon' />))}</label>
                                 </Col>
                                 <Col xl={{ span: 14 }} lg={{ span: 14 }} md={{ span: 14 }} sm={{ span: 14 }} xs={{ span: 14 }}>
                                     <label className='labelStyle'>Get Rs.149 OFF on GISUPER; Extra 25 OFF on UPI</label>
                                 </Col>
                             </Row>
 
-                            {selectedCardTab === index && !isAscendingFlightDetails &&
+                            {selectedCardTab === index && !isFlightDetailsShow &&
                                 <div className='flightDetailsFTab'>
                                     <FlightSubDetails type={'OneWayTrip'} data={data} index={index} />
                                 </div>
@@ -483,67 +373,103 @@ const FlightDetailsCard = ({ currSearchFlightList }) => {
                         </Card><br />
                     </Badge.Ribbon>
                 </>
-            ))}
-
-            {/* {flightDetails.map((data, index) => (
-                <>
-                    <Card className='cardStyle' key={index}>
-                        {data.price === '₹ 10,439' && (
-                            <div className='dF justifyEnd'>
-                                <div className="dF">
-                                    <Tag className='tagColor'><span className='tagFont1'>Cheapest</span></Tag>
-                                </div>
-                            </div>
-                        )}
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                                <label className='divMargin'><b>{data.airLine}</b></label>
-                            </Col>
-                        </Row>
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }} className='divCenter'>
-                                <label>{data.from}</label>
-                            </Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}></Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }} className='divCenter'>
-                                <label>{data.to}</label>
-                            </Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}></Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}></Col>
-                        </Row>
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                                <h2 className='departureMargin'>{data.departure}</h2>
-                            </Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }} className='divCenter'>
-                                <h2>{data.duration}</h2>
-                            </Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                                <h2 className='arrivalMargin'>{data.arrival}</h2>
-                            </Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }} className='divCenter'>
-                                <h2>{data.price}</h2>
-                            </Col>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }} className='divCenter'>
-                                <div className='buttonCenter'>
-                                    <Button className='viewBtn' onClick={() => navigate('/booking-details')} label='VIEW FARES' />
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={{ span: 10 }} lg={{ span: 10 }} md={{ span: 10 }} sm={{ span: 10 }} xs={{ span: 10 }}></Col>
-                            <Col xl={{ span: 14 }} lg={{ span: 14 }} md={{ span: 14 }} sm={{ span: 14 }} xs={{ span: 14 }} className='divCenter'>
-                                <label className='labelStyle'>Get Rs.149 OFF on GISUPER; Extra 25 OFF on UPI</label>
-                            </Col>
-                        </Row>
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                                <label className='labelColor'>Flight Details <DownOutlined className='sortIcon' /> </label>
-                            </Col>
-                        </Row>
-                    </Card><br />
-                </>
             ))} */}
+            {allFlightList.map((data, index) => (
+                <>
+                    <Badge.Ribbon
+                        style={{
+                            display: (data?.fareDetails?.price?.totalAmount === cheapestPrice) ? null : 'none',
+                            backgroundImage: 'linear-gradient(134.97deg, rgb(27, 149, 100) 0%, rgb(57, 213, 70) 100%)',
+                            fontSize: '12px', padding: '0.2% 2%'
+                        }}
+                        text="Cheapest"
+                    >
+                        <Card className='cardStyle mapCard' key={index}>
+                            <Row className='FlightListCardRow' align='top' justify='space-between'>
+                                <Col xl={4} lg={4} md={4} sm={4} xs={4}>
+                                    <Row><label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>
+                                    <Row><label>{data?.legsDetails?.segments[0]?.departureAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</label></Row>
+                                    <Row><h2 className='FlightListCardRowH2'>{data?.legsDetails?.departureTime}</h2></Row>
+                                </Col>
+                                <Col className='flightListCardDurationLabel' xl={5} lg={5} md={5} sm={5} xs={5}>
+                                    {/* <Row><h2 className='FlightListCardRowH2'>{data?.legsDetails?.duration}</h2></Row> */}
+                                    <div className="d-flex">
+                                        <div className="arrow-start"></div>
+                                        <hr className="dashed-hr" />
+                                        <span className="bold-text">{data?.legsDetails?.duration}</span>
+                                        <hr className="dashed-hr" />
+                                        <div className="arrow-end"></div>
+                                    </div>
+                                </Col>
+                                <Col xl={4} lg={4} md={4} sm={4} xs={4}>
+                                    <Row><label className='visibilityHide' ><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>
+                                    <Row><label>{data?.legsDetails?.segments[0]?.arrivalAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</label></Row>
+                                    <Row><h2 className='FlightListCardRowH2'>{data?.legsDetails?.arrivalTime}</h2></Row>
+                                </Col>
+                                <Col xl={7} lg={7} md={7} sm={7} xs={7}>
+                                    <Radio.Group className='priceListRadioGrp' onChange={(val) => console.log(val)} >
+                                        <Space direction="vertical">
+                                            <Radio name='price' value={1}>
+                                                <div className='fareDetailListInsideDiv'>
+                                                    <Row><label className='FlightListCardRowLabel'>5421321</label></Row>
+                                                    <Row><h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
+                                                    <Row><label className='FlightListCardRowLabel'><b>Economy</b>, Refundable</label></Row>
+                                                </div>
+                                            </Radio>
+                                            <Divider className='fareDetailListDivider' />
+                                            <Radio name='price' value={2}>
+                                                <div className='fareDetailListInsideDiv'>
+                                                    <Row><label className='FlightListCardRowLabel'><b>5421321</b></label></Row>
+                                                    <Row><h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
+                                                    <Row><label className='FlightListCardRowLabel'><b>Economy</b>, Refundable</label></Row>
+                                                </div>
+                                            </Radio>
+                                            <Divider className='fareDetailListDivider' />
+                                            <Radio name='price' value={3}>
+                                                <div className='fareDetailListInsideDiv'>
+                                                    <Row><label className='FlightListCardRowLabel'><b>5421321</b></label></Row>
+                                                    <Row><h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
+                                                    <Row><label className='FlightListCardRowLabel'><b>Economy</b>, Refundable</label></Row>
+                                                </div>
+                                            </Radio>
+                                            <Divider className='fareDetailListDivider' />
+                                            <DownCircleFilled style={{ fontSize: '16px', position: 'absolute', bottom: '-6%', left: '40%' }} onClick={() => handleViewFares(index)} />
+                                        </Space>
+                                    </Radio.Group>
+                                </Col>
+                                <Col className='marginVerticalAuto' xl={3} lg={3} md={3} sm={3} xs={3}>
+                                    <Button
+                                        className='viewBtn'
+                                        onClick={() => handleViewFares(index)}
+                                        label={(selectedCardTab === index && isFareDetailsShow) ? 'HIDE FARES' : 'VIEW FARES'}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row align='middle' justify='start'>
+                                <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
+                                    <label className='labelColor' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined className='sortIcon' />) || (selectedCardTab === index && (isFlightDetailsShow ? <UpOutlined className='sortIcon' /> : <DownOutlined className='sortIcon' />))}</label>
+                                </Col>
+                                <Col xl={{ span: 10 }} lg={{ span: 14 }} md={{ span: 14 }} sm={{ span: 14 }} xs={{ span: 14 }}>
+                                    <label className='labelStyle'>Get Rs.149 OFF on GISUPER; Extra 25 OFF on UPI</label>
+                                </Col>
+                            </Row>
+
+                            {selectedCardTab === index && isFlightDetailsShow &&
+                                <div className='flightDetailsFTab'>
+                                    <FlightSubDetails type={'OneWayTrip'} data={data} index={index} />
+                                </div>
+                            }
+
+                            {selectedCardTab === index && isFareDetailsShow &&
+                                <div className='flightDetailsFTab'>
+                                    <FlightSubFareDetails travellers={travellers} flightData={data} searchData={currSearchFlightList} />
+                                </div>
+                            }
+                            
+                        </Card><br />
+                    </Badge.Ribbon>
+                </>
+            ))}
         </div>
     );
 }
