@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './FlightDetailsCard.css';
 import { Badge, Card, Col, Divider, Radio, Row, Space } from 'antd';
 import { DownCircleFilled, DownOutlined, LeftOutlined, RightOutlined, UpOutlined } from '@ant-design/icons';
@@ -8,10 +8,13 @@ import { getIndianMoneyFormat, sortByDuration, sortedListForField } from '../../
 import { airportData } from '../../../JSON/airports';
 import FlightSubDetails from './FlightSubDetails';
 import FlightSubFareDetails from './FlightSubFareDetails';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
 
     const navigate = useNavigate();
+    const { rsWidths: { is620, is930, is1100 } } = useContext(AuthContext)??{};
+    const [is1412, setIs1412] = useState(window.innerWidth <= 1412);
     const [startDate, setStartDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
     const [todayDate, setTodayDate] = useState(null);
@@ -24,10 +27,21 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
     const [cheapestPrice, setCheapestPrice] = useState(null);
 
     useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+    
+    useEffect(() => {
         if (currSearchFlightList && currSearchFlightList?.trips) {
             formatListFunc(currSearchFlightList);
         }
     }, [JSON.stringify(currSearchFlightList)]);
+    
+    const handleWindowSizeChange = () => {
+        setIs1412(window.innerWidth <= 1412);
+    };
 
     const formatListFunc = async (list) => {
         let formatArr = list?.trips?.map((o) => {
@@ -130,7 +144,7 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
         setTodayDate(getTodayDate());
         setSelectedDate(getTodayDate());
     }, []);
-    
+
     const generateDynamicDates = (start, numberOfDays) => {
         return Array.from({ length: numberOfDays }, (_, index) => {
             const date = new Date(start);
@@ -152,12 +166,13 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
         newStartDate.setDate(startDate.getDate() + 7);
         setStartDate(newStartDate);
     };
-    const dynamicDates = generateDynamicDates(startDate, 12);
+    // const dynamicDates = generateDynamicDates(startDate, 12);
+    const dynamicDates = generateDynamicDates(startDate, (is620 ? 6 : is930 ? 7 : is1412 ? 10 : 12));
     
     const handleDateClick = (date) => {
         setSelectedDate(date);
     };
-    
+
     const getTodayDate = () => {
         const today = new Date();
         return today.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
@@ -236,12 +251,15 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                             {dynamicDates.map((date, index) => (
                                 <>
                                     <Col key={index} xl={{ span: 1.5 }} lg={{ span: 1.5 }} md={{ span: 1.5 }} sm={{ span: 1.5 }} xs={{ span: 1.5 }}
-                                        className='dateTrainCol'
+                                        className='dateFlightCol'
                                         style={{
                                             color: selectedDate === date ? 'rgb(45, 103, 178)' : '',
                                             backgroundColor: selectedDate === date ? 'rgb(235 235 235)' : 'transparent',
-                                            fontSize: selectedDate === date ? '15px' : '13px',
-                                            fontWeight: selectedDate === date ? '500' : ''
+                                            // fontSize: selectedDate === date ? '15px' : '13px',
+                                            fontWeight: selectedDate === date ? '500' : '',
+                                            fontSize: (is1100)
+                                                ? (selectedDate === date ? '13px' : '11px')
+                                                : (selectedDate === date ? '15px' : '13px'),
                                         }}
                                         onClick={() => handleDateClick(date)}
                                     >
@@ -256,40 +274,40 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                 </Row>
             </Card><br />
 
-            <Card className='cardLine'>
-                <Row align='middle' justify='space-between'>
+            <Card className='cardFLine'>
+                <Row align={is1412 ? 'top' : 'middle'} justify='space-between'>
                     <div></div>
                     <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <div onClick={() => handleSortClick('DEPARTURE')} className='divCenter textAlignCenter'>
+                        <div onClick={() => handleSortClick('DEPARTURE')} className='divCenter textAlignCenter cursorP'>
                             <h4 className={`headingHeight ${selectedColumn === 'DEPARTURE' ? 'colorChange' : ''} `}>
-                                DEPARTURE {selectedColumn === 'DEPARTURE' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                DEPARTURE {selectedColumn === 'DEPARTURE' && (isAscendingSortColumn ? <DownOutlined className='sortFIcon' /> : <UpOutlined className='sortFIcon' />)}
                             </h4>
                             <label className='labelFont'>earliest @ 17:35</label>
                         </div>
                     </Col>
                     <div className='divLine'></div>
                     <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <div onClick={() => handleSortClick('DURATION')} className='divCenter textAlignCenter'>
+                        <div onClick={() => handleSortClick('DURATION')} className='divCenter textAlignCenter cursorP'>
                             <h4 className={`headingHeight ${selectedColumn === 'DURATION' ? 'colorChange' : ''} `}>
-                                DURATION {selectedColumn === 'DURATION' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                DURATION {selectedColumn === 'DURATION' && (isAscendingSortColumn ? <DownOutlined className='sortFIcon' /> : <UpOutlined className='sortFIcon' />)}
                             </h4>
                             <label className='labelFont'>fastest @ 1hrs 20m</label>
                         </div>
                     </Col>
                     <div className='divLine'></div>
                     <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <div onClick={() => handleSortClick('ARRIVAL')} className='divCenter textAlignCenter'>
+                        <div onClick={() => handleSortClick('ARRIVAL')} className='divCenter textAlignCenter cursorP'>
                             <h4 className={`headingHeight ${selectedColumn === 'ARRIVAL' ? 'colorChange' : ''} `}>
-                                ARRIVAL {selectedColumn === 'ARRIVAL' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                ARRIVAL {selectedColumn === 'ARRIVAL' && (isAscendingSortColumn ? <DownOutlined className='sortFIcon' /> : <UpOutlined className='sortFIcon' />)}
                             </h4>
                             <label className='labelFont'>today @ 19:05</label>
                         </div>
                     </Col>
                     <div className='divLine'></div>
                     <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <div onClick={() => handleSortClick('PRICE')} className='divCenter textAlignCenter'>
+                        <div onClick={() => handleSortClick('PRICE')} className='divCenter textAlignCenter cursorP'>
                             <h4 className={`headingHeight ${selectedColumn === 'PRICE' ? 'colorChange' : ''} `}>
-                                PRICE {selectedColumn === 'PRICE' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                PRICE {selectedColumn === 'PRICE' && (isAscendingSortColumn ? <DownOutlined className='sortFIcon' /> : <UpOutlined className='sortFIcon' />)}
                             </h4>
                             {/* <label className='labelFont'>cheapest @ {items[0].price}</label> */}
                             <label className='labelFont'>cheapest @ 10,439</label>
@@ -297,10 +315,10 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                     </Col>
                     <div className='divLine'></div>
                     <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                        <div onClick={() => handleSortClick('BEST')} className='divCenter textAlignCenter'>
+                        <div onClick={() => handleSortClick('BEST')} className='divCenter textAlignCenter cursorP'>
                             <h4 className={`headingHeight ${selectedColumn === 'BEST' ? 'colorChange' : ''} `}>
                                 BEST 
-                                {/* {selectedColumn === 'BEST' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)} */}
+                                {/* {selectedColumn === 'BEST' && (isAscendingSortColumn ? <DownOutlined className='sortFIcon' /> : <UpOutlined className='sortFIcon' />)} */}
                             </h4>
                             <label className='labelFont'>1hrs 25m, 0 stops - 10,439</label>
                         </div>
@@ -380,20 +398,22 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                         style={{
                             display: (data?.fareDetails?.price?.totalAmount === cheapestPrice) ? null : 'none',
                             backgroundImage: 'linear-gradient(134.97deg, rgb(27, 149, 100) 0%, rgb(57, 213, 70) 100%)',
-                            fontSize: '12px', padding: '0.2% 2%'
+                            // fontSize: '12px', 
+                            padding: '0.2% 2%'
                         }}
                         text="Cheapest"
+                        className='fontLabelStyle'
                     >
                         <Card className='cardStyle mapCard' key={index}>
-                            <Row className='FlightListCardRow' align='top' justify='space-between'>
+                            <Row className='FlightListCardRow' align='top' justify={is1412 ? 'start' : 'space-between'}>
                                 <Col xl={4} lg={4} md={4} sm={4} xs={4}>
-                                    <Row><label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>
-                                    <Row><label>{data?.legsDetails?.segments[0]?.departureAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</label></Row>
+                                    <Row><label className='fontSmallStyle'><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>
+                                    <Row><label className='fontSmallStyle'>{data?.legsDetails?.segments[0]?.departureAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</label></Row>
                                     <Row><h2 className='FlightListCardRowH2'>{data?.legsDetails?.departureTime}</h2></Row>
                                 </Col>
                                 <Col className='flightListCardDurationLabel' xl={5} lg={5} md={5} sm={5} xs={5}>
                                     {/* <Row><h2 className='FlightListCardRowH2'>{data?.legsDetails?.duration}</h2></Row> */}
-                                    <div className="d-flex">
+                                    <div className="d-flex arrowCenter">
                                         <div className="arrow-start"></div>
                                         <hr className="dashed-hr" />
                                         <span className="bold-text">{data?.legsDetails?.duration}</span>
@@ -402,8 +422,8 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                                     </div>
                                 </Col>
                                 <Col xl={4} lg={4} md={4} sm={4} xs={4}>
-                                    <Row><label className='visibilityHide' ><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>
-                                    <Row><label>{data?.legsDetails?.segments[0]?.arrivalAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</label></Row>
+                                    <Row><label className='visibilityHide fontSmallStyle'><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>
+                                    <Row><label className='fontSmallStyle'>{data?.legsDetails?.segments[0]?.arrivalAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</label></Row>
                                     <Row><h2 className='FlightListCardRowH2'>{data?.legsDetails?.arrivalTime}</h2></Row>
                                 </Col>
                                 <Col xl={7} lg={7} md={7} sm={7} xs={7}>
@@ -411,8 +431,8 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                                         <Space direction="vertical">
                                             <Radio name='price' value={1}>
                                                 <div className='fareDetailListInsideDiv'>
-                                                    <Row><label className='FlightListCardRowLabel'>5421321</label></Row>
-                                                    <Row><h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
+                                                    <Row><label className='FlightListCardRowLabel'><b>5421321</b></label></Row>
+                                                    <Row><h2 className='fontLabelStyle'>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
                                                     <Row><label className='FlightListCardRowLabel'><b>Economy</b>, Refundable</label></Row>
                                                 </div>
                                             </Radio>
@@ -420,7 +440,7 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                                             <Radio name='price' value={2}>
                                                 <div className='fareDetailListInsideDiv'>
                                                     <Row><label className='FlightListCardRowLabel'><b>5421321</b></label></Row>
-                                                    <Row><h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
+                                                    <Row><h2 className='fontLabelStyle'>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
                                                     <Row><label className='FlightListCardRowLabel'><b>Economy</b>, Refundable</label></Row>
                                                 </div>
                                             </Radio>
@@ -428,12 +448,12 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                                             <Radio name='price' value={3}>
                                                 <div className='fareDetailListInsideDiv'>
                                                     <Row><label className='FlightListCardRowLabel'><b>5421321</b></label></Row>
-                                                    <Row><h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
+                                                    <Row><h2 className='fontLabelStyle'>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2></Row>
                                                     <Row><label className='FlightListCardRowLabel'><b>Economy</b>, Refundable</label></Row>
                                                 </div>
                                             </Radio>
                                             <Divider className='fareDetailListDivider' />
-                                            <DownCircleFilled style={{ fontSize: '16px', position: 'absolute', bottom: '-6%', left: '40%' }} onClick={() => handleViewFares(index)} />
+                                            <DownCircleFilled className='viewFareFUpDown' onClick={() => handleViewFares(index)} />
                                         </Space>
                                     </Radio.Group>
                                 </Col>
@@ -446,11 +466,11 @@ const FlightDetailsCard = ({ currSearchFlightList, travellers }) => {
                                 </Col>
                             </Row>
                             <Row align='middle' justify='start'>
-                                <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                                    <label className='labelColor' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined className='sortIcon' />) || (selectedCardTab === index && (isFlightDetailsShow ? <UpOutlined className='sortIcon' /> : <DownOutlined className='sortIcon' />))}</label>
+                                <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} sm={{ span: 6 }} xs={{ span: 6 }}>
+                                    <label className='labelColor fontSmallStyle' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined className='sortIcon' />) || (selectedCardTab === index && (isFlightDetailsShow ? <UpOutlined className='sortIcon' /> : <DownOutlined className='sortIcon' />))}</label>
                                 </Col>
-                                <Col xl={{ span: 10 }} lg={{ span: 14 }} md={{ span: 14 }} sm={{ span: 14 }} xs={{ span: 14 }}>
-                                    <label className='labelStyle'>Get Rs.149 OFF on GISUPER; Extra 25 OFF on UPI</label>
+                                <Col xl={{ span: 18 }} lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 18 }} xs={{ span: 18 }}>
+                                    <label className='labelStyle fontSmallStyle'>Get Rs.149 OFF on GISUPER; Extra 25 OFF on UPI</label>
                                 </Col>
                             </Row>
 

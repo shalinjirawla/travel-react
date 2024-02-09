@@ -1,12 +1,14 @@
-import { Card, Col, Row, Tabs, Tooltip } from 'antd';
-import React, { useEffect, useRef, useState } from 'react'
+import { Col, Row, Tabs, Tooltip } from 'antd';
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { CloseOutlined } from '@ant-design/icons';
 import { flightBookingData } from '../../../JSON/seat';
 import Button from '../../AppButton';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const AddOns = ({ travellers }) => {
 
     const containerRef = useRef(null);
+    const { rsWidths: { is620, is1200, is1300 }, isTablet } = useContext(AuthContext)??{};
     const [allBookingSeatList, setAllBookingSeatList] = useState([]);
     const [allBookingSeatNewList, setAllBookingSeatNewList] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState([]);
@@ -180,7 +182,7 @@ const AddOns = ({ travellers }) => {
     const seatsTab = (
         <>
             <Row align='top' justify='space-between'>
-                <Col xl={14} lg={14} md={14} sm={14} xs={14}>
+                <Col xl={is620 ? 15 : 14} lg={is620 ? 15 : 14} md={is620 ? 15 : 14} sm={is620 ? 15 : 14} xs={is620 ? 15 : 14}>
                     <div className='frontMainDiv'>
 
                         <div className='curveFWrap'>
@@ -198,7 +200,7 @@ const AddOns = ({ travellers }) => {
                                         <Row align='middle' justify='center'>
                                             {row.map((data, index) => (
                                                 <>
-                                                    {data?.id ? <Col xl={2} lg={2} md={2} sm={2} xs={2} key={index}>
+                                                    {data?.id ? <Col xl={is1200 ? 3 : 2} lg={is1200 ? 3 : 2} md={is1200 ? 3 : 2} sm={is1200 ? 3 : 2} xs={is1200 ? 3 : 2} key={index}>
                                                         <div className='selectFSeat'>
                                                             {selectedPrice.length !== 0 ?
                                                                 (<Tooltip title={data?.iconRef !== 'RSRVD' && getSelectedPriceVal(data)}>
@@ -234,7 +236,7 @@ const AddOns = ({ travellers }) => {
                     </div>
                 </Col>
 
-                <Col xl={10} lg={10} md={10} sm={10} xs={10} className='rightFCol'>
+                <Col xl={is620 ? 9 : 10} lg={is620 ? 9 : 10} md={is620 ? 9 : 10} sm={is620 ? 9 : 10} xs={is620 ? 9 : 10} className='rightFCol'>
                     <Row align='top'>
                         <Col xl={24} lg={24} md={24} sm={24} xs={24} className='alignSelfCenter'>
                             {travellersList.map((travellerElement, index) => (
@@ -250,10 +252,10 @@ const AddOns = ({ travellers }) => {
 
                     <div className='seatFBox'>
                         <Row align='top' className='perSeatFBox'>
-                            <Col xl={3} lg={3} md={3} sm={3} xs={3}>
-                                <div className='selectFSeatDiv notReservedSeat'><span className='selectPerFSeatTitle'><CloseOutlined /></span></div>
+                            <Col xl={isTablet ? 5 : is1300 ? 4 : 3} lg={isTablet ? 5 : is1300 ? 4 : 3} md={isTablet ? 5 : is1300 ? 4 : 3} sm={isTablet ? 5 : is1300 ? 4 : 3} xs={isTablet ? 5 : is1300 ? 4 : 3}>
+                                <div className='selectFSeatDiv notReservedSeat'><span className='selectPerFSeat'><CloseOutlined /></span></div>
                             </Col>
-                            <Col xl={8} lg={8} md={8} sm={8} xs={8} className='alignSelfCenter'>
+                            <Col xl={isTablet ? 19 : is1300 ? 20 : 21} lg={isTablet ? 19 : is1300 ? 20 : 21} md={isTablet ? 19 : is1300 ? 20 : 21} sm={isTablet ? 19 : is1300 ? 20 : 21} xs={isTablet ? 19 : is1300 ? 20 : 21} className='alignSelfCenter'>
                                 <span>Occupied</span>
                             </Col>
                         </Row>
@@ -262,13 +264,13 @@ const AddOns = ({ travellers }) => {
                         <>
                             <div className='seatFBox' key={data?.id}>
                                 <Row align='top' className='perSeatFBox'>
-                                    <Col xl={3} lg={3} md={3} sm={3} xs={3}>
+                                    <Col xl={isTablet ? 5 : is1300 ? 4 : 3} lg={isTablet ? 5 : is1300 ? 4 : 3} md={isTablet ? 5 : is1300 ? 4 : 3} sm={isTablet ? 5 : is1300 ? 4 : 3} xs={isTablet ? 5 : is1300 ? 4 : 3}>
                                         <div
                                             className={`selectFSeatDiv ${getSeatFilterPrice(data?.id)} ${data?.isSelected ? getSeatFilterClick(data?.id) : ''}`}
                                             onClick={() => { handleFilterClick(data) }}>
                                         </div>
                                     </Col>
-                                    <Col xl={8} lg={8} md={8} sm={8} xs={8} className='alignSelfCenter'>
+                                    <Col xl={isTablet ? 19 : is1300 ? 20 : 21} lg={isTablet ? 19 : is1300 ? 20 : 21} md={isTablet ? 19 : is1300 ? 20 : 21} sm={isTablet ? 19 : is1300 ? 20 : 21} xs={isTablet ? 19 : is1300 ? 20 : 21} className='alignSelfCenter'>
                                         <span>{data?.price}</span>
                                     </Col>
                                 </Row>

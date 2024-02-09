@@ -1,14 +1,16 @@
 import { Card } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AppButton from '../AppButton';
 import { CarryOutOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import CommonCarousel from '../CommonCarousel';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const OffersCard = () => {
 
   const navigate = useNavigate();
+  const { isTablet } = useContext(AuthContext)??{};
   const tabBarOptions = [
     { title: "All", key: 1 },
     { title: "Bank Offers", key: 2 },
@@ -85,7 +87,7 @@ const OffersCard = () => {
 
   return (
     <Card className='flightBookCard recentFlightSearchCard'>
-      <h2>Offers For You</h2>
+      {isTablet ? <h3>Offers For You</h3> : <h2>Offers For You</h2>}
       <br />
       <div>
         {tabBarOptions && tabBarOptions?.length > 0 && tabBarOptions.map((o, i) => {

@@ -54,3 +54,38 @@
     /* font-size: 20px !important; */
     font-size: var(--primary-color) !important;
 }
+
+@media only screen and (max-width: 768px) {
+    .trainTatkalRadio .ant-radio-wrapper {
+        font-size: var(--label-font) !important;
+        padding: 0.5% 1%;
+        min-width: 6rem;
+    }
+    .trainTatkalRadio .ant-radio-wrapper-checked {
+        /* padding: 0.5% 2%; */
+        padding: 1% 0.5%;
+    }
+    .addFlightForm .trainStatusCol .ant-select-selector {
+        padding: 0 6.5% !important;
+    }
+    
+}
+
+@media only screen and (max-width: 620px) {
+    .trainStatusCol .ant-select-selector .ant-select-selection-search-input {
+        /* font-size: var(--secondary-font) !important; */
+        /* height: 25px !important; */
+        padding: 0 4% !important;
+        margin-top: 3.5% !important;
+    }
+    
+    .trainStatusCol .addFlightForm .ant-picker {
+        /* font-size: var(--label-font) !important; */
+        padding: 0 7% !important;
+    }
+    
+    .trainStatusCol .ant-input-lg {
+        line-height: 2.5 !important;
+        font-size: var(--label-font) !important;
+    }
+}

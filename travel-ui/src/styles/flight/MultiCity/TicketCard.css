@@ -32,9 +32,9 @@
 .multiCityAirLine {
     font-size: var(--third-font);
 }
-.multyCitySecCol {
-    /* padding-left: 3%; */
-}
+/* .multyCitySecCol {
+    padding-left: 3%;
+} */
 .ticketDataFRow {
     font-size: var(--third-font);
 }
@@ -50,7 +50,6 @@
     font-size: var(--small-font);
     padding: 0 4%;
 }
-
 
 .multiCityYouPayDetails .ant-card-body {
     background-color: var(--dark-color);
@@ -85,4 +84,56 @@
 .youPayFBtn:not(:disabled):not(.youPayFBtn-disabled):hover {
     color: rgb(255, 255, 255);
     border-color: var(--primary-color);
+}
+
+/* -------------------------------- mediaQuery --------------------------- */
+
+@media only screen and (min-width: 768px) and (max-width: 1076px) {
+    .multiCityTicketCardStyle .ant-card-body {
+        padding: 1.5%;
+    }
+    .multiCityYouPayDetails .ant-card-body {
+        padding: 2% 1.5%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .stickyTCardForTab {
+        position: sticky;
+        top: 5%;
+        z-index: 99;
+    }
+    .multiCityRightCard {
+        margin: 0;
+    }
+    .multiCityTicketCardStyle .ant-card-body {
+        padding: 1% 1% 0% 1%;
+        line-height: normal;
+    }
+    .multiCityFromDiv {
+        margin: 0.5% 0;
+    }
+    .multiCityYouPayDetails .ant-card-body {
+        padding: 0.5% 1%;
+    }
+    .youPayFBtn {
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .yourTicketHeading, .youPayFHeading {
+        font-size: var(--third-font);
+    }
+    .multiCityAirLine, .ticketDataFRow, .ticketDataSColumn {
+        font-size: var(--label-font);
+    }
+    .multiTicketStopColor {
+        font-size: var(--little-font);
+    }
+    .youPayFPrice {
+        font-size: var(--secondary-font);
+    }
+    .youPayFBtn {
+        font-size: var(--label-font);
+        width: 100%;
+    }
 }

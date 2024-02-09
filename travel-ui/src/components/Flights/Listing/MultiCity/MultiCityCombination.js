@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { Badge, Card, Col, Row } from 'antd';
 import '../../../../styles/flight/MultiCity/combination.css';
@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { oneWayTripData } from '../../../../JSON/onewayTrip';
 import { airportData } from '../../../../JSON/airports';
 import FlightSubDetails from '../FlightSubDetails';
+import { AuthContext } from '../../../../context/AuthProvider';
 
 const MultiCityCombination = () => {
 
+    const { rsWidths: { is930, is620 } } = useContext(AuthContext)??{};
     const navigate = useNavigate();
     const [isAscendingSortColumn, setIsAscendingSortColumn] = useState(true);
     const [isAscendingFlightDetails, setIsAscendingFlightDetails] = useState(true);
@@ -153,65 +155,67 @@ const MultiCityCombination = () => {
                                 </div>
                             )} */}
                             <Row align='bottom' className='comboCardFirstRow'>
-                                <Col xl={20} lg={20} md={20} sm={20} xs={20}>
+                                <Col xl={is620 ? 18 : 20} lg={is620 ? 18 : 20} md={is620 ? 18 : 20} sm={is620 ? 18 : 20} xs={is620 ? 18 : 20}>
+                                    {is620 && <Row><label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>}
                                     <Row align='middle' justify='space-between'>
-                                        <Col xl={2} lg={2} md={2} sm={2} xs={2}>
+                                        {!is620 && <Col xl={2} lg={2} md={2} sm={2} xs={2}>
                                             <label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label>
-                                        </Col>
-                                        <Col className='insideColLineheight' xl={6} lg={6} md={6} sm={6} xs={6}>
+                                        </Col>}
+                                        <Col className='insideColLineheight' xl={is620 ? 9 : 6} lg={is620 ? 9 : 6} md={is620 ? 9 : 6} sm={is620 ? 9 : 6} xs={is620 ? 9 : 6}>
                                             <label>{data?.legsDetails?.segments[0]?.departureAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</label>
                                             <h2>{data?.legsDetails?.departureTime}</h2>
                                         </Col>
-                                        <Col xl={4} lg={4} md={4} sm={4} xs={4} className='divCenter'>
+                                        <Col xl={4} lg={4} md={4} sm={4} xs={4} className='divCenter textAlignCenter'>
                                             <h2>{data?.legsDetails?.duration}</h2>
                                         </Col>
-                                        <Col xl={4} lg={4} md={4} sm={4} xs={4}></Col>
-                                        <Col className='insideColLineheight' xl={7} lg={7} md={7} sm={7} xs={7}>
+                                        {!is620 && <Col xl={4} lg={4} md={4} sm={4} xs={4}></Col>}
+                                        <Col className='insideColLineheight' xl={is620 ? 8 : 7} lg={is620 ? 8 : 7} md={is620 ? 8 : 7} sm={is620 ? 8 : 7} xs={is620 ? 8 : 7}>
                                             <label>{data?.legsDetails?.segments[0]?.arrivalAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</label>
                                             <h2>{data?.legsDetails?.arrivalTime}</h2>
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col xl={4} lg={4} md={4} sm={4} xs={4}>
-                                    <Row align='middle' justify='center'>
-                                        <Col xl={12} lg={12} md={12} sm={12} xs={12} className='divCenter'>
+                                <Col className='textAlignCenter' xl={is620 ? 6 : 4} lg={is620 ? 6 : 4} md={is620 ? 6 : 4} sm={is620 ? 6 : 4} xs={is620 ? 6 : 4}>
+                                    {/* <Row align='middle' justify='center'>
+                                        <Col xl={12} lg={12} md={12} sm={12} xs={12} className='divCenter'> */}
                                             <h2>₹ {getIndianMoneyFormat(data?.fareDetails?.price?.totalAmount)}</h2>
-                                        </Col>
-                                    </Row>
+                                        {/* </Col>
+                                    </Row> */}
                                 </Col>
                             </Row>
                             {/* <br/> */}
                             <Row align='top' className='comboCardFirstRow'>
-                                <Col xl={20} lg={20} md={20} sm={20} xs={20}>
+                                <Col xl={is620 ? 18 : 20} lg={is620 ? 18 : 20} md={is620 ? 18 : 20} sm={is620 ? 18 : 20} xs={is620 ? 18 : 20}>
+                                    {is620 && <Row><label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label></Row>}
                                     <Row align='middle' justify='space-between'>
-                                        <Col xl={2} lg={2} md={2} sm={2} xs={2}>
+                                        {!is620 && <Col xl={2} lg={2} md={2} sm={2} xs={2}>
                                             <label><b>{data?.legsDetails?.segments[0]?.airlineCode}</b></label>
-                                        </Col>
-                                        <Col className='insideColLineheight' xl={6} lg={6} md={6} sm={6} xs={6}>
+                                        </Col>}
+                                        <Col className='insideColLineheight' xl={is620 ? 9 : 6} lg={is620 ? 9 : 6} md={is620 ? 9 : 6} sm={is620 ? 9 : 6} xs={is620 ? 9 : 6}>
                                             <label>{data?.legsDetails?.segments[0]?.departureAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</label>
                                             <h2>{data?.legsDetails?.departureTime}</h2>
                                         </Col>
-                                        <Col xl={4} lg={4} md={4} sm={4} xs={4} className='divCenter'>
+                                        <Col xl={4} lg={4} md={4} sm={4} xs={4} className='divCenter textAlignCenter'>
                                             <h2>{data?.legsDetails?.duration}</h2>
                                         </Col>
-                                        <Col xl={4} lg={4} md={4} sm={4} xs={4}></Col>
-                                        <Col className='insideColLineheight' xl={7} lg={5} md={5} sm={5} xs={5}>
+                                        {!is620 && <Col xl={4} lg={4} md={4} sm={4} xs={4}></Col>}
+                                        <Col className='insideColLineheight' xl={is620 ? 8 : 7} lg={is620 ? 8 : 7} md={is620 ? 8 : 7} sm={is620 ? 8 : 7} xs={is620 ? 8 : 7}>
                                             <label>{data?.legsDetails?.segments[0]?.arrivalAirportCode} - {airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</label>
                                             <h2>{data?.legsDetails?.arrivalTime}</h2>
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col xl={4} lg={4} md={4} sm={4} xs={4}>
-                                    <Row align='middle' justify='center'>
-                                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+                                <Col className='textAlignCenter' xl={is620 ? 6 : 4} lg={is620 ? 6 : 4} md={is620 ? 6 : 4} sm={is620 ? 6 : 4} xs={is620 ? 6 : 4}>
+                                    {/* <Row align='middle' justify='center'>
+                                        <Col xl={12} lg={12} md={12} sm={12} xs={12}> */}
                                             <AppButton className='appPrimaryButton comboViewBtn' onClick={() => navigate('/flight-booking-details')} label='VIEW FARES' />
-                                        </Col>
-                                    </Row>
+                                        {/* </Col>
+                                    </Row> */}
                                 </Col>
                             </Row>
                             {/* <br/> */}
                             <Row align='middle' justify='space-between'>
-                                <Col xl={5} lg={5} md={5} sm={5} xs={5}>
+                                <Col xl={is620 ? 12 : 5} lg={is620 ? 12 : 5} md={is620 ? 12 : 5} sm={is620 ? 12 : 5} xs={is620 ? 12 : 5}>
                                     <label className='labelColor cursorP' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined />) || (selectedCardTab === index && (!isAscendingFlightDetails ? <UpOutlined /> : <DownOutlined />))} </label>
                                 </Col>
                                 {/* <Col xl={15} lg={15} md={15} sm={15} xs={15}>

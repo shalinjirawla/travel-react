@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../../../styles/flight/MultiCity/TicketCard.css';
 import { Card, Col, Row } from 'antd';
 import Button from '../../../AppButton';
+import { AuthContext } from '../../../../context/AuthProvider';
 
 const TicketCard = () => {
 
@@ -30,6 +31,8 @@ const TicketCard = () => {
         },
     ];
 
+    const { rsWidths: { is1100 }, isTablet } = useContext(AuthContext)??{};
+
     return (
         <div className='multiCityRightCard stickyYourTicketTCard'>
 
@@ -39,11 +42,12 @@ const TicketCard = () => {
                 {ticketCardDetails.map((data, index) => (
                     <div className='multiCityFromDiv' key={index}>
                         <Row align='middle' justify='space-between'>
-                            <Col xl={4} lg={4} md={4} sm={4} xs={4}>
+                            {(!is1100 || isTablet) && <Col xl={4} lg={4} md={4} sm={4} xs={4}>
                                 <span className='multiCityAirLine'>{data.airLine}</span>
-                            </Col>
-                            <Col xl={20} lg={20} md={20} sm={20} xs={20} className='multyCitySecCol'>
+                            </Col>}
+                            <Col xl={(!is1100 || isTablet) ? 20 : 24} lg={(!is1100 || isTablet) ? 20 : 24} md={(!is1100 || isTablet) ? 20 : 24} sm={(!is1100 || isTablet) ? 20 : 24} xs={(!is1100 || isTablet) ? 20 : 24} className='multyCitySecCol'>
                                 <div>
+                                    {is1100 && !isTablet && <div><span className='multiCityAirLine'>{data.airLine}</span></div>}
                                     <div className='ticketDataFRow'>
                                         <span>{data.from} - {data.to}, </span>
                                         <span>{data.date}</span>
@@ -53,13 +57,13 @@ const TicketCard = () => {
                                             <Col xl={4} lg={4} md={4} sm={4} xs={4}>
                                                 <span className='ticketDataSColumn'><span>{data.departure}</span></span>
                                             </Col>
-                                            <Col xl={11} lg={11} md={11} sm={11} xs={11}>
-                                                <span className='ticketDataSColumn d-flex'><span>{data.duration}</span><span className='multiTicketStopColor'>( {data.stop} )</span></span>
+                                            <Col xl={!is1100 ? 10 : 11} lg={!is1100 ? 10 : 11} md={!is1100 ? 10 : 11} sm={!is1100 ? 10 : 11} xs={!is1100 ? 10 : 11}>
+                                                <span className='ticketDataSColumn'><span>{data.duration}</span><span className='multiTicketStopColor'>({data.stop})</span></span>
                                             </Col>
                                             <Col xl={4} lg={4} md={4} sm={4} xs={4}>
                                                 <span className='ticketDataSColumn'><span>{data.arrival}</span></span>
                                             </Col>
-                                            <Col xl={5} lg={5} md={5} sm={5} xs={5} className='textAlignR'>
+                                            <Col xl={!is1100 ? 6 : 5} lg={!is1100 ? 6 : 5} md={!is1100 ? 6 : 5} sm={!is1100 ? 6 : 5} xs={!is1100 ? 6 : 5} className='textAlignR'>
                                                 <span className='ticketDataSColumn'><b>{data.price}</b></span>
                                             </Col>
                                         </Row>
@@ -70,7 +74,7 @@ const TicketCard = () => {
                     </div>
                 ))}
             </Card>
-
+            
             <Card className='multiCityYouPayDetails' hoverable>
                 <Row align='middle' justify='space-between'>
                     <Col xl={8} lg={8} md={8} sm={8} xs={8}>
@@ -79,7 +83,7 @@ const TicketCard = () => {
                     <Col xl={8} lg={8} md={8} sm={8} xs={8}>
                         <span className='youPayFPrice'>₹15,357</span>
                     </Col>
-                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8} className={isTablet ? 'textAlignEnd' : ''}>
                         <Button className='youPayFBtn' label='BOOK' />
                     </Col>
                 </Row>

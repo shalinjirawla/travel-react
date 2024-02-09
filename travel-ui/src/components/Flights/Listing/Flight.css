@@ -91,7 +91,7 @@
     margin-top: 5%;
 }
 .doneFPBtn {
-    padding: 0 1.5%;
+    text-align: -webkit-right;
 }
 .deptDateCol {
     margin-top: 1.7%;
@@ -130,9 +130,9 @@
 
 /* -------------------------------- Swap --------------------------- */
 
-.swapStyle {
+/* .swapStyle {
     padding-left: 3.5%;
-}
+} */
 
 
 /* -------------------------------- Color --------------------------- */
@@ -156,6 +156,7 @@
 }
 .backgroundStyle .ant-select-selection-item {
     color: white !important;
+    padding-inline-end: 0 !important;
 }
 .backgroundStyle .ant-picker-input>input::placeholder {
     color: white !important;
@@ -206,13 +207,199 @@
 
 /* -------------------------------- Popover --------------------------- */
 
-.doneBtn:not(:disabled):not(.updateSearchBtn-disabled):hover {
+.doneBtn:not(:disabled):not(.doneBtn-disabled):hover {
     color: white;
     border-color: white;
 }
-
 .totalFPassengers {
     font-size: var(--third-font);
     text-align: center;
     color: red;
+}
+.insidePopoverSelect {
+    width: 95% !important;
+}
+.popOverFBtn {
+    display: flex;
+}
+
+/* -------------------------------- Responsive (MediaQuery) --------------------------- */
+
+@media only screen and (min-width: 769px) {
+    .cardHeaderStyle .ant-card-body {
+        padding: 1% !important;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .cardHeaderStyle .ant-card-body {
+        padding: 0;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1100px) {
+    .updateSearchBtn {
+        width: auto;
+        font-size: var(--third-font);
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .listMainDiv {
+        margin: 3% 0;
+    }
+    .cardHeaderStyle .ant-card-body {
+        padding: 1%;
+    }
+    .labelHeaderStyle {
+        font-size: var(--little-font) !important;
+    }
+    .updateSearchBtn {
+        width: auto;
+        font-size: var(--label-font);
+    }
+    .returnDtCheckbox .ant-checkbox-inner {
+        width: 0.7rem;
+        height: 0.7rem;
+    }
+    .backgroundStyle .ant-select-selection-item {
+        font-size: var(--label-font) !important;
+        padding-inline-end: 0 !important;
+    }
+    .defSelectOptionStyle .ant-select-item-option-content {
+        font-size: var(--label-font) !important;
+        padding: 4% 2% !important;
+    }
+    .backgroundStyle .ant-picker-input>input::placeholder {
+        font-size: var(--label-font);
+    }
+    .backgroundStyle .ant-picker-input >input {
+        font-size: var(--label-font);
+    }
+    .popOverFBtn {
+        font-size: var(--label-font) !important;
+    }
+    .doneBtn {
+        padding: 0.5rem 1rem !important;
+        font-size: var(--third-font) !important;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .listMainDiv {
+        margin: 2% 0;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .listMainDivTab {
+        margin: 8% 2%;
+    }
+    .cardHeaderStyle {
+        padding: 0;
+        background-color: #fff !important;
+    }
+    .cardHeaderStyle .ant-card-body .ant-collapse-item-active {
+        padding: 0 !important;
+        margin-bottom: -2.5%;
+    }
+    .updateSearchBtn {
+        height: 1.7rem;
+        width: auto;
+        font-size: var(--third-font);
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .updateSearchBtn:not(:disabled):not(.updateSearchBtn-disabled):hover {
+        color: white;
+        border-color: var(--primary-color);
+    }
+    .defSelectOptionStyle .ant-select-item-option-content {
+        padding: 2% !important;
+    }
+    .collapseFIcon {
+        font-size: var(--third-font) !important;
+        color: #fff !important;
+        align-self: flex-end;
+    }
+    .ant-collapse-expand-icon {
+        display: flex !important;
+        align-self: center !important;
+        padding-bottom: 0.5%;
+    }
+    .collapseFStyle .ant-collapse-header {
+        padding: 1% 3% !important;
+        background-color: var(--primary-color) !important;
+    }
+    .activeCollapse .ant-collapse-header {
+        background-color: var(--primary-color) !important;
+    }
+    .collapseFStyle .ant-collapse-header-text {
+        color: white;
+    }
+    .collapseFStyle .ant-collapse-content-box {
+        padding: 0 3% !important;
+    }
+    .collapseFStyle .ant-collapse-item-active {
+        background-color: #fff !important;
+    }
+    .collapseLabel {
+        font-size: var(--third-font);
+        color: white;
+    }
+    .activeLabel {
+        color: var(--dark-shadow);
+        color: #fff;
+    }
+    .labelHeaderStyle {
+        color: black;
+        opacity: 1;
+        font-weight: var(--secondary-fontWeight);
+    }
+    .backgroundStyle .ant-select-selector {
+        background-color: #fff !important;
+        border-color: lightgray !important;
+    }
+    .backgroundStyle .ant-select-selection-placeholder {
+        color: black;
+    }
+    .backgroundStyle .ant-select-selection-item {
+        color: black !important;
+    }
+    .backgroundStyle .ant-picker-input>input::placeholder {
+        color: black !important;
+        font-size: var(--third-font);
+    }
+    .backgroundStyle {
+        background-color: #fff !important;
+        color: black !important;
+        border-color: lightgray !important;
+    }
+    .backgroundStyle:not(:disabled):not(.backgroundStyle-disabled):hover {
+        color: black;
+        border-color: lightgray;
+    }
+    .backgroundStyle .ant-picker-input >input {
+        color: black !important;
+        font-size: var(--third-font);
+    }
+    .backgroundStyle .ant-select-arrow .anticon > svg {
+        fill: #fff !important;
+    }
+    .backgroundStyle .ant-picker-suffix .anticon > svg {
+        fill: #fff !important;
+    }
+    .popOverFBtn {
+        font-size: var(--third-font) !important;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 700px) {
+    .listMainDivTab {
+        margin: 9% 2%;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .listMainDivTab {
+        margin: 10% 2%;
+    }
 }

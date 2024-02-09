@@ -1,3 +1,7 @@
+.cardLine .ant-card-body {
+    padding: 0 !important;
+}
+
 .multiHeadingCol {
     height: 3rem;
     width: 15rem;
@@ -22,7 +26,6 @@
     min-height: 30px !important;
 }
 
-
 .multiComboTime {
     font-size: var(--secondary-font);
     padding-bottom: 3%;
@@ -32,4 +35,53 @@
     border-radius: 0 0 3px 3px;
     padding: 1% 0 2% 4%;
     box-shadow: none;
+}
+
+@media only screen and (min-width: 480px) and (max-width: 992px) {
+    .cardLine .ant-card-body {
+        padding: 0 !important;
+    }
+    .multiHeadingCol {
+        height: 0;
+    }
+    .comboViewBtn {
+        min-height: 10px !important;
+        font-size: var(--small-font);
+    }
+}
+
+/* @media only screen and (min-width: 480px) and (max-width: 620px) {
+    .comboViewBtn {
+        font-size: var(--little-font);
+        padding: 0 6%;
+        height: 1.5rem;
+    }
+} */
+
+@media only screen and (max-width: 850px) {
+    .multiHeadingCol {
+        height: 2rem;
+    }
+}
+@media only screen and (max-width: 680px) {
+    .multiHeadingCol h4 {
+        font-size: 11px !important;
+    }
+    .comboCardFirstRow h2 {
+        font-size: var(--secondary-font) !important;
+    }
+}
+@media only screen and (max-width: 620px) {
+    .comboViewBtn {
+        min-height: 15px !important;
+        font-size: var(--small-font) !important;
+    }
+}
+@media only screen and (max-width: 520px) {
+    .comboCardFirstRow label {
+        font-size: var(--small-font) !important;
+    }
+    .comboCardFirstRow h2 {
+        font-size: var(--third-font) !important;
+    }
 }

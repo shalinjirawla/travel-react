@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import '../styles/loader.css';
 import anime from 'animejs/lib/anime.es.js';
 import { Progress } from 'antd';
+import { AuthContext } from '../context/AuthProvider';
 
 const CustomLoader = ({
     progressPercent = 50,
     tipText = '',
 }) => {
 
+    const { isTablet } = useContext(AuthContext)??{};
     // useEffect(() => {
     //     // const timer 
     //     setTimeout(() => {
@@ -59,7 +61,7 @@ const CustomLoader = ({
     // as the button gets clicked restart the timeline animation
     // button.addEventListener('click', () => timeline.restart());
     return (
-        <div className='customLoader' style={{ position: 'absolute', zIndex: '1', top: '-40%' }}>
+        <div className='customLoaderDiv'>
             {/* <svg viewBox="0 0 100 100">
                 <rect width="100" height="100" rx="2" fill="#242539" />
                 <g fill="none" stroke="#4DC498" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -97,25 +99,20 @@ const CustomLoader = ({
                 percent={progressPercent}
                 // size={[900, 15]}
                 showInfo={false}
+                className='progressBar'
+                style={{ top: isTablet ? '5.5rem' : null }}
                 strokeColor={'lightgreen'}
                 // strokeWidth={'100%'}
                 // type='line'
                 strokeLinecap='square'
-                style={{
-                    position: "fixed",
-                    top: '24%',
-                    zIndex: '1122',
-                    width: '100%',
-                    height: '2rem'
-                }}
             />
             <img
                 src='https://cdn.dribbble.com/users/328772/screenshots/10293847/media/d45c05b5e858e2508fb1a3b84f33e932.gif'
                 // src='https://cdn.dribbble.com/users/328772/screenshots/10293847/media/d45c05b5e858e2508fb1a3b84f33e932.gif'
-                style={{ width: '100%', opacity: '0.8' }}
+                className='loaderImg'
                 alt='gif'
             />
-            <h1 style={{ position: 'absolute', zIndex: '1126', top: '60%', left: '35%' }}>{tipText}</h1>
+            <h1 className='loaderTipText'>{tipText}</h1>
         </div>
     )
 }

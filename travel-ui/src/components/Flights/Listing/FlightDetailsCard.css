@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
 }
-
 .cardStyle {
     border-radius: 3px;
     display: flex;
@@ -20,7 +19,7 @@
 .mapCard .ant-card-body {
     padding: 0.9% 1% !important;
 }
-.cardLine .ant-card-body {
+.cardFLine .ant-card-body {
     padding: 0 !important;
     border-radius: 3px !important;
     display: flex;
@@ -30,7 +29,6 @@
 .dateSelectedCard .ant-card-body {
     padding: 0.5%;
 }
-
 .viewBtn { 
     /* padding: 0rem 1rem; */
     border-radius: 3px;
@@ -46,21 +44,15 @@
     font-weight: var(--primary-fontWeight);
     /* margin-bottom: 5%; */
 }
-/* .buttonCenter {
-    padding-left: 24%;
-} */
-
 .labelStyle {
     color: rgb(24, 161, 96);
     /* position: relative; */
     /* padding-right: 35%; */
 }
-
 .labelColor {
     color: var(--primary-color);
     cursor: pointer;
 }
-
 .FlightListCardRowH2 {
     font-size: 15px;
 }
@@ -70,23 +62,17 @@
 .priceListRadioGrp h2 {
     font-size: var(--secondary-font);
 }
-
 .flightListCardDurationLabel {
     margin-top: 2%;
 }
-
 .fareDetailListDivider {
     margin: 0% 0;
     min-width: 140%;
 }
-
 .fareDetailListInsideDiv {
     line-height: 1.2;
     margin-left: 10%;
     width: max-content;
-}
-.insidePopoverSelect {
-    width: 95% !important;
 }
 
 /* ----------------------------------- DynamicDate ------------------------------ */
@@ -95,8 +81,8 @@
     display: flex;
     font-size: var(--secondary-font);
 }
-.dateTrainCol {
-    padding: 6px;
+.dateFlightCol {
+    padding: 1%;
     text-align: center;
     cursor: pointer;
 }
@@ -117,14 +103,12 @@
     margin-top: 3%;
 }
 
-
 /* ----------------------------------- button ------------------------------ */
 
 .viewBtn:not(:disabled):not(.viewBtn-disabled):hover {
     color: white;
     border-color: white;
 }
-
 
 /* ----------------------------------- SortDate ------------------------------ */
 
@@ -143,7 +127,7 @@
 .colorChange {
     color: var(--primary-color);
 }
-.sortIcon {
+.sortFIcon {
     font-size: var(--label-font);
 }
 
@@ -167,6 +151,15 @@
 }
 .tagFont {
     font-size: var(--label-font);
+}
+
+/* ----------------------------------- View Fares ------------------------------ */
+
+.viewFareFUpDown {
+    font-size: var(--secondary-font);
+    position: absolute;
+    bottom: -6%;
+    left: 40%;
 }
 
 /* ------------------------------------- Return Data Page ------------------------ */
@@ -259,11 +252,6 @@
     color: white;
     line-height: 18px;
 }
-.spanSPColor {
-    color: rgb(113, 113, 113);
-    line-height: 18px;
-    /* padding-left: 7%; */
-}
 .spanSColor {
     color: rgb(113, 113, 113);
     line-height: 18px;
@@ -336,4 +324,91 @@
 .bookBtnInFareList {
     min-height: 1rem !important;
     min-width: 80%;
+}
+
+/* ----------------------------------------------- mediaQuery ----------------------------------------------- */
+
+@media only screen and (min-width: 480px) and (max-width: 992px) {
+    .dateIcon {
+        font-size: var(--label-font);
+    }
+    .headingHeight, .bold-text {
+        font-size: var(--small-font);
+    }
+    .labelFont {
+        font-size: var(--little-font);
+    }
+    .cardFLine .ant-card-body {
+        padding: 0.5% 0 !important;
+        line-height: normal;
+    }
+    .FlightListCardRowH2 {
+        font-size: 13px;
+    }
+    .arrowCenter {
+        margin: 12% 0;
+    }
+    .FlightListCardRowLabel {
+        font-size: var(--little-font);
+    }
+    .priceListRadioGrp h2 {
+        font-size: var(--label-font);
+    }
+    .fareDetailListDivider {
+        min-width: 105%;
+    }
+    .viewBtn {
+        font-size: var(--small-font);
+        padding: 0 10%;
+        height: 1.5rem;
+        line-height: normal;
+    }
+    .sortFIcon {
+        font-size: var(--little-font) !important;
+    }
+    .viewFareFUpDown {
+        font-size: var(--third-font);
+    }
+    .bookBtnInFareList {
+        min-width: 40%;
+    }
+    
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) { 
+    .detailsCard {
+        width: 90%;
+        margin: 2% 0 0 4%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 550px) {
+    .viewBtn {
+        font-size: var(--little-font);
+        padding: 0 6%;
+        height: 1.2rem;
+        line-height: normal;
+        left: 20%;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .tableFareDetails .ant-table-cell {
+        padding: 2% 0 !important;
+    }
+    .bookBtnInFareList {
+        min-height: 1rem !important;
+        min-width: 40%;
+        padding: 0 12%;
+        height: 1.5rem;
+    }
+}
+
+/* ------------------------ RoundTrip --------------------- */
+
+/* ------------------------ Selection Card --------------------- */
+
+@media only screen and (min-width: 480px) and (max-width: 1200px) {
+    .iconHeading, .spanSDate, .spanSColor, .spanSPColor {
+        font-size: var(--optimal-font);
+    }
 }

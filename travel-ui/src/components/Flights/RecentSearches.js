@@ -1,14 +1,16 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Card, Row, Tag } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsPeople } from 'react-icons/bs';
 import { PiAirplaneInFlightThin } from "react-icons/pi";
 import { RiHotelLine } from "react-icons/ri";
 import CommonCarousel from '../CommonCarousel';
+import { AuthContext } from '../../context/AuthProvider';
 
 const RecentSearches = () => {
 
+    const { isTablet } = useContext(AuthContext)??{};
     const recentSearchData = [
         { type: 'Flight', person: 1, from: 'Ahmedabad', to: 'Mumbai', deptDate: new Date('12/22/2023'), returnDate: null },
         { type: 'Hotel', person: 2, name: 'Hotel Vintage', room: 1, fromDate: new Date('12/30/2023'), toDate: new Date('01/01/2024') },
@@ -41,7 +43,7 @@ const RecentSearches = () => {
 
     return (
         <Card className='flightBookCard recentFlightSearchCard'>
-            <h2>Recent Searches</h2>
+            {isTablet ? <h3>Recent Searches</h3> : <h2>Recent Searches</h2>}
             <br />
             <CommonCarousel
                 data={recentSearchData}

@@ -5,16 +5,9 @@ import AppButton from '../../AppButton';
 
 const ConfirmModal = ({ onConfirm, travelerDetails, setConfirmModalOpen }) => {
 
-    //--------- Work in Progress -----------------
-
-    // useEffect(() => {
-    //   createTravelerItems();
-    // },[])
-
     return (
         <>
             <h2 className='popup-header'>Review Traveller’s Details</h2>
-            {/* <hr /> */}
             <Divider />
             <div className='pop-main'>
                 <div>
@@ -35,8 +28,6 @@ const ConfirmModal = ({ onConfirm, travelerDetails, setConfirmModalOpen }) => {
                     label='No I will Edit This'
                     onClick={() => {
                         setConfirmModalOpen(false);
-
-                        // <Main /> 
                     }}
                 />
                 <AppButton

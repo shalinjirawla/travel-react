@@ -1,7 +1,10 @@
 import { Card, Checkbox, Slider } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './filterCard.css';
 import Button from '../../AppButton';
+import { AuthContext } from '../../../context/AuthProvider';
+import { FilterOutlined } from '@ant-design/icons';
+import AppModal from '../../AppModal';
 
 const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
 
@@ -87,6 +90,8 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         },
     ];
 
+    const { rsWidths: { is1300 }, isTablet } = useContext(AuthContext)??{};
+	const [filterModalOpen, setFilterModalOpen] = useState(false);
     const [airlinesCheckbox, setAirlinesCheckbox] = useState(airlinesCheckboxData);
     const [isButtonClickedForDeparture, setButtonClickedForDeparture] = useState(departureButtonData);
     const [isButtonClickedForReturn, setButtonClickedForReturn] = useState(departureButtonData);
@@ -111,27 +116,28 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                 left: '0%',
                 transform: 'translateX(0%)'
             },
-            label: `₹ ${priceRangeSlider[0]}`,
+            label: `₹ ${priceRangeSlider[0]}`
         },
         50000: {
             style: {
-                left: '80%',
+                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
                 transform: 'translateX(0%)'
             },
             label: `₹ ${priceRangeSlider[1]}`
         },
     };
+    
     const returnPriceMarks = {
         4000: {
             style: {
                 left: '0%',
                 transform: 'translateX(0%)'
             },
-            label: `₹ ${returnPriceRangeSlider[0]}`,
+            label: `₹ ${returnPriceRangeSlider[0]}`
         },
         40000: {
             style: {
-                left: '80%',
+                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
                 transform: 'translateX(0%)'
             },
             label: `₹ ${returnPriceRangeSlider[1]}`
@@ -149,7 +155,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         },
         1440: {
             style: {
-                left: '80%',
+                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
                 transform: 'translateX(0%)',
                 color: 'black',
                 cursor: 'auto',
@@ -168,7 +174,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         },
         1410: {
             style: {
-                left: '80%',
+                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
                 transform: 'translateX(0%)',
                 color: 'black',
                 cursor: 'auto',
@@ -251,27 +257,31 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         setReturnDurationRangeSlider([30, 1410]);
     };
 
-    return (
-        <Card className='filterCard'>
-            <div>
-                <div>
-                    <div className='headerPadding'>
-                        <div>
-                            <div className='headingStyle'>Filters</div>
-                            <div className='headingStyles'>showing 12 flights</div>
-                        </div>
-                        <span className='resetStyleShow' onClick={handleResetAll}>Reset All</span>
-                    </div><br />
+    const handleFilterModal = () => {
+		setFilterModalOpen(!filterModalOpen);
+	};
 
-                    <div className='justifyBetweens'>
-                        <span className='labelClass'>
-                            <Checkbox className='checkBoxFHideLabel' onChange={handleChangeHide} checked={hideChecked}>Hide multi check-in flights</Checkbox>
-                        </span>
+    const filterData = <>
+        <div className='filterFModal'>
+            <div className='modal-header'>
+                <div className='headerPadding'>
+                    <div>
+                        {!isTablet && <div className='headingStyle'>Filters</div>}
+                        <div className='headingStyles'>showing 12 flights</div>
                     </div>
+                    <span className='resetStyleShow' onClick={handleResetAll}>Reset All</span>
+                </div><br />
+
+                <div className='justifyBetweens'>
+                    <span className='labelClass'>
+                        <Checkbox className='checkBoxFHideLabel' onChange={handleChangeHide} checked={hideChecked}>Hide multi check-in flights</Checkbox>
+                    </span>
                 </div>
+            </div>
 
-                <div className='borderBottom'></div>
+            <div className='borderBottom'></div>
 
+            <div className='modal-body'>
                 <FilterButton
                     btnHeading='Departure'
                     options={isButtonClickedForDeparture}
@@ -306,7 +316,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                     <div>
                         <div className='flex-between'>
                             <div className='subHeadingStyle'>Price</div>
-                            <span className='resetStyleShow' onClick={handleResetForPriceSlider}>Reset</span>
+                            <span className='resetStyleShow d-flex' onClick={handleResetForPriceSlider}>Reset</span>
                         </div>
                         <Slider
                             range
@@ -316,7 +326,6 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                             defaultValue={priceRangeSlider}
                             value={priceRangeSlider}
                             onChange={(val) => handleChangeSlider('price', val, setPriceRangeSlider)}
-                            className='sliderStyle'
                             tooltip={{ formatter: null }}
                         />
                     </div>
@@ -324,7 +333,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                         <div>
                             <div className='flex-between'>
                                 <div className='subHeadingStyle'>Return Price</div>
-                                <span className='resetStyleShow' onClick={handleResetForReturnPriceSlider}>Reset</span>
+                                <span className='resetStyleShow d-flex' onClick={handleResetForReturnPriceSlider}>Reset</span>
                             </div>
                             <Slider
                                 range
@@ -334,7 +343,6 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 defaultValue={returnPriceRangeSlider}
                                 value={returnPriceRangeSlider}
                                 onChange={(val) => handleChangeSlider('price', val, setReturnPriceRangeSlider)}
-                                className='sliderStyle'
                                 tooltip={{ formatter: null }}
                             />
                         </div>
@@ -347,7 +355,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                     <div>
                         <div className='flex-between'>
                             <div className='subHeadingStyle'>Onward Duration</div>
-                            <span className='resetStyleShow' onClick={handleResetForDurationSlider}>Reset</span>
+                            <span className='resetStyleShow d-flex' onClick={handleResetForDurationSlider}>Reset</span>
                         </div>
                         <Slider
                             range
@@ -357,7 +365,6 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                             defaultValue={durationRangeSlider}
                             value={durationRangeSlider}
                             onChange={(val) => handleChangeSlider('duration', val, setDurationRangeSlider)}
-                            className='sliderStyle'
                             tooltip={{ formatter: null }}
                         />
                     </div>
@@ -365,7 +372,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                         <div>
                             <div className='flex-between'>
                                 <div className='subHeadingStyle'>Return Duration</div>
-                                <span className='resetStyleShow' onClick={handleResetForReturnDurationSlider}>Reset</span>
+                                <span className='resetStyleShow d-flex' onClick={handleResetForReturnDurationSlider}>Reset</span>
                             </div>
                             <Slider
                                 range
@@ -375,7 +382,6 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 defaultValue={returnDurationRangeSlider}
                                 value={returnDurationRangeSlider}
                                 onChange={(val) => handleChangeSlider('duration', val, setReturnDurationRangeSlider)}
-                                className='sliderStyle'
                                 tooltip={{ formatter: null }}
                             />
                         </div>
@@ -388,16 +394,16 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                     <div>
                         <div className='flex-between'>
                             <div className='subHeadingStyle'>Preferred Airlines</div>
-                            <span className='resetStyleShow' onClick={handleResetForAirlines}>Reset</span>
+                            <span className='resetStyleShow d-flex' onClick={handleResetForAirlines}>Reset</span>
                         </div>
 
                         <div className='subHeading'>
                             {airlinesCheckbox.map(o => (
                                 <div className='checkList' key={o.id}>
-                                    <div className='subCheckList'>
-                                        <Checkbox onChange={() => handleChangeHideForAirlines(o.id)} checked={o.isChecked}>{o.airline}</Checkbox>
+                                    <div>
+                                        <Checkbox className='checkFBoxLabel' onChange={() => handleChangeHideForAirlines(o.id)} checked={o.isChecked}>{o.airline}</Checkbox>
                                     </div>
-                                    <div className='priceCheck'>
+                                    <div>
                                         <span className='subPriceCheck color'>{o.price}</span>
                                     </div>
                                 </div>
@@ -406,7 +412,36 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                     </div>
                 </div>
             </div>
-        </Card>
+        </div>
+    </>
+
+    return (
+        <>  
+            {isTablet && 
+                <div className='filterFTitle textAlignEnd'>
+                    <div
+                        onClick={() => {
+                            setFilterModalOpen(true);
+                        }}
+                    >
+                        <span className='moreFFilter'>More Filters <FilterOutlined /> </span>
+                    </div>
+                    <AppModal
+                        title='Filters'
+                        className='modalFStyle'
+                        open={filterModalOpen}
+                        children={filterData}
+                        onOk={handleFilterModal}
+                        onCancel={handleFilterModal}
+                    />                    
+                </div>
+            }
+            {!isTablet && 
+                <Card className='filterCard'> 
+                    {filterData}
+                </Card>
+            }
+        </>
     );
 }
 

@@ -1,20 +1,23 @@
-import { Card, Col, Row, Form, DatePicker, Space, Select, Checkbox, Divider } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Card, Col, Row, Form, DatePicker, Space, Select, Checkbox, Divider, Collapse } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
 import './Flight.css';
 import { fetchFlightList } from '../../../Constants';
 import PopoverFlight from './PopoverFlight';
-import { SwapOutlined } from '@ant-design/icons';
+import { CloseOutlined, SwapOutlined } from '@ant-design/icons';
 import Button from '../../AppButton';
-import TravelClassPopover from './TravelClassPopover';
 import dayjs from 'dayjs';
 import { airportData } from '../../../JSON/airports';
+import { disabledFromToday } from '../../../helper';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails, travellers }) => {
 
+    const { isTablet } = useContext(AuthContext)??{};
     const { Option, OptGroup } = Select;
     const [defFlightForm] = Form.useForm();
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [currentSearchData, setCurrentSearchData] = useState(null);
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         if (currSearchFlightList && currSearchFlightList?.search) {
@@ -50,166 +53,199 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails,
         defFlightForm.setFieldValue('defFlightTo', from);
     };
 
+    const flightDetailForm = <>
+        <Row align='middle' justify='space-between'>
+            <Col xl={isTablet ? 8 : 4} lg={isTablet ? 8 : 4} md={isTablet ? 8 : 4} sm={isTablet ? 8 : 4} xs={isTablet ? 8 : 4}>
+                <>
+                    <label className='labelHeaderStyle'>FROM</label>
+                    <Form.Item
+                        name='defFlightFrom'
+                        className='backgroundStyle'
+                        // initialValue={currentSearchData?.legs[0]?.departureCity?.code}
+                        // initialValue={searchDetails?.flightFrom}
+                    >
+                        <Select
+                            showSearch
+                            size={isTablet ? 'middle' : 'large'}
+                            // style={{ width: 200 }}
+                            placeholder="Search by location or airport"
+                            className='defSelect'
+                            popupClassName='defSelectOptionStyle'
+                        >
+                            {airportData && airportData.map((item, i) => {
+                                return (
+                                    <>
+                                        <Option key={i} value={item._id}>
+                                            {item.label} - {item.code}
+                                        </Option>
+                                    </>
+                                );
+                            })}
+                        </Select>
+                    </Form.Item>
+                </>
+            </Col>
+            <Col><SwapOutlined className='swapStyle labelHeaderStyle' onClick={handleSwapClick} /></Col>
+            <Col xl={isTablet ? 8 : 4} lg={isTablet ? 8 : 4} md={isTablet ? 8 : 4} sm={isTablet ? 8 : 4} xs={isTablet ? 8 : 4}>
+                <>
+                    <label className='labelHeaderStyle'>TO</label>
+                    <Form.Item
+                        name='defFlightTo'
+                        className='backgroundStyle'
+                        // initialValue={currentSearchData?.legs[0]?.arrivalCity?.code}
+                        initialValue={searchDetails?.flightTo}
+                    >
+                        <Select
+                            showSearch
+                            size={isTablet ? 'middle' : 'large'}
+                            className='defSelect'
+                            popupClassName='defSelectOptionStyle'
+                            // style={{ width: 200 }}
+                            // popupClassName='defSelectOptionStyle'
+                            placeholder="Search by location or airport"
+                            // defaultValue={currentSearchData?.legs[0]?.arrivalCity?.code}
+                            // value={currentSearchData?.legs[0]?.arrivalCity?.code}
+                            // onChange={(value) => setToValue(value)}
+                            optionFilterProp="children"
+                            filterOption={(input, option) =>
+                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
+                            // options={fetchFlightList}
+                        >
+                            {airportData && airportData.map((item, i) => {
+                                return (
+                                    <>
+                                        <Option key={i} value={item._id}>
+                                            {item.label} - {item.code}
+                                        </Option>
+                                    </>
+                                );
+                            })}
+                        </Select>
+                    </Form.Item>
+                </>
+            </Col>
+            <Col xl={isTablet ? 6 : 3} lg={isTablet ? 6 : 3} md={isTablet ? 6 : 3} sm={isTablet ? 67 : 3} xs={isTablet ? 6 : 3}>
+                    <>
+                        <label className='labelHeaderStyle'>DEPARTURE DATE</label>
+                        <Form.Item
+                            name='defFlightDepartureDate'
+                            // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[0]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
+                            // initialValue={dayjs(new Date(searchDetails?.flightDeptDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || ''}
+                            className="createUserTextInput"
+                            rules={[{ required: true, message: 'Departure Date is required' }]}
+                        >
+                            <DatePicker
+                                allowClear={false} 
+                                className='datePicker backgroundStyle'
+                                popupClassName='commonSubDateStyle'
+                                size={isTablet ? 'middle' : 'large'}
+                                placeholder='Departure Date'
+                                format='DD/MM/YYYY'
+                                disabledDate={disabledFromToday}
+                            />
+                        </Form.Item>
+                    </>
+            </Col>
+            {!isTablet && 
+                <Col xl={3} lg={3} md={3} sm={3} xs={3}>
+                    <Checkbox checked={showDatePicker} className='returnDtCheckbox' onChange={onChange}><label className='labelHeaderStyle'>RETURN DATE</label></Checkbox>
+                    <Form.Item
+                        name='defFlightReturnDate'
+                        className="createUserTextInput"
+                        // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[1]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
+                        // initialValue={dayjs(new Date(searchDetails?.flightReturnDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || null}
+                        rules={[{ required: true, message: 'Return Date is required' }]}
+                    >
+                        <DatePicker
+                            allowClear={false}
+                            className={`datePicker backgroundStyle ${!showDatePicker ? 'showDate' : ''}`}
+                            popupClassName='commonSubDateStyle'
+                            size={isTablet ? 'middle' : 'large'}
+                            placeholder='Return Date'
+                            format='DD/MM/YYYY'
+                            disabled={!showDatePicker}
+                        />
+                    </Form.Item>
+                </Col>
+            }
+            <Col xl={isTablet ? 8 : 4} lg={isTablet ? 8 : 4} md={isTablet ? 8 : 4} sm={isTablet ? 8 : 4} xs={isTablet ? 8 : 4}>
+                <label className='labelHeaderStyle'>PASSENGER & CLASS</label>
+                <Form.Item>
+                    <PopoverFlight currentSearchData={currentSearchData} travellers={travellers} searchDetails={searchDetails} />
+                </Form.Item>
+            </Col>
+            {isTablet &&
+                <>
+                    <Col><SwapOutlined className='visibilityHide' /></Col>
+                    <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+                        <Checkbox checked={showDatePicker} className='returnDtCheckbox' onChange={onChange}><label className='labelHeaderStyle'>RETURN DATE</label></Checkbox>
+                        <Form.Item
+                            name='defFlightReturnDate'
+                            className="createUserTextInput"
+                            // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[1]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
+                            // initialValue={dayjs(new Date(searchDetails?.flightReturnDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || null}
+                            rules={[{ required: true, message: 'Return Date is required' }]}
+                        >
+                            <DatePicker
+                                allowClear={false}
+                                className={`datePicker backgroundStyle ${!showDatePicker ? 'showDate' : ''}`}
+                                popupClassName='commonSubDateStyle'
+                                size={isTablet ? 'middle' : 'large'}
+                                placeholder='Return Date'
+                                format='DD/MM/YYYY'
+                                disabled={!showDatePicker}
+                            />
+                        </Form.Item>
+                    </Col>
+                </>
+            }
+            <Col xl={isTablet ? 8 : 4} lg={isTablet ? 8 : 4} md={isTablet ? 8 : 4} sm={isTablet ? 8 : 4} xs={isTablet ? 8 : 4} className='textAlignEnd'>
+                <Button className='updateSearchBtn' label='UPDATE SEARCH' />
+            </Col>
+        </Row>
+    </>
+
+    const labelData = <>
+        <div className={`collapseLabel ${isActive ? 'activeLabel' : ''}`}>
+            <span>{searchDetails?.flightFrom} to </span>
+            <span>{searchDetails?.flightTo}</span><br />
+            <span>{dayjs(new Date(searchDetails?.flightDeptDate?.$d)).format('ddd, MMM DD')} - </span>
+            {searchDetails?.flightReturnDate && <span>{dayjs(new Date(searchDetails?.flightReturnDate?.$d)).format('ddd, MMM DD')} - </span>}
+            <span>{travellers?.adult + travellers?.child + travellers?.infant} Traveller(s), {travellers?.currClass}</span>
+        </div>
+    </>
+
+    const items = [
+        {
+            label: labelData,
+            children: <p>{flightDetailForm}</p>,
+        },
+    ];
+
     return (
         <div className='flightCardStyle'>
-            {/* <Descriptions bordered items={items} size='small' /> */}
             <Card className='cardHeaderStyle'>
-                {/* <Row>
-                    <Radio.Group options={flightOptions} onChange={onChangeOptions} value={selectedFlightOption} />
-                </Row>
-                <br /> */}
                 <Form
                     name='defFligthDetailForm'
                     // preserve={false}
                     form={defFlightForm}
                 >
-                    <Row align='middle' justify='space-between'>
-                        <Col xl={3} lg={{ span: 3 }} md={{ span: 3 }} sm={{ span: 3 }} xs={{ span: 3 }}>
-                            <Col xl={23} lg={23} md={23} sm={23} xs={23}>
-                                <>
-                                    <label className='labelHeaderStyle'>FROM</label>
-                                    <Form.Item
-                                        name='defFlightFrom'
-                                        className='backgroundStyle'
-                                        // initialValue={currentSearchData?.legs[0]?.departureCity?.code}
-                                        // initialValue={searchDetails?.flightFrom}
-                                    >
-                                        <Select
-                                            showSearch
-                                            size="large"
-                                            style={{ width: 200 }}
-                                            placeholder="Search by location or airport"
-                                            className='defSelect'
-                                            popupClassName='defSelectOptionStyle'
-                                            >
-                                            {airportData && airportData.map((item, i) => {
-                                                return (
-                                                    <>
-                                                        <Option key={i} value={item._id}>
-                                                            {item.label} - {item.code}
-                                                        </Option>
-                                                    </>
-                                                );
-                                            })}
-                                        </Select>
-                                    </Form.Item>
-                                </>
-                            </Col>
-                        </Col>
-                        <Col xl={1} className='swapStyle labelHeaderStyle'><SwapOutlined onClick={handleSwapClick} /></Col>
-                        <Col xl={{ span: 4 }} lg={{ span: 3 }} md={{ span: 3 }} sm={{ span: 3 }} xs={{ span: 3 }}>
-                            <Col xl={23} lg={23} md={23} sm={23} xs={23}>
-                                {/* {currentSearchData && currentSearchData?.legs[0]?.departureCity?.code && */}
-                                    <>
-                                        <label className='labelHeaderStyle'>TO</label>
-                                        <Form.Item
-                                            name='defFlightTo'
-                                            className='backgroundStyle'
-                                            // initialValue={currentSearchData?.legs[0]?.arrivalCity?.code}
-                                            initialValue={searchDetails?.flightTo}
-                                        >
-                                            <Select
-                                                showSearch
-                                                size="large"
-                                                className='defSelect'
-                                                popupClassName='defSelectOptionStyle'
-                                                // style={{ width: 200 }}
-                                                // popupClassName='defSelectOptionStyle'
-                                                placeholder="Search by location or airport"
-                                                // defaultValue={currentSearchData?.legs[0]?.arrivalCity?.code}
-                                                // value={currentSearchData?.legs[0]?.arrivalCity?.code}
-                                                // onChange={(value) => setToValue(value)}
-                                                optionFilterProp="children"
-                                                filterOption={(input, option) =>
-                                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                                }
-                                                // options={fetchFlightList}
-                                            >
-                                                {airportData && airportData.map((item, i) => {
-                                                    return (
-                                                        <>
-                                                            <Option key={i} value={item._id}>
-                                                                {item.label} - {item.code}
-                                                            </Option>
-                                                        </>
-                                                    );
-                                                })}
-                                            </Select>
-                                        </Form.Item>
-                                    </>
-                                {/* } */}
-                            </Col>
-                        </Col>
-                        <Col xl={{ span: 3 }} lg={{ span: 3 }} md={{ span: 3 }} sm={{ span: 3 }} xs={{ span: 3 }}>
-                            <Col xl={23} lg={23} md={23} sm={23} xs={23}>
-                                {/* {currentSearchData?.legs[0]?.outboundDate && */}
-                                    <>
-                                        <label className='labelHeaderStyle'>DEPARTURE DATE</label>
-                                        <Form.Item
-                                            name='defFlightDepartureDate'
-                                            // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[0]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
-                                            // initialValue={dayjs(new Date(searchDetails?.flightDeptDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || ''}
-                                            className="createUserTextInput"
-                                            rules={[{ required: true, message: 'Departure Date is required' }]}
-                                        >
-                                            <DatePicker
-                                                allowClear={false} 
-                                                className='datePicker backgroundStyle'
-                                                popupClassName='commonSubDateStyle'
-                                                size='large'
-                                                placeholder='Departure Date'
-                                                format='DD/MM/YYYY'
-                                            />
-                                        </Form.Item>
-                                    </>
-                                {/* } */}
-                            </Col>
-                        </Col>
-                        <Col xl={{ span: 3 }} lg={{ span: 3 }} md={{ span: 3 }} sm={{ span: 3 }} xs={{ span: 3 }}>
-                            <Col xl={23} lg={23} md={23} sm={23} xs={23}>
-                                <Checkbox checked={showDatePicker} className='returnDtCheckbox' onChange={onChange}><label className='labelHeaderStyle'>RETURN DATE</label></Checkbox>
-                                {/* {(showDatePicker || !showDatePicker) && */}
-                                    <Form.Item
-                                        name='defFlightReturnDate'
-                                        className="createUserTextInput"
-                                        // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[1]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
-                                        // initialValue={dayjs(new Date(searchDetails?.flightReturnDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || null}
-                                        rules={[{ required: true, message: 'Return Date is required' }]}
-                                    >
-                                        <DatePicker
-                                            allowClear={false}
-                                            className={`datePicker backgroundStyle ${!showDatePicker ? 'showDate' : ''}`}
-                                            popupClassName='commonSubDateStyle'
-                                            size='large'
-                                            placeholder='Return Date'
-                                            format='DD/MM/YYYY'
-                                            disabled={!showDatePicker}
-                                        />
-                                    </Form.Item>
-                                {/* } */}
-                            </Col>
-                        </Col>
-                        <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }} xs={{ span: 4 }}>
-                            <Col xl={23} lg={23} md={23} sm={23} xs={23}>
-                                <label className='labelHeaderStyle'>PASSENGER & CLASS</label>
-                                <Form.Item>
-                                    {/* <Space wrap> */}
-                                        <PopoverFlight currentSearchData={currentSearchData} travellers={travellers} searchDetails={searchDetails} />
-                                        {/* <TravelClassPopover /> */}
-                                    {/* </Space> */}
-                                </Form.Item>
-                            </Col>
-                        </Col>
-                        <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 4 }} sm={{ span: 3 }} xs={{ span: 3 }}>
-                            <Button className='updateSearchBtn' label='UPDATE SEARCH' />
-                        </Col>
-                    </Row>
+                    {isTablet &&
+                        <>
+                            <Collapse
+                                className={`collapseFStyle ${isActive ? 'activeCollapse' : ''}`}
+                                items={items} 
+                                bordered={false}
+                                expandIconPosition='end'
+                                activeKey={isActive ? ['0'] : []}
+                                onChange={(keys) => setIsActive(keys.includes('0'))}
+                                expandIcon={({ isActive }) => isActive && <CloseOutlined className='collapseFIcon' />}
+                            />
+                        </>
+                    }
+                    {!isTablet && flightDetailForm}
                 </Form>
-                {/* <br />
-                <Row>
-                    <Radio.Group options={fareOptions} onChange={onFareChangeOptions} value={selectedFare} />
-                </Row> */}
-
             </Card>
         </div>
     );

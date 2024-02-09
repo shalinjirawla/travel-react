@@ -12,6 +12,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "baggageType",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -20,6 +21,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "checkIn",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -28,6 +30,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "cabin",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
     ];
@@ -47,6 +50,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "ifCancelled",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -55,6 +59,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "charges",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
     ];
@@ -88,6 +93,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "ifReschedule",
             sorter: false,
             width: '5%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -96,6 +102,7 @@ const FlightSubDetails = ({ type, data, index }) => {
             dataIndex: "charges",
             sorter: false,
             width: '5%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
     ];
@@ -127,27 +134,27 @@ const FlightSubDetails = ({ type, data, index }) => {
             <Card className='tabCardFStyle'>
                 <Row align='middle' justify='space-between'>
                     <Col xl={type === 'RoundTrip' ? 4 : 3} lg={3} md={3} sm={3} xs={3}>
-                        <Row align='middle' justify='space-between'><span className='multiFTabAir'>{data?.legsDetails?.segments[0]?.airlineCode}</span></Row>
-                        <Row align='middle' justify='space-between'><span className={type === 'RoundTrip' ? 'multiFSmallFont' : 'multiFTabAir'}>{data?.code}</span></Row>
+                        <Row align='middle' justify='space-between'><span className='fontSmallStyle'>{data?.legsDetails?.segments[0]?.airlineCode}</span></Row>
+                        <Row align='middle' justify='space-between'><span className={type === 'RoundTrip' ? 'multiFSmallFont fontSmallStyle' : 'fontSmallStyle'}>{data?.code}</span></Row>
                         {/* <Row align='middle' justify='space-between'><span className='multiFTabAir'>(Aircraft:320)</span></Row> */}
                     </Col>
 
                     <Col xl={6} lg={8} md={8} sm={8} xs={8} className='textAlignEnd'>
                         {(type !== 'OneWayTrip' && type !== 'RoundTrip') && <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{dayjs(new Date(data?.legsDetails?.departureDateTime)).format('ddd DD MMM YYYY')}</span>
+                                <span className='fontSmallStyle'>{dayjs(new Date(data?.legsDetails?.departureDateTime)).format('ddd DD MMM YYYY')}</span>
                             </Col>
                         </Row>}
                         <Row align='middle' justify='space-between'>
                             {/* <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiComboTime multiFlineHeight'> */}
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className={`multiFlineHeight ${(type === 'FlightCombinations') ? 'multiComboTime' : ((type === 'OwnFlights') ? 'multiFStationTime' : 'multiFStationTime')}`}>
-                                <span className='multiFRight secondaryTitle'>{data?.legsDetails?.segments[0]?.departureAirportCode}</span>
-                                <span>{data?.legsDetails?.departureTime}</span>
+                                <span className='multiFRight secondaryTitle fontThirdStyle'>{data?.legsDetails?.segments[0]?.departureAirportCode}</span>
+                                <span className='fontThirdStyle'>{data?.legsDetails?.departureTime}</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</span>
+                                <span className='fontSmallStyle'>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</span>
                             </Col>
                         </Row>
                     </Col>
@@ -157,13 +164,13 @@ const FlightSubDetails = ({ type, data, index }) => {
                             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
                                 <div className='multyCityDistanceTLine'>
                                 {/* <div className={`${(type === 'FlightCombinations') ? 'multyComboDistanceTLine' : ((type === 'OwnFlights') ? 'multyCityDistanceTLine' : '')}`}> */}
-                                    <span className='multyCityDotDTLine'></span><span className='multyCityDSpanTLine'>{data?.legsDetails?.duration}</span><span className='multyCityArrowDTLine'></span>
+                                    <span className='multyCityDotDTLine'></span><span className='multyCityDSpanTLine fontSmallStyle'>{data?.legsDetails?.duration}</span><span className='multyCityArrowDTLine'></span>
                                 </div>
                             </Col>
                         </Row>
                         {(type !== 'OneWayTrip' && type !== 'RoundTrip') && <Row align='middle' justify='space-between' className='multyCityFDuration'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                                <span>Flight Duration</span>
+                                <span className='fontSmallStyle'>Flight Duration</span>
                             </Col>
                         </Row>}
                     </Col>
@@ -171,19 +178,19 @@ const FlightSubDetails = ({ type, data, index }) => {
                     <Col xl={6} lg={8} md={8} sm={8} xs={8}>
                         {(type !== 'OneWayTrip' && type !== 'RoundTrip') && <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{dayjs(new Date(data?.legsDetails?.arrivalDateTime)).format('ddd DD MMM YYYY')}</span>
+                                <span className='fontSmallStyle'>{dayjs(new Date(data?.legsDetails?.arrivalDateTime)).format('ddd DD MMM YYYY')}</span>
                             </Col>
                         </Row>}
                         <Row align='middle' justify='space-between'>
                             {/* <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiComboTime multiFlineHeight'> */}
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className={`multiFlineHeight ${(type === 'FlightCombinations') ? 'multiComboTime' : ((type === 'OwnFlights') ? 'multiFStationTime' : 'multiFStationTime')}`}>
-                                <span className='multiFRight secondaryTitle'>{data?.legsDetails?.segments[0]?.arrivalAirportCode}</span>
-                                <span>{data?.legsDetails?.arrivalTime}</span>
+                                <span className='multiFRight secondaryTitle fontThirdStyle'>{data?.legsDetails?.segments[0]?.arrivalAirportCode}</span>
+                                <span className='fontThirdStyle'>{data?.legsDetails?.arrivalTime}</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</span>
+                                <span className='fontSmallStyle'>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</span>
                             </Col>
                         </Row>
                     </Col>
@@ -192,27 +199,27 @@ const FlightSubDetails = ({ type, data, index }) => {
             {type === 'FlightCombinations' && <Card className='tabCardFStyle m-Top'>
                 <Row align='middle' justify='space-between'>
                     <Col xl={3} lg={3} md={3} sm={3} xs={3}>
-                        <Row align='middle' justify='space-between'><span className='multiFTabAir'>{data?.legsDetails?.segments[0]?.airlineCode}</span></Row>
-                        <Row align='middle' justify='space-between'><span className='multiFTabAir'>{data?.code}</span></Row>
+                        <Row align='middle' justify='space-between'><span className='fontSmallStyle'>{data?.legsDetails?.segments[0]?.airlineCode}</span></Row>
+                        <Row align='middle' justify='space-between'><span className='fontSmallStyle'>{data?.code}</span></Row>
                         {/* <Row align='middle' justify='space-between'><span className='multiFTabAir'>(Aircraft:32A)</span></Row> */}
                     </Col>
 
                     <Col xl={6} lg={8} md={8} sm={8} xs={8} className='textAlignEnd'>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{dayjs(new Date(data?.legsDetails?.departureDateTime)).format('ddd DD MMM YYYY')}</span>
+                                <span className='fontSmallStyle'>{dayjs(new Date(data?.legsDetails?.departureDateTime)).format('ddd DD MMM YYYY')}</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
                             {/* <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiComboTime multiFlineHeight'> */}
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className={`multiFlineHeight ${type === 'FlightCombinations' ? 'multiComboTime' : ''}`}>
-                                <span className='multiFRight secondaryTitle'>{data?.legsDetails?.segments[0]?.departureAirportCode}</span>
-                                <span>{data?.legsDetails?.departureTime}</span>
+                                <span className='multiFRight secondaryTitle fontThirdStyle'>{data?.legsDetails?.segments[0]?.departureAirportCode}</span>
+                                <span className='fontThirdStyle'>{data?.legsDetails?.departureTime}</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</span>
+                                <span className='fontSmallStyle'>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.departureAirportCode)?.label}</span>
                             </Col>
                         </Row>
                     </Col>
@@ -228,7 +235,7 @@ const FlightSubDetails = ({ type, data, index }) => {
                         </Row>
                         <Row align='middle' justify='space-between' className='multyCityFDuration'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                                <span>Flight Duration</span>
+                                <span className='fontSmallStyle'>Flight Duration</span>
                             </Col>
                         </Row>
                     </Col>
@@ -236,19 +243,19 @@ const FlightSubDetails = ({ type, data, index }) => {
                     <Col xl={6} lg={8} md={8} sm={8} xs={8}>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{dayjs(new Date(data?.legsDetails?.arrivalDateTime)).format('ddd DD MMM YYYY')}</span>
+                                <span className='fontSmallStyle'>{dayjs(new Date(data?.legsDetails?.arrivalDateTime)).format('ddd DD MMM YYYY')}</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
                             {/* <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiComboTime multiFlineHeight'> */}
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className={`multiFlineHeight ${type === 'FlightCombinations' ? 'multiComboTime' : ''}`}>
-                                <span className='multiFRight secondaryTitle'>{data?.legsDetails?.segments[0]?.arrivalAirportCode}</span>
-                                <span>{data?.legsDetails?.arrivalTime}</span>
+                                <span className='multiFRight secondaryTitle fontThirdStyle'>{data?.legsDetails?.segments[0]?.arrivalAirportCode}</span>
+                                <span className='fontThirdStyle'>{data?.legsDetails?.arrivalTime}</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</span>
+                                <span className='fontSmallStyle'>{airportData.find(o => o.code === data?.legsDetails?.segments[0]?.arrivalAirportCode)?.label}</span>
                             </Col>
                         </Row>
                     </Col>
@@ -261,29 +268,32 @@ const FlightSubDetails = ({ type, data, index }) => {
         {
             key: '1',
             children: 'Base Fare (1 Adult)',
-            span: 2
+            // span: 2
         },
         {
             key: '2',
             children: `₹${data?.fareDetails?.price?.amount}`,
+            span: 2
         },
         {
             key: '3',
             children: 'Taxes and Fees (1 Adult)',
-            span: 2
+            // span: 2
         },
         {
             key: '4',
             children: `₹${data?.fareDetails?.price?.taxAmount}`,
+            span: 2
         },
         {
             key: '5',
             children: 'Total Fare (1 Adult)',
-            span: 2
+            // span: 2
         },
         {
             key: '6',
             children: `₹${data?.fareDetails?.price?.totalAmount}`,
+            span: 2
         },
     ];
 

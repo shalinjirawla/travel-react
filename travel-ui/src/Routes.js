@@ -17,15 +17,21 @@ import Bill from './components/Trains/bookingDetails/Bill';
 import MultiCityList from './components/Flights/Listing/MultiCity/MultiCityList';
 
 const MainRoutes = () => {
-  const { user, currentRole, setIsMobile, setIsTablet, setIsDesktop, setIs1000, setIs930 } = useContext(AuthContext) ?? {};
+  const { user, currentRole, setIsMobile, setIsTablet, setIsDesktop, rsWidths, setRsWidths } = useContext(AuthContext) ?? {};
   const navigate = useNavigate();
 
   const handleWindowSizeChange = () => {
     setIsMobile(window.innerWidth <= 481);
     setIsTablet(window.innerWidth <= 768);
     setIsDesktop(window.innerWidth >= 769);
-    setIs1000(window.innerWidth <= 1100);
-    setIs930(window.innerWidth <= 930);
+    setRsWidths({
+      ...rsWidths,
+      is1300: window.innerWidth <= 1300,
+      is1200: window.innerWidth <= 1200,
+      is1100: window.innerWidth <= 1100,
+      is930: window.innerWidth <= 930,
+      is620: window.innerWidth <= 620,
+    });
   };
 
   useEffect(() => {

@@ -1,12 +1,14 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Col, Divider, Popover, Radio, Row } from 'antd';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Selectable from '../../Selectable';
 import { classOptions } from '../../../Constants';
 import AppButton from '../../AppButton';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const PopoverFlight = ({ currentSearchData, travellers, searchDetails }) => {
 
+    const { rsWidths: { is930 }, isTablet } = useContext(AuthContext)??{};
     const [adultCounter, setAdultCounter] = useState(1);
     const [childCounter, setChildCounter] = useState(0);
     const [infantCounter, setInfantCounter] = useState(0);
@@ -86,13 +88,6 @@ const PopoverFlight = ({ currentSearchData, travellers, searchDetails }) => {
     };
     const totalPassengers = adultCounter + childCounter + infantCounter;
 
-    // const handleDoneClick = () => {
-    //     const travelClassValue = classOptions.find(o => o?.value === selectedClass)?.label;
-    //     const buttonText = `${adultCounter + childCounter + infantCounter} Traveller(s), ${travelClassValue}`;
-    //     setPopoverButtonText(buttonText);
-    //     setVisiblePopover(false);
-    // };
-
     const handleDoneClick = (adult, child, infant, currClass) => {
         setCurrTraveller({ adult: adult, child: child, infant: infant, currClass: currClass });
         const travelClassValue = classOptions.find(o => o?.value === selectedClass)?.label;
@@ -105,76 +100,61 @@ const PopoverFlight = ({ currentSearchData, travellers, searchDetails }) => {
         <div>
             <div className='boxCard'>
                 <Row>
-                    <Col xl={8} lg={6} md={6} sm={6} xs={6}>
-                        <Row justify='center'><h3 style={{ color: ((totalPassengers <= 9 || adultCounter === 1) && infantCounter <= adultCounter) ? '' : 'red' }}>Adult</h3></Row>
-                        <Row justify='center' className="pLabel"><p>(Aged 12+ yrs)</p></Row>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                        <Row justify='center'><h3 className='fontLabelStyle optimalFontStyle' style={{ color: ((totalPassengers <= 9 || adultCounter === 1) && infantCounter <= adultCounter) ? '' : 'red' }}>Adult</h3></Row>
+                        <Row justify='center' className="pLabel fontSmallStyle littleFontStyle"><p>(Aged 12+ yrs)</p></Row>
                         <div className='wrapper'>
                             <MinusOutlined
                                 class="minusIcon"
                                 onClick={() => handleMinus('adult')}
-                                style={{ fontSize: '18px', cursor: (adultCounter === 1) ? 'not-allowed' : 'pointer', color: (adultCounter === 1) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
+                                style={{ fontSize: (isTablet ? '18px' : is930 ? '16px' : '18px'), cursor: (adultCounter === 1) ? 'not-allowed' : 'pointer', color: (adultCounter === 1) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
                             />
                             <div className='num'>{adultCounter}</div>
                             <PlusOutlined
                                 class="plusIcon"
                                 onClick={() => handlePlus('adult')}
                                 // style={{ fontSize: '18px', color: '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
-                                style={{ fontSize: '18px', cursor: (adultCounter >= 9) ? 'not-allowed' : 'pointer', color: (adultCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
+                                style={{ fontSize: (isTablet ? '18px' : is930 ? '16px' : '18px'), cursor: (adultCounter >= 9) ? 'not-allowed' : 'pointer', color: (adultCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
                             />
                         </div>
                     </Col>
-                    <Col xl={8} lg={6} md={6} sm={6} xs={6}>
-                        <Row justify='center'><h3 style={{ color: (totalPassengers <= 9 || childCounter === 0) ? '' : 'red' }}>Children</h3></Row>
-                        <Row justify='center' className="pLabel"><p>(Aged 2-12 yrs)</p></Row>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                        <Row justify='center'><h3 className='fontLabelStyle optimalFontStyle' style={{ color: (totalPassengers <= 9 || childCounter === 0) ? '' : 'red' }}>Children</h3></Row>
+                        <Row justify='center' className="pLabel fontSmallStyle littleFontStyle"><p>(Aged 2-12 yrs)</p></Row>
                         <div className='wrapper'>
                             <MinusOutlined
                                 class="minusIcon"
                                 onClick={() => handleMinus('child')}
-                                style={{ fontSize: '18px', cursor: (childCounter === 0) ? 'not-allowed' : 'pointer', color: (childCounter === 0) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
+                                style={{ fontSize: (isTablet ? '18px' : is930 ? '16px' : '18px'), cursor: (childCounter === 0) ? 'not-allowed' : 'pointer', color: (childCounter === 0) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
                             />
                             <div className='num'>{childCounter}</div>
                             <PlusOutlined
                                 class="plusIcon"
                                 onClick={() => handlePlus('child')}
                                 // style={{ fontSize: '18px', color: '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
-                                style={{ fontSize: '18px', cursor: (childCounter >= 9) ? 'not-allowed' : 'pointer', color: (childCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
+                                style={{ fontSize: (isTablet ? '18px' : is930 ? '16px' : '18px'), cursor: (childCounter >= 9) ? 'not-allowed' : 'pointer', color: (childCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }}
                             />
                         </div>
                     </Col>
-                    <Col xl={8} lg={6} md={6} sm={6} xs={6}>
-                        <Row justify='center'><h3 style={{ color: ((totalPassengers <= 9 || infantCounter === 0) && infantCounter <= adultCounter) ? '' : 'red' }}>Infants</h3></Row>
-                        <Row justify='center' className="pLabel"><p>(Below 2 yrs)</p></Row>
+                    <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                        <Row justify='center'><h3 className='fontLabelStyle optimalFontStyle' style={{ color: ((totalPassengers <= 9 || infantCounter === 0) && infantCounter <= adultCounter) ? '' : 'red' }}>Infants</h3></Row>
+                        <Row justify='center' className="pLabel fontSmallStyle littleFontStyle"><p>(Below 2 yrs)</p></Row>
                         <div className='wrapper'>
                             <MinusOutlined 
                                 class="minusIcon" 
                                 onClick={() => handleMinus('infant')} 
-                                style={{ fontSize: '18px', cursor: (infantCounter === 0) ? 'not-allowed' : 'pointer', color: (infantCounter === 0) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }} 
+                                style={{ fontSize: (isTablet ? '18px' : is930 ? '16px' : '18px'), cursor: (infantCounter === 0) ? 'not-allowed' : 'pointer', color: (infantCounter === 0) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }} 
                             />
                             <div className='num'>{infantCounter}</div>
                             <PlusOutlined 
                                 class="plusIcon" 
                                 onClick={() => handlePlus('infant')} 
                                 // style={{ fontSize: '18px', color: '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
-                                style={{ fontSize: '18px', cursor: (infantCounter >= 9) ? 'not-allowed' : 'pointer', color: (infantCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }} 
+                                style={{ fontSize: (isTablet ? '18px' : is930 ? '16px' : '18px'), cursor: (infantCounter >= 9) ? 'not-allowed' : 'pointer', color: (infantCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '0%', top: '24%' }} 
                             />
                         </div>
                     </Col>
                 </Row>
-                {/* <Divider /> */}
-                {/* <Row align='middle' justify='center'>
-                    <Col xl={22} lg={{ span: 15 }} md={{ span: 15 }} sm={{ span: 15 }} xs={{ span: 15 }} className='dropdownBtn'>
-                        <Row align='middle'>
-                            <Col xl={5} lg={4} md={4} sm={4} xs={4}>
-                                <h3>Travel Class </h3>
-                            </Col>
-                            <Col xl={19} lg={20} md={20} sm={20} xs={20}>
-                                <Radio.Group className='classRadio' size='large' options={classOptions} onChange={onClassChangeOptions} value={selectedClass} optionType="button" />
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col>
-                    </Col>
-                </Row> */}
                 <Divider />
                 <Row align='middle' justify='space-between'>
                     <Col xl={17} lg={17} md={17} sm={17} xs={17} className='dropdownBtn'>
@@ -191,10 +171,11 @@ const PopoverFlight = ({ currentSearchData, travellers, searchDetails }) => {
                             handleSelectChange={(val) => { setSelectedClass(val); }}
                         />
                     </Col>
-                    <Col xl={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 7 : 24} lg={20} md={20} sm={20} xs={20} className='doneFPBtn'>
+                    <Col xl={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 7 : 24} lg={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 7 : 24} md={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 7 : 24} sm={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 7 : 24} xs={(totalPassengers <= 9 && infantCounter <= adultCounter) ? 7 : 24} className='doneFPBtn'>
                         {(totalPassengers <= 9 && infantCounter <= adultCounter) ? (
                             <AppButton
                                 className='doneBtn appPrimaryButton'
+                                // className={`${is1412 ? 'doneBtn' : 'doneBtn appPrimaryButton'}`}
                                 label='Done'
                                 // onClick={handleDoneClick}
                                 onClick={() => {
@@ -221,7 +202,7 @@ const PopoverFlight = ({ currentSearchData, travellers, searchDetails }) => {
                 onOpenChange={() => { setVisiblePopover(!visiblePopover); onReset(); }}
             >
                 {/* <AppButton size='large' className='backgroundStyle overflowH' label={popoverButtonText || `${adultCounter} Traveller(s), Economy`} /> */}
-                <AppButton size='large' className='backgroundStyle overflowH' label={popoverButtonText} />
+                <AppButton size={isTablet ? 'middle' : 'large'} className='backgroundStyle overflowH popOverFBtn' label={popoverButtonText} />
             </Popover>
         </div>
     );

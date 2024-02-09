@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Input, Form, Collapse, Col, Row, message } from 'antd';
 import Button from '../../AppButton';
 import TextInput from '../../TextInput';
@@ -6,13 +6,17 @@ import Selectable from '../../Selectable';
 import axios from 'axios';
 import AppModal from '../../AppModal';
 import ConfirmModal from './ConfirmModal';
+import { capitalizeFirstLetter } from '../../../helper';
 
 const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, travellers }) => {
-  const [isProceedClicked, setIsProceedClicked] = useState(false);
+  const [allDetailForm] = Form.useForm();
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [formValues, setFormValues] = useState([]);
+  const [travellerItems, setTravellerItems] = useState([]);
 
-  const [form] = Form.useForm();
+  useEffect(() => {
+    createCollapseItems();
+  }, [JSON.stringify(travellers)]);
 
   const panelStyle = {
     marginBottom: 24,
@@ -25,6 +29,78 @@ const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, traveller
     setConfirmModalOpen(!confirmModalOpen);
   };
 
+  const generateTravelerItem = (index, type) => {
+    return (
+      <div key={index} className='details-collapse'>
+        <Row align='middle' justify='space-between'>
+          <Col xl={7} lg={7} md={7} sm={7} xs={7}>
+            <TextInput
+              type='text'
+              placeholder='First & Middle Name'
+              className='add'
+              name={`${type}-fname-${index}`}
+              required={true}
+              requiredMsg='Please enter first name'
+            />
+          </Col>
+          <Col xl={7} lg={7} md={7} sm={7} xs={7}>
+            <TextInput
+              type='text'
+              placeholder='Last Name'
+              className='add'
+              name={`${type}-lname-${index}`}
+              required={true}
+              requiredMsg={'Please enter last name'}
+            />
+          </Col>
+          <Col xl={7} lg={7} md={7} sm={7} xs={7} className='selectDrop'>
+            <Selectable
+              firstName='name'
+              placeholder='Gender'
+              handleSelectChange={() => { }}
+              name={`${type}-detail-gender-${index}`}
+              data={genderOptions}
+              className='add'
+              required='true'
+              requiredMsg='Please enter gender'
+            />
+          </Col>
+        </Row>
+      </div>
+    )
+  };
+
+  const createCollapseItems = () => {
+    const { adult, child, infant } = travellers;
+    const types = ['adult', 'child', 'infant'];
+    let travelerItems = [];
+    let tempFormVal = [];
+
+    for (let typeIndex = 0; typeIndex < types.length; typeIndex++) {
+      const type = types[typeIndex];
+      const count = type === 'adult' ? adult : type === 'child' ? child : infant;
+
+      for (let i = 0; i < count; i++) {
+        travelerItems.push({
+          key: `${type} ${i + 1}`,
+          type: type,
+          index: i + 1,
+          label: <b>{`${capitalizeFirstLetter(type)} ${i + 1}`}</b>,
+          fields: [
+            { label: 'First Name', children: '' },
+            { label: 'Last Name', children: '' },
+            { label: 'Gender', children: '' },
+          ],
+          children: generateTravelerItem(i, type),
+          style: panelStyle,
+        });
+        tempFormVal = [...new Set([...tempFormVal, `${type}-fname-${i}`, `${type}-lname-${i}`, `${type}-detail-gender-${i}`])];
+      }
+    }
+    setTravellerItems(travelerItems);
+    setFormValues(tempFormVal);
+  };
+
   const sendEmail = async (values) => {
     try {
       const formData = new FormData();
@@ -35,7 +111,6 @@ const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, traveller
       const response = await axios.post('https://localhost:7056/api/Email/Send', formData);
 
       if (response.status === 200) {
-        setIsProceedClicked(true);
         message.success('Email sent successfully. Press OK to continue.');
       } else {
         console.error('Failed to send email. Server responded with:', response.status, response.data);
@@ -51,89 +126,6 @@ const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, traveller
     { _id: 'other', name: 'Other', value: 'other' },
   ];
 
-  const createTravelerItems = () => {
-    if (!travellers || typeof travellers !== 'object') {
-      console.error('Error: Invalid or missing travellers data.');
-      return [];
-    }
-
-    const { adult, child, infant } = travellers;
-    const types = ['adult', 'child', 'infant'];
-    const travelerItems = [];
-
-    const generateTravelerItem = (index, type) => {
-      return (
-        <p key={index}>
-          <Form form={form}>
-            <div className='details-collapse'>
-              <Row align='middle' justify='space-between'>
-                <Col xl={{ span: 7 }} lg={{ span: 7 }} md={{ span: 7 }} sm={{ span: 7 }} xs={{ span: 7 }}>
-                  <TextInput
-                    type='text'
-                    placeholder='First & Middle Name'
-                    className='add'
-                    name={`${type}-fname-${index}`}
-                    required={true}
-                    requiredMsg='Please enter first name'
-                  />
-                </Col>
-                <Col xl={{ span: 7 }} lg={{ span: 7 }} md={{ span: 7 }} sm={{ span: 7 }} xs={{ span: 7 }}>
-                  <TextInput
-                    type='text'
-                    placeholder='Last Name'
-                    className='add'
-                    name={`${type}-lname-${index}`}
-                    required={true}
-                    requiredMsg={'Please enter last name'}
-                  />
-                </Col>
-                <Col xl={{ span: 7 }} lg={{ span: 7 }} md={{ span: 7 }} sm={{ span: 7 }} xs={{ span: 7 }} className='selectDrop'>
-                  <Selectable
-                    firstName='name'
-                    placeholder='Gender'
-                    handleSelectChange={() => { }}
-                    name={`${type}-detail-gender-${index}`}
-                    data={genderOptions}
-                    className='add'
-                    required='true'
-                    requiredMsg='Please enter gender'
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form>
-        </p>
-      );
-    };
-
-    for (let typeIndex = 0; typeIndex < types.length; typeIndex++) {
-      const type = types[typeIndex];
-      const count = type === 'adult' ? adult : type === 'child' ? child : infant;
-
-      for (let i = 0; i < count; i++) {
-        travelerItems.push({
-          key: `${type} ${i + 1}`,
-          label: <b>{`${capitalizeFirstLetter(type)} ${i + 1}`}</b>,
-          fields: [
-            { label: 'First Name', children: formValues[`${type}-fname-${i}`] || '' },
-            { label: 'Last Name', children: formValues[`${type}-lname-${i}`] || '' },
-            { label: 'Gender', children: formValues[`${type}-detail-gender-${i}`] || '' },
-          ],
-          children: generateTravelerItem(i, type),
-          style: panelStyle,
-        });
-      }
-    }
-    function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    return travelerItems;
-  };
-
-
-  const items = createTravelerItems();
-
   const onChange = (key) => {
     console.log(key);
   };
@@ -145,17 +137,37 @@ const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, traveller
 
   const handleProceedClick = async () => {
     try {
-      const values = await form.validateFields();
-      setFormValues(values);
-      setConfirmModalOpen(true);
-    } catch (errorInfo) {
-      console.error('Form validation failed:', errorInfo);
+      let isValid = false;
+
+      const check = await allDetailForm.validateFields();
+      setTravellerItems(travellerItems.map((o, i) => {
+        return {
+          ...o,
+          fields: o.fields.map(f => {
+            if (f.label === 'First Name') return { ...f, children: allDetailForm.getFieldValue(`${o.type}-fname-${o.index - 1}`) };
+            if (f.label === 'Last Name') return { ...f, children: allDetailForm.getFieldValue(`${o.type}-lname-${o.index - 1}`) };
+            if (f.label === 'Gender') return { ...f, children: allDetailForm.getFieldValue(`${o.type}-detail-gender-${o.index - 1}`) };
+          })
+        }
+      }));
+
+      formValues.forEach(o => {
+        if (!allDetailForm.getFieldValue(o)) {
+          isValid = false;
+          return;
+        } else isValid = true;
+      });
+
+      if (isValid) setConfirmModalOpen(true);
+      else message.error('All Traveller Details Required!');
+
+    } catch (error) {
+      message.error('All Traveller Details Required!');
     }
   };
 
   const handleAppModalOk = () => {
     // setConfirmModalOpen(false);
-    setIsProceedClicked(false);
     setIsDetailsVisible(false);
     setIsAddons(true);
   };
@@ -185,18 +197,18 @@ const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, traveller
               <strong>NOTE : </strong>Please make sure you enter the Name as per your govt. photo id.
             </p>
           </div>
-          <div className='card2'>
-            <Collapse
-              accordion
-              bordered={false}
-              size='large'
-              defaultActiveKey={items.map((item) => item.key)}
-              items={items}
-              onChange={onChange}
-              className='collapse'
-            />
-          </div>
-          <Form form={form}>
+          <Form form={allDetailForm}>
+            <div className='card2'>
+              <Collapse
+                accordion
+                bordered={false}
+                size='large'
+                defaultActiveKey={travellerItems.map((item) => item.key)}
+                items={travellerItems}
+                onChange={onChange}
+                className='collapse'
+              />
+            </div>
             <Form.Item
               name='email'
               label='Email Address'
@@ -239,9 +251,8 @@ const Details = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons, traveller
         // title='Review Traveller’s Details'
         children={<ConfirmModal
           onConfirm={handleAppModalOk}
-          travelerDetails={items}
+          travelerDetails={travellerItems}
           setConfirmModalOpen={setConfirmModalOpen}
-          formValues={formValues}
         />}
         onOk={() => { }}
         onCancel={handleConfirmModal}

@@ -546,20 +546,38 @@
         right: 150%;
     }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {       /* ----------- Tablet Start ------------ */
+    .recentFlightSearchCard br {
+        content: "";
+        margin: 2em;
+        display: block;
+        font-size: 24%;
+    }
     .searchPopupSelect .ant-select-item-option-content {
         padding: 2% 1% !important;
         font-weight: 600 !important;
     }
     .addFlightForm .ant-select-selector {
         height: 2.5rem !important;
-        padding: 0 5% !important;
+        padding: 0 2.5% !important;
     }
     .addFlightForm .searchSelect .ant-select-selector .ant-select-selection-search-input {
         font-size: var(--secondary-font) !important;
         height: 25px !important;
-        padding: 0 4% !important;
+        padding: 0 1% !important;
         margin-top: 1.5% !important;
+    }
+    .searchSelect .ant-select-selection-item {
+        font-size: var(--third-font) !important;
+        font-weight: 700 !important;
+    }
+    .searchSelect .ant-select-selection-placeholder {
+        font-size: var(--third-font) !important;
+    }
+    .searchFlightBtn {
+        font-size: var(--secondary-font) !important;
+        min-height: 2.5rem !important;
+        min-width: -1% !important;
     }
     .filterItemDrop {
         margin-bottom: 4px !important;
@@ -582,11 +600,130 @@
     .tcontent {
         height: 2.5rem !important;
     }
+    .multicityOnTablet .tcontent {
+        height: 3rem !important;
+    }
     .tcontent h2 {
-        font-size: var(--secondary-font) !important;
+        font-size: var(--third-font) !important;
         margin-top: -2% !important;
+    }
+    .multicityOnTablet  .tcontent h2 {
+        margin-top: 0 !important;
     }
     .tcontent p {
         font-size: var(--label-font) !important;
+    }
+    .flightBookCard {
+        padding: 0;
+    }
+    .addFlightForm .ant-picker {
+        width: 100%;
+        /* border-right: none; */
+    }
+    .flightRadio .ant-radio-wrapper {
+        font-size: var(--label-font) !important;
+    }
+    .fareRadio .ant-radio-button-wrapper {
+        font-size: var(--label-font) !important;
+        margin: 0 1%;
+        height: 1.8rem;
+        align-items: center;
+        display: inline-flex;
+    }
+    .fareRadio .ant-radio-button-wrapper-checked {
+        font-size: var(--label-font) !important;
+    }
+    .travelBoxCard {
+        width: 25rem;
+    }
+    .wrapper {
+        height: 30px;
+    }
+    .classRadio .ant-radio-button-wrapper-checked {
+        font-size: var(--label-font);
+    }
+
+    .multiCityFormRow {
+        height: 4rem;
+    }
+    .multiCityFormRow .filterItemDrop {
+        height: 4rem;
+    }
+    .multiCityFormRow .fromToSelectCol .ant-form-item-label {
+        top: -25%
+    }
+    .multiCityFormRow .deptDateCol {
+        height: 4.3rem;
+        margin-top: 0;
+    }
+    .multiCityFormRow .multiTravelPopupCol {
+        margin-top: 0;
+    }
+    .flightInput .ant-form-item-label {
+        top: -38%;
+    }
+    .addFlightForm .ant-form-item-label label {
+        font-size: var(--label-font);
+    }
+    .addFlightForm .ant-picker {
+        font-size: var(--label-font) !important;
+        padding: 0 5% !important;
+    }
+    .deptReturnDatePicker .ant-picker-input>input {
+        font-size: var(--label-font) !important;
+        font-weight: var(--secondary-fontWeight);
+    }
+    .ant-picker .ant-picker-input >input:placeholder-shown {
+        font-weight: var(--label-fontWeight);
+    }
+    .addFlightForm .ant-select-selector {
+        padding: 0 2.5% !important;
+    }
+    .addFlightForm .multiCityInput .ant-select-selector {
+        padding: 0 4.5% !important;
+    }
+    .searchSelect .ant-select-selection-item {
+        font-size: var(--label-font) !important;
+    }
+    .searchSelect .ant-select-selection-placeholder {
+        font-size: var(--label-font) !important;
+    }
+    .listAddBtn {
+        border: none;
+        background-color: var(--shadow-color);
+        min-width: 20% !important;
+        min-height: 2rem !important;
+    }
+    .multicityTabMinusView {
+        position: absolute;
+        top: -25%;
+        right: -8%;
+        z-index: 999;
+        padding: 1.5% !important;
+        font-size: 18px !important;
+    }
+    .recentSearchCard {
+        width: 13rem;
+    }
+    .recentSearchCard .ant-card-body {
+        padding: 3%;
+    }
+    .insideOfferCardDiv {
+        padding: 3% 5%;
+        width: 20rem;
+        margin: 2%;
+    }
+    .insideOfferCardDiv h2 {
+        font-size: var(--secondary-font);
+    }
+    .insideOfferCardDiv h3 {
+        font-size: var(--label-font);
+    }
+    .insideOfferCardDiv p {
+        margin: 4% 0%;
+    }
+    .insideOfferCardDiv img {
+        height: 5.5rem;
+        margin: 0 2%;
     }
 }

@@ -11,48 +11,56 @@ const FlightSubFareDetails = ({ travellers, flightData }) => {
             title: 'Fares',
             dataIndex: 'fare',
             key: 'fare',
+            className: 'fontSmallStyle',
             render: (text) => <a>{text}</a>,
         },
         {
             title: 'Cabin Bag',
             dataIndex: 'cabinBag',
             key: 'cabinBag',
+            className: 'fontSmallStyle',
         },
         {
             title: 'Check-In',
             dataIndex: 'checkIn',
             key: 'checkIn',
+            className: 'fontSmallStyle',
         },
         {
             title: 'Cancellation',
             dataIndex: 'cancellation',
             key: 'cancellation',
+            className: 'fontSmallStyle',
         },
         {
             title: 'Date Change',
             dataIndex: 'dateChange',
             key: 'dateChange',
+            className: 'fontSmallStyle',
         },
         {
             title: 'Seat',
             dataIndex: 'seat',
             key: 'seat',
-            width: '12%'
+            width: '12%',
+            className: 'fontSmallStyle',
         },
         {
             title: 'Meal',
             dataIndex: 'meal',
             key: 'meal',
+            className: 'fontSmallStyle',
         },
         {
             title: 'Action',
             key: 'action',
             width: '15%',
+            className: 'fontSmallStyle',
             render: (_, record) => (
                 <div className='textAlignCenter'>
-                    <h3>{record.price}</h3>
+                    <h3 className='fontLabelStyle'>{record.price}</h3>
                     <AppButton
-                        className='appPrimaryButton bookBtnInFareList'
+                        className='appPrimaryButton bookBtnInFareList fontSmallStyle'
                         label='Book'
                         onClick={() => {
                             navigate('/flight-booking-details', {
@@ -106,7 +114,7 @@ const FlightSubFareDetails = ({ travellers, flightData }) => {
 
     return (
         <div>
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <Table className='tableFareDetails' columns={columns} dataSource={data} pagination={false} />
         </div>
     )
 }

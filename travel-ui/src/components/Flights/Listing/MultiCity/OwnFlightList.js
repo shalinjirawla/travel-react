@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../../../../styles/flight/MultiCity/OwnFlightList.css';
 import { Card, Checkbox, Col, Descriptions, Popover, Radio, Row, Table, Tabs, Tag } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import TicketCard from './TicketCard';
+import { AuthContext } from '../../../../context/AuthProvider';
 
 const OwnFlightList = () => {
 
@@ -75,7 +76,7 @@ const OwnFlightList = () => {
     const [filterOptions, setFilterOptions] = useState(filterData);
 
     const ownFlightDetailsData = [
-        {   
+        {
             id: 1,
             airLine: 'IndiGo',
             fromCode: 'AMD',
@@ -89,7 +90,7 @@ const OwnFlightList = () => {
             price: '₹9,128',
             isChecked: false
         },
-        {   
+        {
             id: 2,
             airLine: 'IndiGo',
             fromCode: 'AMD',
@@ -103,7 +104,7 @@ const OwnFlightList = () => {
             price: '₹11,925',
             isChecked: false
         },
-        {   
+        {
             id: 3,
             airLine: 'IndiGo',
             fromCode: 'AMD',
@@ -117,7 +118,7 @@ const OwnFlightList = () => {
             price: '₹12,891',
             isChecked: false
         },
-        {   
+        {
             id: 4,
             airLine: 'Vistara',
             fromCode: 'AMD',
@@ -131,7 +132,7 @@ const OwnFlightList = () => {
             price: '₹13,131',
             isChecked: false
         },
-        {   
+        {
             id: 5,
             airLine: 'Air India',
             fromCode: 'AMD',
@@ -149,17 +150,17 @@ const OwnFlightList = () => {
     const [ownFlightDetails, setOwnFlightDetails] = useState(ownFlightDetailsData);
 
     const fairDetailTabData = [
-        {   
+        {
             id: 1,
             fare: 'Base Fare (1 Adult)',
             price: '₹10,279',
         },
-        {   
+        {
             id: 2,
             fare: 'Taxes and Fees (1 Adult)',
             price: '₹1,181',
         },
-        {   
+        {
             id: 3,
             fare: 'Total Fare (1 Adult)',
             price: '₹11,460',
@@ -173,6 +174,7 @@ const OwnFlightList = () => {
             dataIndex: "baggageType",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -181,6 +183,7 @@ const OwnFlightList = () => {
             dataIndex: "checkIn",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -189,11 +192,12 @@ const OwnFlightList = () => {
             dataIndex: "cabin",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
     ];
     const baggageInfoList = [
-        {   
+        {
             id: 1,
             baggageType: 'ADULT',
             checkIn: '15 Kgs',
@@ -207,6 +211,7 @@ const OwnFlightList = () => {
             dataIndex: "ifCancelled",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -215,26 +220,27 @@ const OwnFlightList = () => {
             dataIndex: "charges",
             sorter: false,
             width: '10%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
     ];
     const cancellationChargeList = [
-        {   
+        {
             id: 1,
             ifCancelled: 'Goibibo Fee',
             charges: '₹300',
         },
-        {   
+        {
             id: 2,
             ifCancelled: '0-2 hours',
             charges: 'Non Refundable',
         },
-        {   
+        {
             id: 3,
             ifCancelled: '2-24 hours',
             charges: '₹3,675',
         },
-        {   
+        {
             id: 4,
             ifCancelled: '>24 hours',
             charges: '₹3,150',
@@ -248,6 +254,7 @@ const OwnFlightList = () => {
             dataIndex: "ifReschedule",
             sorter: false,
             width: '5%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
         {
@@ -256,37 +263,39 @@ const OwnFlightList = () => {
             dataIndex: "charges",
             sorter: false,
             width: '5%',
+            className: 'fontSmallStyle',
             render: (val) => val ? <div>{val}</div> : <div>-</div>
         },
     ];
     const rescheduleChargeList = [
-        {   
+        {
             id: 1,
             ifReschedule: 'Goibibo Fee',
             charges: '₹300',
         },
-        {   
+        {
             id: 2,
             ifReschedule: '0-2 hours',
             charges: 'Not Changeable',
         },
-        {   
+        {
             id: 3,
             ifReschedule: '2-24 hours',
             charges: '₹3,150',
         },
-        {   
+        {
             id: 4,
             ifReschedule: '>24 hours',
             charges: '₹2,625',
         },
     ];
 
+    const { rsWidths: { is1200 }, isTablet } = useContext(AuthContext);
     const [isAscendingSortColumn, setIsAscendingSortColumn] = useState(true);
     const [isAscendingFlightDetails, setIsAscendingFlightDetails] = useState(true);
     const [selectedColumn, setSelectedColumn] = useState('PRICE');
     const [selectedCardTab, setSelectedCardTab] = useState(0);
-    
+
     const handleSortClick = (column) => {
         if (column !== selectedColumn) {
             setIsAscendingSortColumn(true);
@@ -351,15 +360,15 @@ const OwnFlightList = () => {
             <Card className='tabCardFStyle'>
                 <Row align='middle' justify='space-between'>
                     <Col xl={3} lg={3} md={3} sm={3} xs={3}>
-                        <Row align='middle' justify='space-between'><span className='multiFTabAir'>IndiGo</span></Row>
-                        <Row align='middle' justify='space-between'><span className='multiFTabAir'>6E5208</span></Row>
-                        <Row align='middle' justify='space-between'><span className='multiFTabAir'>(Aircraft:320)</span></Row>
+                        <Row align='middle' justify='space-between'><span className='fontSmallStyle'>IndiGo</span></Row>
+                        <Row align='middle' justify='space-between'><span className='fontSmallStyle'>6E5208</span></Row>
+                        <Row align='middle' justify='space-between'><span className='fontSmallStyle'>(Aircraft:320)</span></Row>
                     </Col>
 
                     <Col xl={6} lg={8} md={8} sm={8} xs={8} className='textAlignEnd'>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span className='multiFTabCommonColor'>Fri 5 Jan 2024</span>
+                                <span className='fontSmallStyle'>Fri 5 Jan 2024</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
@@ -369,9 +378,9 @@ const OwnFlightList = () => {
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
-                            <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFTabCommonColor multiFlineHeight'>
-                                <span>Sardar Vallabhbhai Patel International Airport, </span>
-                                <span>Ahmedabad, India</span>
+                            <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
+                                <span className='fontSmallStyle'>Sardar Vallabhbhai Patel International Airport, </span>
+                                <span className='fontSmallStyle'>Ahmedabad, India</span>
                             </Col>
                         </Row>
                     </Col>
@@ -386,7 +395,7 @@ const OwnFlightList = () => {
                         </Row>
                         <Row align='middle' justify='space-between' className='multyCityFDuration'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                                <span className='multiFTabCommonColor'>Flight Duration</span>
+                                <span className='fontSmallStyle'>Flight Duration</span>
                             </Col>
                         </Row>
                     </Col>
@@ -394,7 +403,7 @@ const OwnFlightList = () => {
                     <Col xl={6} lg={8} md={8} sm={8} xs={8}>
                         <Row align='middle' justify='space-between'>
                             <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
-                                <span className='multiFTabCommonColor'>Fri 5 Jan 2024</span>
+                                <span className='fontSmallStyle'>Fri 5 Jan 2024</span>
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
@@ -404,9 +413,9 @@ const OwnFlightList = () => {
                             </Col>
                         </Row>
                         <Row align='middle' justify='space-between'>
-                            <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFTabCommonColor multiFlineHeight'>
-                                <span>Chhatrapati Shivaji International Airport, </span>
-                                <span>Mumbai, India</span>
+                            <Col xl={24} lg={24} md={24} sm={24} xs={24} className='multiFlineHeight'>
+                                <span className='fontSmallStyle'>Chhatrapati Shivaji International Airport, </span>
+                                <span className='fontSmallStyle'>Mumbai, India</span>
                             </Col>
                         </Row>
                     </Col>
@@ -448,7 +457,7 @@ const OwnFlightList = () => {
     const fairDetailTab = (
         <div className='multiCityTabCardStyle'>
             {/* <Card className='multiFairDetailCard'> */}
-                <Descriptions bordered items={fareDetailItems} />
+            <Descriptions className='multiCFairDetail' bordered items={fareDetailItems} />
             {/* </Card> */}
         </div>
     );
@@ -456,32 +465,32 @@ const OwnFlightList = () => {
     const baggageInfoTab = (
         <div className='multiCityTabCardStyle'>
             {/* <Card className='multiBaggageInfoCard'> */}
-                <Row align='middle' justify='space-between'>
-                    <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                        <div>
-                            <span className='multiCFName'>AMD-BOM</span>
-                            <span className='multiCFCode'>(UK 956)</span>
-                        </div>
-                    </Col>
-                </Row>
-                <Row align='middle' justify='space-between'>
-                    <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                        <div>
-                            {/* <AppTable
+            <Row align='middle' justify='space-between'>
+                <Col xl={24} lg={24} md={24} sm={24} xs={24}>
+                    <div>
+                        <span className='multiCFName'>AMD-BOM</span>
+                        <span className='multiCFCode'>(UK 956)</span>
+                    </div>
+                </Col>
+            </Row>
+            <Row align='middle' justify='space-between'>
+                <Col xl={24} lg={24} md={24} sm={24} xs={24}>
+                    <div>
+                        {/* <AppTable
                                 bordered
                                 columns={baggageInfoColumns}
                                 dataSource={baggageInfoList}
                                 pageSize={false}
                             /> */}
-                            <Table 
-                                bordered
-                                columns={baggageInfoColumns}
-                                dataSource={baggageInfoList}
-                                pagination={false}
-                            />
-                        </div>
-                    </Col>
-                </Row>
+                        <Table
+                            bordered
+                            columns={baggageInfoColumns}
+                            dataSource={baggageInfoList}
+                            pagination={false}
+                        />
+                    </div>
+                </Col>
+            </Row>
             {/* </Card> */}
         </div>
     );
@@ -502,7 +511,7 @@ const OwnFlightList = () => {
 
             <Card className='multiSecCanRuleCard'>
                 <Row align='middle' justify='space-between'>
-                    <Col xl={12} lg={10} md={10} sm={10} xs={10}>
+                    <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                         <div className='multiCityFTable'>
                             <div className='canChargeHeading'>Cancellation Charges</div>
                             <div>
@@ -512,7 +521,7 @@ const OwnFlightList = () => {
                                     dataSource={cancellationChargeList}
                                     pageSize={false}
                                 /> */}
-                                <Table 
+                                <Table
                                     bordered
                                     columns={cancellationChargeColumns}
                                     dataSource={cancellationChargeList}
@@ -521,7 +530,7 @@ const OwnFlightList = () => {
                             </div>
                         </div>
                     </Col>
-                    <Col xl={12} lg={10} md={10} sm={10} xs={10}>
+                    <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                         <div className='multiCityFTable'>
                             <div className='canChargeHeading'>Reschedule Charges</div>
                             <div>
@@ -531,7 +540,7 @@ const OwnFlightList = () => {
                                     dataSource={rescheduleChargeList}
                                     pageSize={false}
                                 /> */}
-                                <Table 
+                                <Table
                                     bordered
                                     columns={rescheduleChargeColumns}
                                     dataSource={rescheduleChargeList}
@@ -540,7 +549,7 @@ const OwnFlightList = () => {
                             </div>
                         </div>
                     </Col>
-                </Row>           
+                </Row>
             </Card>
 
         </div>
@@ -571,149 +580,145 @@ const OwnFlightList = () => {
 
     return (
         <>
-        <Row justify='space-between'>
-            <Col xl={16} lg={16} md={16} sm={16} xs={16}>
+            <Row justify='space-between'>
+                {isTablet && (<><Col xl={24} lg={24} md={24} sm={24} xs={24} className='stickyTCardForTab'>
+                    <TicketCard />
+                </Col><br /></>)}
 
-                <div>
+                <Col xl={isTablet ? 24 : 16} lg={isTablet ? 24 : 16} md={isTablet ? 24 : 16} sm={isTablet ? 24 : 16} xs={isTablet ? 24 : 16}>
+                    {isTablet ? <br /> : ''}
+                    <div>
 
-                    <Card className='multiCityFirstSortCard'>
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={7} lg={8} md={8} sm={8} xs={8}>
-                                <Popover overlayClassName='multiCPopoverStyle' content={stopContent} placement="bottom">
-                                    <div className='textAlignCenter cursorP'>
-                                        <h3 className='popoverMTHeading'>Stop <DownOutlined className='sortIcon' /></h3>
+                        <Card className='multiCityFirstSortCard'>
+                            <Row align='middle' justify='space-between'>
+                                <Col xl={is1200 ? 6 : 7} lg={is1200 ? 6 : 7} md={is1200 ? 6 : 7} sm={is1200 ? 6 : 7} xs={is1200 ? 6 : 7}>
+                                    <Popover overlayClassName='multiCPopoverStyle' content={stopContent} placement="bottom">
+                                        <div className='textAlignCenter cursorP'>
+                                            <h3 className='popoverMTHeading'>Stop <DownOutlined className='sortIcon' /></h3>
+                                        </div>
+                                    </Popover>
+                                </Col>
+                                <div className='popoverLine'></div>
+                                <Col xl={is1200 ? 11 : 9} lg={is1200 ? 11 : 7} md={is1200 ? 11 : 7} sm={is1200 ? 11 : 7} xs={is1200 ? 11 : 7}>
+                                    <Popover overlayClassName='multiCPopoverStyle' content={departureContent} placement="bottom">
+                                        <div className='textAlignCenter cursorP'>
+                                            <h3 className='popoverMTHeading'>Departure from Ahmedabad <DownOutlined className='sortIcon' /></h3>
+                                        </div>
+                                    </Popover>
+                                </Col>
+                                <div className='popoverLine'></div>
+                                <Col xl={is1200 ? 6 : 7} lg={is1200 ? 6 : 7} md={is1200 ? 6 : 7} sm={is1200 ? 6 : 7} xs={is1200 ? 6 : 7}>
+                                    <Popover overlayClassName='multiCPopoverStyle' content={prefferedAirlinesContent} placement="bottom">
+                                        <div className='textAlignCenter cursorP'>
+                                            <h3 className='popoverMTHeading'>Preferred Airlines <DownOutlined className='sortIcon' /></h3>
+                                        </div>
+                                    </Popover>
+                                </Col>
+                            </Row>
+                        </Card><br />
+
+                        <Card className='multiCSortingStyle'>
+                            <Row align='middle' justify='space-between'>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6} className='textAlignCenter'>
+                                    <div onClick={() => handleSortClick('DEPARTURE')} className='divCenter'>
+                                        <h4 className={`headingHeight ${selectedColumn === 'DEPARTURE' ? 'colorChange' : ''} `}>
+                                            DEPARTURE {selectedColumn === 'DEPARTURE' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                        </h4>
                                     </div>
-                                </Popover>
-                            </Col>
-                            <div className='popoverLine'></div>
-                            <Col xl={9} lg={8} md={8} sm={8} xs={8}>
-                                <Popover overlayClassName='multiCPopoverStyle' content={departureContent} placement="bottom">
-                                    <div className='textAlignCenter cursorP'>
-                                        <h3 className='popoverMTHeading'>Departure from Ahmedabad <DownOutlined className='sortIcon' /></h3>
+                                </Col>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6} className='textAlignCenter'>
+                                    <div onClick={() => handleSortClick('DURATION')} className='divCenter'>
+                                        <h4 className={`headingHeight ${selectedColumn === 'DURATION' ? 'colorChange' : ''} `}>
+                                            DURATION {selectedColumn === 'DURATION' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                        </h4>
                                     </div>
-                                </Popover>
-                            </Col>
-                            <div className='popoverLine'></div>
-                            <Col xl={7} lg={8} md={8} sm={8} xs={8}>
-                                <Popover overlayClassName='multiCPopoverStyle' content={prefferedAirlinesContent} placement="bottom">
-                                    <div className='textAlignCenter cursorP'>
-                                        <h3 className='popoverMTHeading'>Preferred Airlines <DownOutlined className='sortIcon' /></h3>
+                                </Col>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6} className='textAlignCenter'>
+                                    <div onClick={() => handleSortClick('ARRIVAL')} className='divCenter'>
+                                        <h4 className={`headingHeight ${selectedColumn === 'ARRIVAL' ? 'colorChange' : ''} `}>
+                                            ARRIVAL {selectedColumn === 'ARRIVAL' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                        </h4>
                                     </div>
-                                </Popover>
-                            </Col>
-                        </Row>
-                    </Card><br />
-
-                    <Card className='multiCSortingStyle'>
-                        <Row align='middle' justify='space-between'>
-                            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-                                <div onClick={() => handleSortClick('DEPARTURE')} className='divCenter'>
-                                    <h4 className={`headingHeight ${selectedColumn === 'DEPARTURE' ? 'colorChange' : ''} `}>
-                                        DEPARTURE {selectedColumn === 'DEPARTURE' && (isAscendingSortColumn ? <DownOutlined className='sortMIcon' /> : <UpOutlined className='sortMIcon' />)}
-                                    </h4>
-                                </div>
-                            </Col>
-                            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-                                <div onClick={() => handleSortClick('DURATION')} className='divCenter'>
-                                    <h4 className={`headingHeight ${selectedColumn === 'DURATION' ? 'colorChange' : ''} `}>
-                                        DURATION {selectedColumn === 'DURATION' && (isAscendingSortColumn ? <DownOutlined className='sortMIcon' /> : <UpOutlined className='sortMIcon' />)}
-                                    </h4>
-                                </div>
-                            </Col>
-                            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-                                <div onClick={() => handleSortClick('ARRIVAL')} className='divCenter'>
-                                    <h4 className={`headingHeight ${selectedColumn === 'ARRIVAL' ? 'colorChange' : ''} `}>
-                                        ARRIVAL {selectedColumn === 'ARRIVAL' && (isAscendingSortColumn ? <DownOutlined className='sortMIcon' /> : <UpOutlined className='sortMIcon' />)}
-                                    </h4>
-                                </div>
-                            </Col>
-                            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-                                <div onClick={() => handleSortClick('PRICE')} className='divCenter'>
-                                    <h4 className={`headingHeight ${selectedColumn === 'PRICE' ? 'colorChange' : ''} `}>
-                                        PRICE {selectedColumn === 'PRICE' && (isAscendingSortColumn ? <DownOutlined className='sortMIcon' /> : <UpOutlined className='sortMIcon' />)}
-                                    </h4>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Card><br />
-            
-                    {ownFlightDetails.map((data, index) => (
-                        <>
-                            <Card className='multiCDetailsCardStyle' key={index} onClick={() => handleClickOnCard(data)}>
-                                <Row align='middle' justify='space-between'>
-                                    <div className='multiCLeftCard'>     
-                                        <Row align='middle' justify='space-between'>
-                                            <Col xl={9} lg={7} md={7} sm={7} xs={7}>
-                                                <Row align='middle' justify='space-between'>
-                                                    <Col xl={8} lg={12} md={12} sm={12} xs={12}>
-                                                        <span className='multiCity-Color'>{data.airLine}</span>
-                                                    </Col>
-                                                    <Col xl={16} lg={12} md={12} sm={12} xs={12}>
-                                                        <div className='d-flex-between'>
-                                                            <span className='multiCity-Font'>{data.fromCode}</span>
-                                                            <span className='multiCityDeparture-FontWight'>{data.fromTime}</span>
-                                                        </div>
-                                                        <span className='multiCity-Color'>{data.fromStation}</span>
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                            <Col xl={8} lg={7} md={7} sm={7} xs={7} className='textAlignCenter'>
-                                                <span className='multiCity-Duration'>{data.duration}</span><span> ( {data.durationStop} )</span>
-                                            </Col>
-                                            <Col xl={7} lg={7} md={7} sm={7} xs={7}>
-                                                <Row align='middle' justify='space-between'>
-                                                    <Col xl={22} lg={12} md={12} sm={12} xs={12} className=''>
-                                                        <div className='d-flex-between'>
-                                                            <span className='multiCity-Font'>{data.toCode}</span>
-                                                            <span className='multiCityArrival-FontWight'>{data.toTime}</span>
-                                                        </div>
-                                                        <span className='multiCity-Color'>{data.toStation}</span>
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                        </Row>
-                                        <Row align='middle' justify='space-between'>
-                                            <span className='multiCityFlightDetails' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined />) || (selectedCardTab === index && (!isAscendingFlightDetails ? <UpOutlined /> : <DownOutlined />))} </span>
-                                        </Row> 
+                                </Col>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6} className='textAlignCenter'>
+                                    <div onClick={() => handleSortClick('PRICE')} className='divCenter'>
+                                        <h4 className={`headingHeight ${selectedColumn === 'PRICE' ? 'colorChange' : ''} `}>
+                                            PRICE {selectedColumn === 'PRICE' && (isAscendingSortColumn ? <DownOutlined className='sortIcon' /> : <UpOutlined className='sortIcon' />)}
+                                        </h4>
                                     </div>
-                                    <div className='multiCVerticalLine'></div>
-                                    <div className='multiCRightCard'>
-                                        <Row align='middle' justify='space-between'>
-                                            <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-                                                <span className='multiCityPrice-FontWight'>{data.price}</span>
-                                            </Col>
-                                            <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-                                                <Radio className='radioBtnStyle' checked={data?.isChecked}></Radio>
-                                            </Col>
-                                        </Row>
-                                        {/* <Row align='middle' justify='space-between'>
-                                        </Row> */}
-                                    </div>
-                                </Row>
+                                </Col>
+                            </Row>
+                        </Card><br />
 
-                                {/* <Row align='middle' justify='space-between'>
-                                    <span className='multiCityFlightDetails' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined />) || (selectedCardTab === index && (!isAscendingFlightDetails ? <UpOutlined /> : <DownOutlined />))} </span>
-                                </Row>  */}
-                                
-                                {selectedCardTab === index && !isAscendingFlightDetails &&
-                                    <div className='multiCflightDetailsTab'>
-                                        <Tabs className='multicityTabColor' defaultActiveKey="1" items={items} type='card' size='large' /><br />
-                                    </div>
-                                }
-                                {/* <FlightSubDetails type='OwnFlights' data={data} index={index} /> */}
+                        {ownFlightDetails.map((data, index) => (
+                            <>
+                                <Card className='multiCDetailsCardStyle' key={index} onClick={() => handleClickOnCard(data)}>
+                                    <Row align='middle' justify='space-between'>
+                                        <div className='multiCLeftCard'>
+                                            <Row align='top' justify='space-between' className='lineHeight'>
+                                                <Col xl={9} lg={9} md={9} sm={9} xs={9}>
+                                                    <Row align='middle' justify='space-between'>
+                                                        <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                                                            <span className='multiCity-Color fontSmallStyle'>{data.airLine}</span>
+                                                        </Col>
+                                                        <Col xl={16} lg={16} md={16} sm={16} xs={16}>
+                                                            <div className='d-flex-between'>
+                                                                <span className='multiCity-Font'>{data.fromCode}</span>
+                                                                <span className='multiCityDeparture-FontWight'>{data.fromTime}</span>
+                                                            </div>
+                                                            <span className='multiCity-Color fontSmallStyle '>{data.fromStation}</span>
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                                <Col xl={8} lg={8} md={8} sm={8} xs={8} className='textAlignCenter alignSelfCenter'>
+                                                    <span className='multiCity-Duration'>{data.duration}</span><span className='fontSmallStyle'> ({data.durationStop})</span>
+                                                </Col>
+                                                <Col xl={7} lg={7} md={7} sm={7} xs={7}>
+                                                    <div className='d-flex-between'>
+                                                        <span className='multiCity-Font'>{data.toCode}</span>
+                                                        <span className='multiCityArrival-FontWight'>{data.toTime}</span>
+                                                    </div>
+                                                    <span className='multiCity-Color fontSmallStyle'>{data.toStation}</span>
+                                                </Col>
+                                            </Row>
+                                            <Row align='middle' justify='space-between'>
+                                                <span className='multiCityFlightDetails' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined className='sortIcon' />) || (selectedCardTab === index && (!isAscendingFlightDetails ? <UpOutlined className='sortIcon' /> : <DownOutlined className='sortIcon' />))} </span>
+                                            </Row>
+                                        </div>
+                                        <div className='multiCVerticalLine'></div>
+                                        <div className='multiCRightCard'>
+                                            <Row align='middle' justify='space-between'>
+                                                <Col xl={16} lg={16} md={16} sm={16} xs={16}>
+                                                    <span className='multiCityPrice-FontWight'>{data.price}</span>
+                                                </Col>
+                                                <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                                                    <Radio className='radioBtnStyle' checked={data?.isChecked}></Radio>
+                                                </Col>
+                                            </Row>
+                                            {/* <Row align='middle' justify='space-between'>
+                                            </Row> */}
+                                        </div>
+                                    </Row>
 
-                            </Card><br />
-                        </>
-                    ))}
+                                    {/* <Row align='middle' justify='space-between'>
+                                        <span className='multiCityFlightDetails' onClick={() => handleFlightDetailsClick(index)}>Flight Details {(selectedCardTab !== index && <DownOutlined />) || (selectedCardTab === index && (!isAscendingFlightDetails ? <UpOutlined /> : <DownOutlined />))} </span>
+                                    </Row>  */}
 
-                </div>
-
-            </Col>
-
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-                <TicketCard />
-            </Col>
-        </Row>
+                                    {selectedCardTab === index && !isAscendingFlightDetails &&
+                                        <div className='multiCflightDetailsTab'>
+                                            <Tabs className='multicityTabColor' defaultActiveKey="1" items={items} type='card' size='large' /><br />
+                                        </div>
+                                    }
+                                    {/* <FlightSubDetails type='OwnFlights' data={data} index={index} /> */}
+                                </Card><br />
+                            </>
+                        ))}
+                    </div>
+                </Col>
+                {!isTablet && <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+                    <TicketCard />
+                </Col>}
+            </Row>
         </>
     );
 }

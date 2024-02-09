@@ -115,3 +115,7 @@ export const sortedListForArraival = (arr, sortBy, firstParam, secondParam) => {
 export const disabledFromToday = (current) => {
     return current && current < dayjs().startOf('day');
 };
+
+export const capitalizeFirstLetter = (string = '') => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};

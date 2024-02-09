@@ -49,7 +49,7 @@
 .borderBottom {
     border-bottom: 1px solid rgb(240, 240, 240);
     padding-top: 5%;
-    margin: 0 -6% 0 -6%;
+    margin: 0 -6%;
 }
 .subHeading {
     padding-top: 5%;
@@ -108,4 +108,106 @@
 }
 .color {
     color: rgb(113, 113, 113);
+}
+
+/* -------------------------------- Responsive (MediaQuery) --------------------------- */
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+
+    .filterCard .ant-card-body {
+        padding: 4%;
+    }
+    .headingStyle {
+        font-size: var(--third-font);
+    }
+    .headingStyles, .resetStyleShow, .subPriceCheck {
+        font-size: var(--small-font);
+    }
+    .checkBoxFHideLabel .ant-checkbox-inner {
+        width: 0.7rem;
+        height: 0.7rem;
+    }
+    .checkBoxFHideLabel .ant-checkbox+span {
+        font-size: var(--small-font);
+    }
+    .subHeading, .subHeadingStyle {
+        font-size: var(--label-font);
+    }
+    .checkButtonClass {
+        font-size: var(--small-font) !important;
+        padding: 1% !important;
+        height: 1.5rem !important;
+    }
+    .ant-slider .ant-slider-mark-text {
+        font-size: var(--small-font);
+    }
+    .checkFBoxLabel .ant-checkbox+span {
+        font-size: var(--small-font);
+    }
+
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .checkButtonClass {
+        font-size: var(--label-font) !important;
+        padding: 1% !important;
+        height: 2rem !important;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .filterFTitle {
+        margin: 0 0 0 4% !important;
+        width: 90%;
+    }
+    .filterCard .ant-card-body {
+        padding: 1%;
+    }
+    .moreFFilter {
+        font-size: var(--third-font);
+        color: var(--primary-color);
+    }
+
+    /* -------------------------------- modal --------------------------- */
+
+    .modalFStyle {
+        width: 65% !important;
+    }
+    .modalFStyle .ant-modal-close {
+        top: auto;
+        display: flex;
+        align-items: end;
+    }
+    .ant-modal .ant-modal-close:hover {
+        color: rgba(0, 0, 0, 0.45) !important;
+        background-color: white !important;
+    }
+    .modalFStyle .ant-modal-title {
+        font-size: var(--primary-font);
+    }
+    .filterFModal {
+        height: 24rem; 
+        width: 100%;
+    }
+    .modal-header { 
+        height: 4rem;
+    }
+    .modal-body { 
+        height: 18rem;
+        overflow: hidden auto;
+        padding: 0 3%;
+    }
+    .borderBottom {
+        padding-top: 2%;
+        margin: 0 -2%;
+    }
+    .subHeading, .flexWrap {
+        padding-top: 2%;
+    }
+    .subDiv {
+        margin-top: 2%;
+    }
+    .checkList {
+        padding-bottom: 0.5rem;
+    }
 }

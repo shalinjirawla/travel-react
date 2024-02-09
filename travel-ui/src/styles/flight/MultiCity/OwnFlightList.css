@@ -1,18 +1,8 @@
-/* .multiCityFirstSortCard .ant-card .ant-card-bordered {
-    border: none !important;
-} */
-
 .multiCityFirstSortCard .ant-card-body {
-    /* background-color: var(--dark2-shadow); */
     background-color: var(--dark-color);
     padding: 1.5% 1%;
     border-radius: 3px;
-    /* display: flex; */
-    /* position: sticky; */
-    /* top: 58px; */
-    /* z-index: 9; */
 }
-
 
 /* ----------------------------------- PopoverCard ------------------------------ */
 
@@ -98,14 +88,14 @@
 .multiCityDeparture-FontWight {
     font-size: var(--primary-font);
     font-weight: var(--third-fontWeight);
-    position: absolute;
-    right: 0;
+    /* position: absolute;
+    right: 0; */
 }
 .multiCityArrival-FontWight {
     font-size: var(--primary-font);
     font-weight: var(--third-fontWeight);
-    position: absolute;
-    right: 30%;
+    /* position: absolute;
+    right: 30%; */
 }
 .multiCity-Duration {
     font-size: var(--third-font);
@@ -182,9 +172,6 @@
     box-shadow: none;
 }
 
-.multiFTabAir {
-    font-size: var(--label-font);
-}
 .multiFSmallFont {
     font-size: var(--small-font);
 }
@@ -270,11 +257,11 @@
     box-shadow: none;
 }
 .multiCFName {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: var(--secondary-font);
+    font-weight: var(--primary-fontWeight);
 }
 .multiCFCode {
-    font-size: 14px;
+    font-size: var(--third-font);
     margin-left: 2%;
 }
 
@@ -315,4 +302,84 @@
 }
 .ant-pagination-item-link {
     color: white !important;
+}
+
+/* -------------------------------- mediaQuery --------------------------- */
+
+@media only screen and (min-width: 769px) and (max-width: 1076px) {
+    .multiCDetailsCardStyle .ant-card-body {
+        padding: 1% 1%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 992px) {
+    .multiCityFirstSortCard .ant-card-body {
+        padding: 1% 0.5%;
+    }
+    .popoverMTHeading {
+        font-size: var(--optimal-font);
+    }
+    .multiCity-Font, .multiCityDeparture-FontWight, .multiCityArrival-FontWight, .multiCityPrice-FontWight {
+        font-size: var(--secondary-font);
+    }
+    .multiCity-Duration {
+        font-size: var(--label-font);
+    }
+    .radioBtnStyle .ant-radio .ant-radio-inner {
+        width: 15px;
+        height: 15px;
+    }
+    .radioBtnStyle .ant-radio-checked .ant-radio-inner {
+        width: 15px;
+        height: 15px;
+    }
+    .multiCityFlightDetails {
+        font-size: var(--small-font);
+    }
+
+    /* ----------------------------------- FlightDetailsTab ------------------------------ */
+
+    .multicityTabColor .ant-tabs-tab {
+        font-size: var(--small-font) !important;
+    }
+    .multiFStationTime, .multiCFName {
+        font-size: var(--third-font);
+    }
+    .multyCityDistanceTLine {
+        width: 75%;
+        margin: 0 10%;
+    }
+    .multiCFairDetail .ant-descriptions-item-content {
+        font-size: var(--small-font);
+    }
+    .multiCFCode, .canRuleHeading {
+        font-size: var(--label-font);
+    }
+    .tagMTParRef, .canChargeHeading {
+        font-size: var(--small-font);
+    }
+    
+    /* ----------------------------------- OwnFlightListDetails ------------------------------ */
+
+    .multiFStationTime {
+        font-size: var(--third-font);
+    }
+    .multyCityDSpanTLine {
+        font-size: var(--small-font);
+    }
+    .multyCityFDuration {
+        margin-top: 10%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .popoverMTHeading {
+        font-size: var(--small-font);
+    }
+    .multiCity-Font, .multiCityDeparture-FontWight, .multiCityArrival-FontWight, .multiCityPrice-FontWight {
+        font-size: var(--third-font);
+    }
+    .multiCity-Duration {
+        font-size: var(--optimal-font);
+    }
 }

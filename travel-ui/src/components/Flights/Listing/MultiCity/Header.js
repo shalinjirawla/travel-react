@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card, Col, Radio, Row, Segmented } from 'antd';
 import '../../../../styles/flight/MultiCity/Header.css';
 import Button from '../../../AppButton';
+import { AuthContext } from '../../../../context/AuthProvider';
 
 const Header = ({ selectedSegment, onSegmentChange }) => {
 
@@ -27,6 +28,7 @@ const Header = ({ selectedSegment, onSegmentChange }) => {
         { value: 'own', label: 'Select Your Own Flights' },
     ];
 
+    const { isTablet } = useContext(AuthContext)??{};
     const [selectedFlightOption, setSelectedFlightOption] = useState('ownFlights');
     const [selectedFlightSceduleOption, setSelectedFlightSceduleOption] = useState('fromScedule');
 
@@ -69,7 +71,7 @@ const Header = ({ selectedSegment, onSegmentChange }) => {
 
                     <div className='m-Top'>
                         <Row align='middle' justify='space-between'>
-                            <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+                            <Col xl={isTablet ? 16 : 12} lg={isTablet ? 16 : 12} md={isTablet ? 16 : 12} sm={isTablet ? 16 : 12} xs={isTablet ? 16 : 12}>
                                 <Radio.Group
                                     className={selectedSegment === 'combo' ? 'readOnlyRadio multiFlightSceduleRadio multiFlightSceduleRadioCombo' : 'multiFlightSceduleRadio'}
                                     // style={{ color: selectedSegment === 'combo' ? '#fff !important' : null }}
@@ -81,7 +83,7 @@ const Header = ({ selectedSegment, onSegmentChange }) => {
                                     buttonStyle="solid"
                                 />
                             </Col>
-                            <Col xl={12} lg={12} md={12} sm={12} xs={12} className='textAlignEnd'>
+                            <Col xl={isTablet ? 8 : 12} lg={isTablet ? 8 : 12} md={isTablet ? 8 : 12} sm={isTablet ? 8 : 12} xs={isTablet ? 8 : 12} className='textAlignEnd'>
                                 <Button className='modifyTBtn' label='Modify Search' />
                             </Col>
                         </Row>

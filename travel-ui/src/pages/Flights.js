@@ -18,7 +18,7 @@ import { AuthContext } from '../context/AuthProvider';
 const Flights = () => {
 
     const navigate = useNavigate();
-    const { is1000, is930, isTablet } = useContext(AuthContext)??{};
+    const { rsWidths: { is1100, is930, is620 }, isTablet } = useContext(AuthContext)??{};
     const [multiCityAddForm] = Form.useForm();
     const [flightAddForm] = Form.useForm();
     const { RangePicker } = DatePicker;
@@ -97,18 +97,23 @@ const Flights = () => {
     };
 
     const getColOfDatePicker = () => {
-        return (is1000 && selectedFlightOption === 'roundtrip') ? 5 : (!is1000 && selectedFlightOption === 'roundtrip') ? 3 : (selectedFlightOption === 'oneway' && is930) ? 5 : 4;
+        return (is1100 && selectedFlightOption === 'roundtrip') ? 5 : (!is1100 && selectedFlightOption === 'roundtrip') ? 3 : (selectedFlightOption === 'oneway' && is930) ? 5 : 4;
     };
 
     const getColOfTravellerInput = () => {
         return (selectedFlightOption === 'roundtrip') ? 6 : (selectedFlightOption === 'oneway' && is930) ? 7 : 8;
+    };
+
+    const getColForFareOption = () => {
+        // return (selectedFlightOption !== 'roundtrip' && isTablet) || (isTablet && selectedFlightOption !== 'multicity') ? 23 : 14;
+        return ((selectedFlightOption === 'roundtrip' && is1100 && !isTablet) || (selectedFlightOption === 'multicity' && isTablet)) ? 14 : 23;
     };
     
     return (
         <div className='FlightMainContent'>
             <div className='flightBackgroud'></div>
             <h2 className='flightHeader'>Book Domestic and International Flight Tickets</h2>
-            {/* <br /> */}
+            <br />
             <Card className='flightBookCard flightSearchCard'>
                 <Form
                     preserve={true}
@@ -123,21 +128,21 @@ const Flights = () => {
                         </Col>
                     </Row>
                     <br />
-                    <br />
-                    {!isTablet &&
+                    {!isTablet && <br />}
+                    {(!isTablet || selectedFlightOption === 'multicity') &&
                         <>
                             {selectedFlightOption === 'multicity' ?
                                 <MultiCityForm multiCityAddForm={multiCityAddForm} airportsList={airportsList} selectedFlightOption={selectedFlightOption} />
                                 :
                                 <Row justify='space-between' align='top'>
-                                    <Col className='flightInput' xl={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} lg={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} md={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} sm={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} xs={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6}>
+                                    <Col className='flightInput' xl={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} lg={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} md={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} sm={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} xs={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6}>
                                         <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                             <Selectable
                                                 name="flightFrom"
                                                 size='large'
                                                 label='From'
                                                 showSearch={true}
-                                                placeholder='Enter City or Airport'
+                                                placeholder='Depart From'
                                                 // value={value}
                                                 // style={props.style}
                                                 className='searchSelect'
@@ -178,7 +183,7 @@ const Flights = () => {
                                             />
                                         </Col>
                                     </Col>
-                                    <Col className='flightInput' xl={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} lg={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} md={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} sm={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6} xs={is1000 && selectedFlightOption === 'roundtrip' ? 7 : 6}>
+                                    <Col className='flightInput' xl={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} lg={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} md={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} sm={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6} xs={is1100 && selectedFlightOption === 'roundtrip' ? 7 : 6}>
                                         <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                             <Selectable
                                                 name="flightTo"
@@ -187,7 +192,7 @@ const Flights = () => {
                                                 showSearch={true}
                                                 className='searchSelect'
                                                 popupClassName='searchPopupSelect'
-                                                placeholder='Enter City or Airport'
+                                                placeholder='Going To'
                                                 // value={value}
                                                 // style={props.style}
                                                 defaultOpen={false}
@@ -225,7 +230,7 @@ const Flights = () => {
                                                     }} 
                                                     // utcOffset={0}
                                                     size='large'
-                                                    // placeholder='Departure Date'
+                                                    placeholder='Departure On'
                                                     format='DD/MM/YYYY'
                                                 />
                                             </Form.Item>
@@ -249,14 +254,14 @@ const Flights = () => {
                                                         onChange={(d) => d && flightAddForm.setFields([{ name: 'flightReturnDate', errors: undefined }])}
                                                         // utcOffset={0}
                                                         size='large'
-                                                        // placeholder='Return Date'
+                                                        placeholder='Return On'
                                                         format='DD/MM/YYYY'
                                                     />
                                                 </Form.Item>
                                             </Col>
                                         </Col>
                                     }
-                                    {((selectedFlightOption === 'roundtrip' && !is1000) || selectedFlightOption === 'oneway') &&
+                                    {((selectedFlightOption === 'roundtrip' && !is1100) || selectedFlightOption === 'oneway') &&
                                         <Col className='flightInput' xl={getColOfTravellerInput()} lg={getColOfTravellerInput()} md={getColOfTravellerInput()} sm={getColOfTravellerInput()} xs={getColOfTravellerInput()}>
                                             <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}>
                                                 <TravelClassPopover
@@ -273,7 +278,7 @@ const Flights = () => {
                             }
                         </>
                     }
-                    {isTablet &&
+                    {isTablet && selectedFlightOption !== 'multicity' &&
                         <Row>
                             <Col className='flightInput' xl={24} lg={24} md={24} sm={24} xs={24}>
                                 <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
@@ -282,7 +287,7 @@ const Flights = () => {
                                         size='large'
                                         label=''
                                         showSearch={true}
-                                        placeholder='Enter City or Airport'
+                                        placeholder='Depart From'
                                         // value={value}
                                         // style={props.style}
                                         className='searchSelect'
@@ -333,7 +338,7 @@ const Flights = () => {
                                         showSearch={true}
                                         className='searchSelect'
                                         popupClassName='searchPopupSelect'
-                                        placeholder='Enter City or Airport'
+                                        placeholder='Going To'
                                         // value={value}
                                         // style={props.style}
                                         defaultOpen={false}
@@ -349,7 +354,7 @@ const Flights = () => {
                                     />
                                 </Col>
                             </Col>
-                            <Col className='flightInput inputHeight' xl={14} lg={14} md={14} sm={14} xs={14}>
+                            <Col className='flightInput inputHeight' xl={12} lg={12} md={12} sm={12} xs={12}>
                                 {/* <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}> */}
                                     <Form.Item
                                         name='flightDeptDate'
@@ -377,10 +382,10 @@ const Flights = () => {
                                                         setSelectedDeptDate(val); 
                                                         flightAddForm.setFields([{ name: 'flightDeptDate', errors: undefined }]);
                                                     }
-                                                }} 
+                                                }}
                                                 // utcOffset={0}
                                                 size='large'
-                                                // placeholder='Departure Date'
+                                                placeholder='Departure On'
                                                 format='DD/MM/YYYY'
                                             />
                                         }
@@ -412,8 +417,8 @@ const Flights = () => {
                                     </Col>
                                 </Col>
                             } */}
-                            {((selectedFlightOption === 'roundtrip' && !is1000) || selectedFlightOption === 'oneway' || isTablet) &&
-                                <Col className='flightInput' xl={9} lg={9} md={9} sm={9} xs={9}>
+                            {((selectedFlightOption === 'roundtrip' && !is1100) || selectedFlightOption === 'oneway' || isTablet) &&
+                                <Col className='flightInput' xl={11} lg={11} md={11} sm={11} xs={11}>
                                     {/* <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}> */}
                                         <TravelClassPopover
                                             flightForm={flightAddForm}
@@ -427,30 +432,31 @@ const Flights = () => {
                             }
                         </Row>
                     }
-                    <br />
+                    {!isTablet && <br />}
                     <Row className='fareTypeRow' wrap={false} align='middle'>
-                        <Col xl={selectedFlightOption !== 'roundtrip' || isTablet ? 23 : 14} lg={selectedFlightOption !== 'roundtrip' || isTablet ? 23 : 14} md={selectedFlightOption !== 'roundtrip' ? 23 : 14} sm={selectedFlightOption !== 'roundtrip' || isTablet ? 23 : 14} xs={selectedFlightOption !== 'roundtrip' || isTablet ? 23 : 14}>
-                            {selectedFlightOption === 'roundtrip' && is930 && !isTablet ? 
+                        <Col xl={getColForFareOption()} lg={getColForFareOption()} md={getColForFareOption()} sm={getColForFareOption()} xs={getColForFareOption()}>
+                            {(selectedFlightOption === 'roundtrip' && is930 && !isTablet) || (selectedFlightOption === 'multicity' && isTablet) || is620 ?
                                 <>
-                                    <Row><h3>Select a Fare Type :</h3></Row>
+                                    <Row>{isTablet ? <h4>Select a Fare Type :</h4> : <h3>Select a Fare Type :</h3>}</Row>
                                     <Row><Radio.Group size='large' className='fareRadio' options={fareOptions} onChange={onFareChangeOptions} value={selectedFare} optionType="button" /></Row>
                                 </>
                                 :
                                 <Row align='middle' justify='space-between' wrap={false}>
                                     <Col flex='none'>
-                                        <h3>Select a Fare Type :</h3>
+                                        {isTablet ? <h4>Select a Fare Type :</h4> : <h3>Select a Fare Type :</h3>}
                                     </Col>
                                     <Col flex='auto'>
                                         <Radio.Group size='large' className='fareRadio' options={fareOptions} onChange={onFareChangeOptions} value={selectedFare} optionType="button" />
                                     </Col>
                                 </Row>
-                                }
+                            }
                         </Col>
-                        {selectedFlightOption === 'roundtrip' && is1000 && !isTablet &&
-                            <Col className='flightInput width100'>
+                        {((selectedFlightOption === 'roundtrip' && is1100 && !isTablet) || (selectedFlightOption === 'multicity' && isTablet)) &&
+                            <Col className={`flightInput width100 ${(selectedFlightOption === 'multicity' && isTablet) ? 'multicityOnTablet' : ''}`}>
                                 <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}>
                                     <TravelClassPopover
                                         flightForm={flightAddForm}
+                                        selectedFlightOption={selectedFlightOption}
                                         currTraveller={currTraveller}
                                         isVisible={isVisible}
                                         setIsVisible={setIsVisible}

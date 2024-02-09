@@ -5,7 +5,7 @@ import AppButton from "../../AppButton";
 import { classOptions } from "../../../Constants";
 import { AuthContext } from "../../../context/AuthProvider";
 
-const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible, onDone }) => {
+const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible, onDone, selectedFlightOption }) => {
 
     const { isTablet } = useContext(AuthContext)??{};
     const [adultCounter, setAdultCounter] = useState(1);
@@ -66,6 +66,16 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
         );
     };
 
+    const plusMinusIconStyle = {
+        fontSize: isTablet ? '14px' : '18px',
+        // cursor: (adultCounter === 1) ? 'not-allowed' : 'pointer',
+        // color: (adultCounter === 1) ? 'grey' : '#003b95',
+        position: 'relative',
+        width: '30%',
+        left: '5%',
+        top: isTablet ? '28%' : '24%'
+    }
+
     const content = (
         <div>
             <div className='travelBoxCard'>
@@ -77,14 +87,21 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                             <MinusOutlined
                                 class="minusIcon"
                                 onClick={() => handleMinus('adult')}
-                                style={{ fontSize: '18px', cursor: (adultCounter === 1) ? 'not-allowed' : 'pointer', color: (adultCounter === 1) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
+                                style={{
+                                    cursor: (adultCounter === 1) ? 'not-allowed' : 'pointer',
+                                    color: (adultCounter === 1) ? 'grey' : '#003b95',
+                                    ...plusMinusIconStyle
+                                }}
                             />
                             <div className='num'>{adultCounter}</div>
                             <PlusOutlined
                                 class="plusIcon"
                                 onClick={() => handlePlus('adult')}
-                                // style={{ fontSize: '18px', color: '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
-                                style={{ fontSize: '18px', cursor: (adultCounter >= 9) ? 'not-allowed' : 'pointer', color: (adultCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
+                                style={{
+                                    cursor: (adultCounter >= 9) ? 'not-allowed' : 'pointer',
+                                    color: (adultCounter >= 9) ? 'grey' : '#003b95',
+                                    ...plusMinusIconStyle
+                                }}
                             />
                         </div>
                     </Col>
@@ -95,14 +112,21 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                             <MinusOutlined
                                 class="minusIcon"
                                 onClick={() => handleMinus('child')}
-                                style={{ fontSize: '18px', cursor: (childCounter === 0) ? 'not-allowed' : 'pointer', color: (childCounter === 0) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
+                                style={{
+                                    cursor: (childCounter === 0) ? 'not-allowed' : 'pointer',
+                                    color: (childCounter === 0) ? 'grey' : '#003b95',
+                                    ...plusMinusIconStyle
+                                }}
                             />
                             <div className='num'>{childCounter}</div>
                             <PlusOutlined
                                 class="plusIcon"
                                 onClick={() => handlePlus('child')}
-                                // style={{ fontSize: '18px', color: '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
-                                style={{ fontSize: '18px', cursor: (childCounter >= 9) ? 'not-allowed' : 'pointer', color: (childCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }}
+                                style={{
+                                    cursor: (childCounter >= 9) ? 'not-allowed' : 'pointer',
+                                    color: (childCounter >= 9) ? 'grey' : '#003b95',
+                                    ...plusMinusIconStyle
+                                }}
                             />
                         </div>
                     </Col>
@@ -113,14 +137,21 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                             <MinusOutlined 
                                 class="minusIcon" 
                                 onClick={() => handleMinus('infant')} 
-                                style={{ fontSize: '18px', cursor: (infantCounter === 0) ? 'not-allowed' : 'pointer', color: (infantCounter === 0) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }} 
+                                style={{
+                                    cursor: (infantCounter === 0) ? 'not-allowed' : 'pointer',
+                                    color: (infantCounter === 0) ? 'grey' : '#003b95',
+                                    ...plusMinusIconStyle
+                                }} 
                             />
                             <div className='num'>{infantCounter}</div>
                             <PlusOutlined 
                                 class="plusIcon" 
                                 onClick={() => handlePlus('infant')} 
-                                // style={{ fontSize: '18px', color: '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }} 
-                                style={{ fontSize: '18px', cursor: (infantCounter >= 9) ? 'not-allowed' : 'pointer', color: (infantCounter >= 9) ? 'grey' : '#003b95', position: 'relative', width: '30%', left: '5%', top: '24%' }} 
+                                style={{
+                                    cursor: (infantCounter >= 9) ? 'not-allowed' : 'pointer',
+                                    color: (infantCounter >= 9) ? 'grey' : '#003b95',
+                                    ...plusMinusIconStyle
+                                }} 
                             />
                         </div>
                     </Col>
@@ -128,14 +159,21 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
                 {/* <Divider /> */}
                 <Row align='middle' justify='center'>
                     <Col xl={22} lg={22} md={22} sm={22} xs={22} className='dropdownBtn'>
-                        <Row align='middle'>
-                            <Col xl={5} lg={5} md={5} sm={5} xs={5}>
-                                <h3>Travel Class </h3>
-                            </Col>
-                            <Col xl={19} lg={19} md={19} sm={19} xs={19}>
-                                <Radio.Group className='classRadio' size='large' options={classOptions} onChange={onClassChangeOptions} value={selectedClass} optionType="button" />
-                            </Col>
-                        </Row>
+                        {isTablet ?
+                            <>
+                                <Row><h3>Travel Class </h3></Row>
+                                <Row><Radio.Group className='classRadio' size='large' options={classOptions} onChange={onClassChangeOptions} value={selectedClass} optionType="button" /></Row>
+                            </>
+                            :
+                            <Row align='middle'>
+                                <Col xl={5} lg={5} md={5} sm={5} xs={5}>
+                                    <h3>Travel Class </h3>
+                                </Col>
+                                <Col xl={19} lg={19} md={19} sm={19} xs={19}>
+                                    <Radio.Group className='classRadio' size='large' options={classOptions} onChange={onClassChangeOptions} value={selectedClass} optionType="button" />
+                                </Col>
+                            </Row>
+                        }
                     </Col>
                     <Col>
                     </Col>
@@ -172,7 +210,15 @@ const TravelClassPopover = ({ flightForm, currTraveller, isVisible, setIsVisible
         >
             {!isTablet && <h3 className="tcontentHeader">Travellers & Class</h3>}
             <div className="tcontent" dangerouslySetInnerHTML={{ __html: getDisplayValue(adultCounter, childCounter, infantCounter, selectedClass) }} />
-            <DownOutlined style={{ position: 'absolute', fontSize: '18px', color: '#003b95', top: isTablet ? '18%' : '38%', right: isTablet ? '5%' : '4%' }} />
+            <DownOutlined
+                style={{
+                    position: 'absolute',
+                    fontSize: isTablet ? '14px' : '18px',
+                    color: '#003b95',
+                    top: (isTablet && selectedFlightOption !== 'multicity') ? '22%' : '38%',
+                    right: isTablet ? '5%' : '4%'
+                }}
+            />
         </Popover>
     )
 

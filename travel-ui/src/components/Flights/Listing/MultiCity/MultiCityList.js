@@ -14,13 +14,13 @@ const MultiCityList = () => {
         <div>
             <Header selectedSegment={selectedSegment} onSegmentChange={onSegmentChange} />
             {selectedSegment === 'own' && 
-                <div className='multyCityListMainDiv'>
+                <div className='multiCityListMainDiv'>
                     <OwnFlightList />
                     {/* <TicketCard /> */}
                 </div>
             }
             {selectedSegment === 'combo' && 
-                <div className='multyCityListMainDiv'>
+                <div className='multiCityCombListMainDiv'>
                     <MultiCityCombination /> 
                 </div>
             }

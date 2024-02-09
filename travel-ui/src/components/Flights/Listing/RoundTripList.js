@@ -316,23 +316,23 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                     <Card className='rTripCardStyle stickySelectCard'>
                         <div className='roundTripCard'>
                             <Row align='middle' justify='space-between'>
-                                <Col xl={7} lg={7} md={7} sm={7} xs={7}>
+                                <Col xl={8} lg={8} md={8} sm={8} xs={8}>
                                     <Row align='middle' justify='space-between'>
-                                        <Col xl={4} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={4} lg={4} md={4} sm={4} xs={4}>
                                             <div className='iconHeading'>
                                                 <span>{selectedForBook.from?.legsDetails?.airlineCodes[0]}</span>
                                             </div>
                                         </Col>
-                                        <Col xl={7} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                                             <Row align='middle' justify='space-between'><span className='spanSDate'>{dayjs(new Date(selectedForBook.from?.legsDetails?.departureDateTime)).format('ddd, DD MMM')}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook.from?.legsDetails?.departureAirportCode}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSTime'>{selectedForBook.from?.legsDetails?.departureTime}</span></Row>
                                         </Col>
-                                        <Col xl={6} lg={5} md={5} sm={5} xs={5}>
-                                            <Row align='middle' justify='space-between'><span className='spanSPColor'>{selectedForBook.from?.legsDetails?.duration}</span></Row>
+                                        <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+                                            <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook.from?.legsDetails?.duration}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook.from?.legsDetails?.stopoversCount > 0 ? `${selectedForBook?.from?.legsDetails?.stopoversCount} Stop` : 'Non-Stop'}</span></Row>
                                         </Col>
-                                        <Col xl={7} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                                             <Row align='middle' justify='space-between'><span className='spanSDate'>{dayjs(new Date(selectedForBook?.from?.legsDetails?.arrivalDateTime)).format('ddd, DD MMM')}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook?.from?.legsDetails?.arrivalAirportCode}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSTime'>{selectedForBook?.from?.legsDetails?.arrivalTime}</span></Row>
@@ -342,24 +342,24 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
 
                                 <div className='divSelLine'></div>
 
-                                <Col xl={7} lg={7} md={7} sm={7} xs={7}>
+                                <Col xl={8} lg={8} md={8} sm={8} xs={8}>
                                     <Row align='middle' justify='space-between'>
-                                        <Col xl={5} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={4} lg={4} md={4} sm={4} xs={4}>
                                             <div className='iconHeading'>
                                                 <span>{selectedForBook?.from?.legsDetails?.airlineCodes[0]}</span>
                                             </div>
                                         </Col>
-                                        <Col xl={7} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                                             <Row align='middle' justify='space-between'><span className='spanSDate'>{dayjs(new Date(selectedForBook?.to?.legsDetails?.departureDateTime)).format('ddd, DD MMM')}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook?.to?.legsDetails?.departureAirportCode}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSTime'>{selectedForBook?.to?.legsDetails?.departureTime}</span></Row>
                                         </Col>
-                                        <Col xl={6} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={6} lg={6} md={6} sm={6} xs={6}>
                                             {/* <Row align='middle' justify='space-between'><span className='spanHDate'>Mon</span></Row> */}
-                                            <Row align='middle' justify='space-between'><span className='spanSPColor'>{selectedForBook?.to?.legsDetails?.duration}</span></Row>
+                                            <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook?.to?.legsDetails?.duration}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook?.to?.legsDetails?.stopoversCount > 0 ? `${selectedForBook?.to?.legsDetails?.stopoversCount} Stop` : 'Non-Stop'}</span></Row>
                                         </Col>
-                                        <Col xl={6} lg={5} md={5} sm={5} xs={5}>
+                                        <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                                             {/* <Row align='middle' justify='space-between'><span className='spanSColor'>AMD<sup className='supStyle'>+1D</sup></span></Row> */}
                                             <Row align='middle' justify='space-between'><span className='spanSDate'>{dayjs(new Date(selectedForBook?.to?.legsDetails?.arrivalDateTime)).format('ddd, DD MMM')}</span></Row>
                                             <Row align='middle' justify='space-between'><span className='spanSColor'>{selectedForBook?.to?.legsDetails?.arrivalAirportCode}</span></Row>
@@ -373,10 +373,10 @@ const RoundTripList = ({ currSearchFlightList, selectedFlightOption }) => {
                                 <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                                     <Row align='middle' justify='end'>
                                         {/* <Col xl={5} lg={5} md={5} sm={5} xs={5}></Col> */}
-                                        <Col xl={11} lg={9} md={9} sm={9} xs={9}>
+                                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                                             <span className='spanSTime spanSFont'>₹ {getIndianMoneyFormat(Number(selectedForBook?.from?.fareDetails?.price?.totalAmount) + Number(selectedForBook?.to?.fareDetails?.price?.totalAmount))}</span>
                                         </Col>
-                                        <Col xl={11} lg={9} md={9} sm={9} xs={9}>
+                                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                                             <Row align='middle' justify='end'>
                                                 <Button className='rTripBtn appPrimaryButton' label='Book'></Button>
                                             </Row>

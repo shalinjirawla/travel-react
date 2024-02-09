@@ -1,5 +1,5 @@
 import { Card, Col, DatePicker, Form, Radio, Row } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../styles/flight.css';
 import '../styles/train.css';
 import OffersCard from '../components/Flights/OffersCard';
@@ -13,10 +13,12 @@ import { airportData } from '../JSON/airports';
 import TextInput from '../components/TextInput';
 import { onlyNumbers } from '../helper';
 import dayjs from 'dayjs';
+import { AuthContext } from '../context/AuthProvider';
 
 const Trains = () => {
 
     const navigate = useNavigate();
+    const { rsWidths: { is1100, is930, is620 }, isTablet } = useContext(AuthContext)??{};
     const [trainAddForm] = Form.useForm();
     const [selectedTrainOption, setSelectedTrainOption] = useState('book');
     const [selectedTatkal, setSelectedTatkal] = useState('today');
@@ -129,16 +131,16 @@ const Trains = () => {
                         </Col>
                     </Row>
                     <br />
-                    <br />
+                    {!isTablet && <br />}
                     {selectedTrainOption === 'book' &&
                         <>
                             <Row justify='space-between' align='top'>
-                                <Col className='flightInput' xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
+                                <Col className='flightInput' xl={is620 ? 12 : is930 ? 7 : 6} lg={is620 ? 12 : is930 ? 7 : 6} md={is620 ? 12 : is930 ? 7 : 6} sm={is620 ? 12 : is930 ? 7 : 6} xs={is620 ? 12 : is930 ? 7 : 6}>
+                                    <Col className='flightInput fromToSelectCol trainStatusCol' xl={is620 ? 24 : 23} lg={is620 ? 24 : 23} md={is620 ? 24 : 23} sm={is620 ? 24 : 23} xs={is620 ? 24 : 23}>
                                         <Selectable
                                             name="trainFrom"
                                             size='large'
-                                            label='From'
+                                            label={is620 ? '' : 'From'}
                                             showSearch={true}
                                             placeholder='Enter Source Name'
                                             defaultVal={currFrom}
@@ -164,14 +166,14 @@ const Trains = () => {
                                         <SwapOutlined
                                             style={{
                                                 position: 'absolute',
-                                                top: '40%',
-                                                fontSize: '20px',
+                                                top: isTablet ? '25%' : '40%',
+                                                fontSize: isTablet ? '18px' : '20px',
                                                 background: '#fff',
                                                 // background: 'transparent',
-                                                padding: '2.5%',
+                                                padding: isTablet ? '1%' : '2.5%',
                                                 // border: '1px solid lightgray',
                                                 borderRadius: '7px',
-                                                right: '-8%',
+                                                right: is620 ? '-4.5%' : '-8%',
                                                 zIndex: '999',
                                                 cursor: 'pointer',
                                                 color: '#003b95',
@@ -181,12 +183,12 @@ const Trains = () => {
                                         />
                                     </Col>
                                 </Col>
-                                <Col className='flightInput' xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
+                                <Col className='flightInput' xl={is620 ? 12 : is930 ? 7 : 6} lg={is620 ? 12 : is930 ? 7 : 6} md={is620 ? 12 : is930 ? 7 : 6} sm={is620 ? 12 : is930 ? 7 : 6} xs={is620 ? 12 : is930 ? 7 : 6}>
+                                    <Col className='flightInput fromToSelectCol trainStatusCol' xl={is620 ? 24 : 23} lg={is620 ? 24 : 23} md={is620 ? 24 : 23} sm={is620 ? 24 : 23} xs={is620 ? 24 : 23}>
                                         <Selectable
                                             name="trainTo"
                                             size='large'
-                                            label='To'
+                                            label={is620 ? '' : 'To'}
                                             showSearch={true}
                                             defaultVal={currTo}
                                             className='searchSelect'
@@ -207,11 +209,11 @@ const Trains = () => {
                                         />
                                     </Col>
                                 </Col>
-                                <Col className='flightInput' xl={4} lg={4} md={4} sm={4} xs={4}>
-                                    <Col className='flightInput' xl={23} lg={23} md={23} sm={23} xs={23}>
+                                <Col className='flightInput' xl={is620 ? 12 : is930 ? 5 : 4} lg={is620 ? 12 : is930 ? 5 : 4} md={is620 ? 12 : is930 ? 5 : 4} sm={is620 ? 12 : is930 ? 5 : 4} xs={is620 ? 12 : is930 ? 5 : 4}>
+                                    <Col className='flightInput trainStatusCol' xl={is620 ? 24 : 23} lg={is620 ? 24 : 23} md={is620 ? 24 : 23} sm={is620 ? 24 : 23} xs={is620 ? 24 : 23}>
                                         <Form.Item
                                             name='trainDeptDate'
-                                            label='Departure'
+                                            label={is620 ? '' : 'Departure'}
                                             className="createUserTextInput"
                                             initialValue={dayjs(new Date().toLocaleDateString('en-GB'), 'DD/MM/YYYY')}
                                             // rules={[{ required: false, message: 'PO Date is required' }]}
@@ -222,18 +224,18 @@ const Trains = () => {
                                                 size='large'
                                                 onChange={handleDateChange}
                                                 // onChange={(d) => d && trainAddForm.setFields([{ name: 'trainDeptDate', errors: undefined }])}
-                                                // placeholder='Departure Date'
+                                                placeholder='Departure Date'
                                                 format='DD/MM/YYYY'
                                             />
                                         </Form.Item>
                                     </Col>
                                 </Col>
-                                <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-                                    <Col className='flightInput fromToSelectCol' xl={16} lg={16} md={16} sm={16} xs={16}>
+                                <Col xl={is620 ? 12 : is930 ? 5 : 8} lg={is620 ? 12 : is930 ? 5 : 8} md={is620 ? 12 : is930 ? 5 : 8} sm={is620 ? 12 : is930 ? 5 : 8} xs={is620 ? 12 : is930 ? 5 : 8}>
+                                    <Col className='flightInput fromToSelectCol trainStatusCol' xl={is620 ? 24 : is930 ? 24 : 16} lg={is620 ? 24 : is930 ? 24 : 16} md={is620 ? 24 : is930 ? 24 : 16} sm={is620 ? 24 : is930 ? 24 : 16} xs={is620 ? 24 : is930 ? 24 : 16}>
                                         <Selectable
                                             name="trainClass"
                                             size='large'
-                                            label='Class'
+                                            label={is620 ? '' : 'Class'}
                                             showSearch={true}
                                             className='searchSelect'
                                             popupClassName='searchPopupSelect'
@@ -283,7 +285,7 @@ const Trains = () => {
                     {selectedTrainOption === 'PNRstatus' &&
                         <Row justify='space-between' align='top'>
                             <Col className='flightInput' xl={12} lg={12} md={12} sm={12} xs={12}>
-                                <Col className='flightInput fromToSelectCol' xl={23} lg={23} md={23} sm={23} xs={23}>
+                                <Col className='flightInput fromToSelectCol trainStatusCol' xl={23} lg={23} md={23} sm={23} xs={23}>
                                     <TextInput
                                         name="trainPNR"
                                         type='text'

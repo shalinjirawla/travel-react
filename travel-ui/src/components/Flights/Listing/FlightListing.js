@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FilghtCard from './FilghtCard';
 import FilterCard from './FilterCard';
 import FlightDetailsCard from './FlightDetailsCard';
@@ -7,10 +7,13 @@ import { useLocation } from 'react-router-dom';
 import RoundTripList from './RoundTripList';
 import { roundTripData } from '../../../JSON/roundTrip';
 import CustomLoader from '../../CustomLoader';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const FlightListing = () => {
 
+    const headerRef = useRef(null);
     const location = useLocation();
+    const { isTablet } = useContext(AuthContext)??{};
     const { selectedFlightOption, searchDetails, travellers } = location?.state??{};
     const [currSearchFlightList, setCurrSearchFlightList] = useState([]);
     const [loadingPercent, setLoadingPercent] = useState(30);
@@ -25,7 +28,7 @@ const FlightListing = () => {
                 (selectedFlightOption === 'oneway') && setCurrSearchFlightList(oneWayTripData[1]);
                 (selectedFlightOption === 'roundtrip') && setCurrSearchFlightList(roundTripData[1]);
                 setLoadingPercent(100);
-                setIsLoading(false);
+                // setIsLoading(false);
             }, 3000);
     
             return () => {
@@ -41,7 +44,7 @@ const FlightListing = () => {
 
     return (
         <div className='backColor'>
-            <FilghtCard currSearchFlightList={currSearchFlightList} searchDetails={searchDetails} travellers={travellers} selectedFlightOption={selectedFlightOption} /><br />
+            <FilghtCard ref={headerRef} currSearchFlightList={currSearchFlightList} searchDetails={searchDetails} travellers={travellers} selectedFlightOption={selectedFlightOption} /><br />
             {isLoading &&
                 <div className='listMainDiv1'>
                     <CustomLoader
@@ -51,11 +54,13 @@ const FlightListing = () => {
                 </div>
             }
             {!isLoading &&
-                <div className='listMainDiv'>
-                    <FilterCard selectedFlightOption={selectedFlightOption} handleFilterValues={handleFilterValues} />
-                    {selectedFlightOption === 'oneway' && <FlightDetailsCard selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} />}
-                    {selectedFlightOption === 'roundtrip' && <RoundTripList selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} />}
-                </div>
+                <>
+                    <div className={isTablet ? 'listMainDivTab' : 'listMainDiv'}>
+                        <FilterCard selectedFlightOption={selectedFlightOption} handleFilterValues={handleFilterValues} />
+                        {selectedFlightOption === 'oneway' && <FlightDetailsCard selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} />}
+                        {selectedFlightOption === 'roundtrip' && <RoundTripList selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} />}
+                    </div>
+                </>
             }
         </div>
     );
