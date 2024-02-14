@@ -90,7 +90,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen,
         },
     ];
 
-    const { rsWidths: { is1300, is1100 }, isTablet } = useContext(AuthContext)??{};
+    const { rsWidths: { is1100 }, isTablet } = useContext(AuthContext)??{};
     const [airlinesCheckbox, setAirlinesCheckbox] = useState(airlinesCheckboxData);
     const [isButtonClickedForDeparture, setButtonClickedForDeparture] = useState(departureButtonData);
     const [isButtonClickedForReturn, setButtonClickedForReturn] = useState(departureButtonData);
@@ -112,32 +112,37 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen,
     const priceMarks = {
         5000: {
             style: {
-                left: '0%',
-                transform: 'translateX(0%)'
+                left: 0,
+                transform: 'translateX(0%)',
+                color: 'black'
             },
             label: `₹ ${priceRangeSlider[0]}`
         },
         50000: {
             style: {
-                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
-                transform: 'translateX(0%)'
+                left: 'auto',
+                right: 0,
+                transform: 'translateX(0%)',
+                color: 'black'
             },
             label: `₹ ${priceRangeSlider[1]}`
         },
     };
-    
     const returnPriceMarks = {
         4000: {
             style: {
-                left: '0%',
-                transform: 'translateX(0%)'
+                left: 0,
+                transform: 'translateX(0%)',
+                color: 'black'
             },
             label: `₹ ${returnPriceRangeSlider[0]}`
         },
         40000: {
             style: {
-                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
-                transform: 'translateX(0%)'
+                left: 'auto',
+                right: 0,
+                transform: 'translateX(0%)',
+                color: 'black'
             },
             label: `₹ ${returnPriceRangeSlider[1]}`
         },
@@ -146,7 +151,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen,
     const durationMarks = {
         15: {
             style: {
-                left: '0%',
+                left: 0,
                 transform: 'translateX(0%)',
                 color: 'black'
             },
@@ -154,10 +159,10 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen,
         },
         1440: {
             style: {
-                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
+                left: 'auto',
+                right: 0,
                 transform: 'translateX(0%)',
                 color: 'black',
-                cursor: 'auto',
             },
             label: durationValue[1]
         },
@@ -165,7 +170,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen,
     const returnDurationMarks = {
         30: {
             style: {
-                left: '0%',
+                left: 0,
                 transform: 'translateX(0%)',
                 color: 'black'
             },
@@ -173,10 +178,10 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen,
         },
         1410: {
             style: {
-                left: `${isTablet ? '78%' : is1300 ? '70%' : '78%'}`,
+                left: 'auto',
+                right: 0,
                 transform: 'translateX(0%)',
                 color: 'black',
-                cursor: 'auto',
             },
             label: returnDurationValue[1]
         },
