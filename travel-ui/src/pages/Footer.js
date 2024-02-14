@@ -24,8 +24,8 @@ const AppFooter = () => {
             <Col xl={isTablet ? 10 : 5} lg={isTablet ? 10 : 5} md={isTablet ? 10 : 5} sm={isTablet ? 10 : 5} xs={isTablet ? 10 : 5}>
                 <Row><h2>ADDRESS & CONTACT INFO</h2></Row>
                 <Row><p>107-108 SAKAR IX 1ST FLOOR BESIDE-OLD RBI BULLDING NEAR. CITY GOLD ASHRAM ROAD AHMEDABAD 380009</p></Row>
-                <Row><Col xl={6}><h2>PHONE: </h2></Col><Col xl={18}><h2>079 - 48481115,{isTablet ? '' : <br/>} 079 - 48481116</h2></Col></Row>
-                <Row><p>jirawalatravelspvtltd@gmail.com</p></Row>
+                {!isTablet && <><Row><Col xl={6}><h2>PHONE: </h2></Col><Col xl={18}><h2>079 - 48481115,{isTablet ? '' : <br/>} 079 - 48481116</h2></Col></Row>
+                <Row><p>jirawalatravelspvtltd@gmail.com</p></Row></>}
             </Col>
             <Col xl={isTablet ? 10 : 5} lg={isTablet ? 10 : 5} md={isTablet ? 10 : 5} sm={isTablet ? 10 : 5} xs={isTablet ? 10 : 5}>
                 <Row><h2>SUPPORT & HELP</h2></Row>
@@ -50,8 +50,10 @@ const AppFooter = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col xl={isTablet ? 10 : 5} lg={isTablet ? 10 : 5} md={isTablet ? 10 : 5} sm={isTablet ? 10 : 5} xs={isTablet ? 10 : 5}>
-                <Row><h2>FOLLOW WITH US</h2></Row>
+            {isTablet && <Col xl={isTablet ? 10 : 5} lg={isTablet ? 10 : 5} md={isTablet ? 10 : 5} sm={isTablet ? 10 : 5} xs={isTablet ? 10 : 5}>
+                <Row><Col xl={6}><h2>PHONE: </h2></Col><Col xl={18}><h2>079 - 48481115,{isTablet ? '' : <br/>} 079 - 48481116</h2></Col></Row>
+                <Row><p>jirawalatravelspvtltd@gmail.com</p></Row>
+                <Row><h2>FOLLOW US</h2></Row>
                 <Row><p>Join the thousands of other There are many variations of passages of Lorem Ipsum available</p></Row>
                 <Row>
                     <RiFacebookLine fontSize={30} style={footerIconStyle} />
@@ -60,7 +62,18 @@ const AppFooter = () => {
                     <RiLinkedinLine fontSize={30} style={footerIconStyle} />
                     <RiYoutubeLine fontSize={30} style={footerIconStyle} />
                 </Row>
-            </Col>
+            </Col>}
+            {!isTablet && <Col xl={isTablet ? 10 : 5} lg={isTablet ? 10 : 5} md={isTablet ? 10 : 5} sm={isTablet ? 10 : 5} xs={isTablet ? 10 : 5}>
+                <Row><h2>FOLLOW US</h2></Row>
+                <Row><p>Join the thousands of other There are many variations of passages of Lorem Ipsum available</p></Row>
+                <Row>
+                    <RiFacebookLine fontSize={30} style={footerIconStyle} />
+                    <RiGoogleLine fontSize={30} style={footerIconStyle} />
+                    <RiTwitterLine fontSize={30} style={footerIconStyle} />
+                    <RiLinkedinLine fontSize={30} style={footerIconStyle} />
+                    <RiYoutubeLine fontSize={30} style={footerIconStyle} />
+                </Row>
+            </Col>}
         </Row>
     )
 }

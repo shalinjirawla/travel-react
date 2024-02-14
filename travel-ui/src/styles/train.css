@@ -68,7 +68,9 @@
     .addFlightForm .trainStatusCol .ant-select-selector {
         padding: 0 6.5% !important;
     }
-    
+    .flightInput .trainStatusCol .ant-form-item-control > div:nth-child(2) {
+        top: 2.4rem;
+    }
 }
 
 @media only screen and (max-width: 620px) {

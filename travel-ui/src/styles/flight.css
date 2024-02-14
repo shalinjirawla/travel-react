@@ -520,6 +520,9 @@
         min-width: 150%;
         right: 160%;
     }
+    .flightInput .ant-form-item-control > div:nth-child(2) {
+        top: 3.4rem;
+    }
     .fareRadio .ant-radio-button-wrapper, .fareRadio .ant-radio-button-wrapper-checked {
         font-size: var(--label-font);
     }

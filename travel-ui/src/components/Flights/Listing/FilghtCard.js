@@ -1,4 +1,4 @@
-import { Card, Col, Row, Form, DatePicker, Space, Select, Checkbox, Divider, Collapse } from 'antd';
+import { Card, Col, Row, Form, DatePicker, Select, Checkbox, Divider, Collapse } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import './Flight.css';
 import { fetchFlightList } from '../../../Constants';
@@ -13,7 +13,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails, travellers }) => {
 
     const { isTablet } = useContext(AuthContext)??{};
-    const { Option, OptGroup } = Select;
+    const { Option } = Select;
     const [defFlightForm] = Form.useForm();
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [currentSearchData, setCurrentSearchData] = useState(null);
@@ -61,7 +61,6 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails,
                     <Form.Item
                         name='defFlightFrom'
                         className='backgroundStyle'
-                        // initialValue={currentSearchData?.legs[0]?.departureCity?.code}
                         // initialValue={searchDetails?.flightFrom}
                     >
                         <Select
@@ -126,26 +125,25 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails,
                 </>
             </Col>
             <Col xl={isTablet ? 6 : 3} lg={isTablet ? 6 : 3} md={isTablet ? 6 : 3} sm={isTablet ? 67 : 3} xs={isTablet ? 6 : 3}>
-                    <>
-                        <label className='labelHeaderStyle'>DEPARTURE DATE</label>
-                        <Form.Item
-                            name='defFlightDepartureDate'
-                            // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[0]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
-                            // initialValue={dayjs(new Date(searchDetails?.flightDeptDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || ''}
-                            className="createUserTextInput"
-                            rules={[{ required: true, message: 'Departure Date is required' }]}
-                        >
-                            <DatePicker
-                                allowClear={false} 
-                                className='datePicker backgroundStyle'
-                                popupClassName='commonSubDateStyle'
-                                size={isTablet ? 'middle' : 'large'}
-                                placeholder='Departure Date'
-                                format='DD/MM/YYYY'
-                                disabledDate={disabledFromToday}
-                            />
-                        </Form.Item>
-                    </>
+                <>
+                    <label className='labelHeaderStyle'>DEPARTURE DATE</label>
+                    <Form.Item
+                        name='defFlightDepartureDate'
+                        // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[0]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
+                        className="createUserTextInput"
+                        rules={[{ required: true, message: 'Departure Date is required' }]}
+                    >
+                        <DatePicker
+                            allowClear={false} 
+                            className='datePicker backgroundStyle'
+                            popupClassName='commonSubDateStyle'
+                            size={isTablet ? 'middle' : 'large'}
+                            placeholder='Departure Date'
+                            format='DD/MM/YYYY'
+                            disabledDate={disabledFromToday}
+                        />
+                    </Form.Item>
+                </>
             </Col>
             {!isTablet && 
                 <Col xl={3} lg={3} md={3} sm={3} xs={3}>
@@ -154,7 +152,6 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails,
                         name='defFlightReturnDate'
                         className="createUserTextInput"
                         // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[1]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
-                        // initialValue={dayjs(new Date(searchDetails?.flightReturnDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || null}
                         rules={[{ required: true, message: 'Return Date is required' }]}
                     >
                         <DatePicker
@@ -184,7 +181,6 @@ const FilghtCard = ({ currSearchFlightList, selectedFlightOption, searchDetails,
                             name='defFlightReturnDate'
                             className="createUserTextInput"
                             // initialValue={currentSearchData ? dayjs(new Date(currentSearchData?.legs[1]?.outboundDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') : null}
-                            // initialValue={dayjs(new Date(searchDetails?.flightReturnDate).toLocaleDateString('en-GB'), 'DD/MM/YYYY') || null}
                             rules={[{ required: true, message: 'Return Date is required' }]}
                         >
                             <DatePicker

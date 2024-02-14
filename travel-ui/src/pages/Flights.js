@@ -1,4 +1,4 @@
-import { Card, Col, DatePicker, Divider, Form, Popover, Radio, Row } from 'antd';
+import { Card, Col, DatePicker, Divider, Form, Popover, Radio, Row, message } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import '../styles/flight.css';
 import OffersCard from '../components/Flights/OffersCard';
@@ -67,17 +67,20 @@ const Flights = () => {
                 if (!o.flightTo) tempArr.push({ name: ['multiCityList', i, 'flightTo'], errors: ['Destination Required!'] });
                 if (!o.flightDeptDate) tempArr.push({ name: ['multiCityList', i, 'flightDeptDate'], errors: ['Date Required!'] });
             });
-            if (tempArr?.length > 0) multiCityAddForm.setFields(tempArr);
+            if (tempArr?.length > 0 && !isTablet) multiCityAddForm.setFields(tempArr);
+            if (tempArr?.length > 0 && isTablet) message.error('Please add all the fields!');
             else navigate('/flight-listing-multicity', { state: { selectedFlightOption: selectedFlightOption,searchDetails: flightAddForm.getFieldsValue(), travellers: currTraveller } });
         } else {
             const { flightFrom, flightTo, flightDeptDate, flightReturnDate } = flightAddForm.getFieldsValue();
-            if (!flightFrom || !flightTo || !flightDeptDate || (selectedFlightOption === 'roundtrip' && !flightReturnDate)) {
+            if (!flightFrom || !flightTo || !flightDeptDate || (selectedFlightOption === 'roundtrip' && !isTablet && !flightReturnDate) || (selectedFlightOption === 'roundtrip' && isTablet && flightDeptDate?.length < 2)) {
                 let tempErr = [];
                 if (!flightFrom) tempErr.push({ name: 'flightFrom', errors: ['Source Required!'] });
                 if (!flightTo) tempErr.push({ name: 'flightTo', errors: ['Destination Required!'] });
-                if (!flightDeptDate) tempErr.push({ name: 'flightDeptDate', errors: ['Departure Date Required!'] });
-                if (selectedFlightOption === 'roundtrip' && !flightReturnDate) tempErr.push({ name: 'flightReturnDate', errors: ['Return Date Required!'] });
-                if (tempErr?.length > 0) flightAddForm.setFields(tempErr);
+                if (!flightDeptDate) tempErr.push({ name: 'flightDeptDate', errors: ['Date Required!'] });
+                if (selectedFlightOption === 'roundtrip' && !flightReturnDate && !isTablet) tempErr.push({ name: 'flightReturnDate', errors: ['Date Required!'] });
+                if (selectedFlightOption === 'roundtrip' && flightDeptDate?.length < 2 && isTablet) tempErr.push({ name: 'flightDeptDate', errors: ['Date Required!'] });
+                if (tempErr?.length > 0 && !isTablet) flightAddForm.setFields(tempErr);
+                if (tempErr?.length > 0 && isTablet) message.error('Please fill all fields!');
             } else {
                 // if (selectedFlightOption === 'multicity') navigate('/flight-listing-multicity', { state: { selectedFlightOption: selectedFlightOption,searchDetails: flightAddForm.getFieldsValue(), travellers: currTraveller } });
                 navigate('/flight-listing', { state: { selectedFlightOption: selectedFlightOption, searchDetails: flightAddForm.getFieldsValue(), travellers: currTraveller } });
@@ -369,6 +372,13 @@ const Flights = () => {
                                                 className='deptReturnDatePicker'
                                                 popupClassName='commonDateStyle'
                                                 size='middle'
+                                                onChange={(d, val) => {
+                                                    // debugger
+                                                    if (val) {
+                                                        // setSelectedDeptDate(val);
+                                                        flightAddForm.setFields([{ name: 'flightDeptDate', errors: undefined }]);
+                                                    }
+                                                }}
                                                 placeholder={['Departure', 'Return']}
                                                 format={['DD/MM/YYYY', 'DD/MM/YYYY']}
                                             />

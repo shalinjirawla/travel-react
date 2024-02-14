@@ -383,6 +383,20 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #555;
 }
 
+@media only screen and (max-width: 1250px) {
+  .loaderTipText {
+    top: 60%;
+    left: 32%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .loaderTipText {
+    top: 55%;
+    left: 30%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .footerRow {
     padding: 6% 0 10% 0;
@@ -411,6 +425,14 @@ h1, h2, h3, h4, h5, h6 {
   .lineHeight {
     line-height: normal;
   }
+  .loaderTipText {
+    top: 48%;
+    left: 26%;
+  }
+  .loaderImg {
+    position: absolute;
+    top: 2%;
+  }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 768px) {
@@ -428,5 +450,48 @@ h1, h2, h3, h4, h5, h6 {
   }
   .lineHeight {
     line-height: normal;
+  }
+  .loaderTipText {
+    top: 40%;
+    left: 20%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .loaderTipText {
+    font-size: var(--third-font);
+    top: 38%;
+    left: 30%;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .loaderTipText {
+    top: 32%;
+    left: 30%;
+  }
+}
+@media only screen and (min-width: 1450px) {
+  .loaderTipText {
+    top: 65%;
+    left: 36%;
+  }
+  .loaderImg {
+    position: absolute;
+    top: -10%;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .loaderImg {
+    top: -18%;
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .loaderImg {
+    top: -25%;
+  }
+}
+@media only screen and (min-width: 1800px) {
+  .loaderImg {
+    top: -30%;
   }
 }

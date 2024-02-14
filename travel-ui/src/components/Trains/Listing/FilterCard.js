@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../../../styles/train/FilterCard.css';
 import { Card, Checkbox } from 'antd';
+import { AuthContext } from '../../../context/AuthProvider';
+import AppModal from '../../AppModal';
+import { FilterOutlined } from '@ant-design/icons';
 
 const FilterCard = () => {
 
@@ -16,15 +19,13 @@ const FilterCard = () => {
                 <div className='filterTOption'>
                     {options.map((o) => (
                         <div className='filterTItem' key={o.id}>
-                            <span className='filterTCheckMark'>
-                                <Checkbox
-                                    className='checkBoxLabel'
-                                    onChange={() => handleChange(o.id)}
-                                    checked={o.isChecked}
-                                >
-                                    {o.labelValue}
-                                </Checkbox>
-                            </span>
+                            <Checkbox
+                                className='checkBoxLabel'
+                                onChange={() => handleChange(o.id)}
+                                checked={o.isChecked}
+                            >
+                                {o.labelValue}
+                            </Checkbox>
                         </div>
                     ))}
                 </div>
@@ -205,6 +206,9 @@ const FilterCard = () => {
 
     }
     const [filterOptions, setFilterOptions] = useState(filterData);
+
+    const { isTablet } = useContext(AuthContext)??{};
+	const [filterModalOpen, setFilterModalOpen] = useState(false);
    
     const handleChangeFilter = (filterName, id) => {
         const updatedOptions = filterOptions[filterName].map((o) =>
@@ -218,58 +222,86 @@ const FilterCard = () => {
         setFilterOptions({ ...filterOptions, [filterName]: updatedOptions });
     };
 
+    const handleFilterModal = () => {
+		setFilterModalOpen(!filterModalOpen);
+	};
+
+    const filterByData = <>
+        <div className='filterFModal'>
+            <div className='modal-Tbody'>
+            {!isTablet && <h3 className='headingTStyle'>FILTER BY</h3>}
+            <FilterOption
+                heading='Quick filters'
+                options={filterOptions.quickFilterCheckbox}
+                handleReset={() => handleResetFilter('quickFilterCheckbox')}
+                handleChange={(id) => handleChangeFilter('quickFilterCheckbox', id)}
+            />
+            <FilterOption
+                heading='Quota'
+                options={filterOptions.quotaCheckbox}
+                handleReset={() => handleResetFilter('quotaCheckbox')}
+                handleChange={(id) => handleChangeFilter('quotaCheckbox', id)}
+            />
+            <FilterOption
+                heading='Class'
+                options={filterOptions.classCheckbox}
+                handleReset={() => handleResetFilter('classCheckbox')}
+                handleChange={(id) => handleChangeFilter('classCheckbox', id)}
+            />
+            <FilterOption
+                heading='Departure Station'
+                options={filterOptions.departureStationCheckbox}
+                handleReset={() => handleResetFilter('departureStationCheckbox')}
+                handleChange={(id) => handleChangeFilter('departureStationCheckbox', id)}
+            />
+            <FilterOption
+                heading='Arrival Station'
+                options={filterOptions.arrivalStationCheckbox}
+                handleReset={() => handleResetFilter('arrivalStationCheckbox')}
+                handleChange={(id) => handleChangeFilter('arrivalStationCheckbox', id)}
+            />
+            <FilterOption
+                heading='Arrival Time'
+                options={filterOptions.arrivalTimeCheckbox}
+                handleReset={() => handleResetFilter('arrivalTimeCheckbox')}
+                handleChange={(id) => handleChangeFilter('arrivalTimeCheckbox', id)}
+            />
+            <FilterOption
+                heading='Departure Time'
+                options={filterOptions.departureTimeCheckbox}
+                handleReset={() => handleResetFilter('departureTimeCheckbox')}
+                handleChange={(id) => handleChangeFilter('departureTimeCheckbox', id)}
+            />
+            </div>
+        </div>
+    </>
+
     return (
         <div>
-            <Card className='filterTCard'>
-                <div className='filterPadding'>
-
-                    <h3 className='headingTStyle'>FILTER BY</h3>
-
-                    <FilterOption
-                        heading='Quick filters'
-                        options={filterOptions.quickFilterCheckbox}
-                        handleReset={() => handleResetFilter('quickFilterCheckbox')}
-                        handleChange={(id) => handleChangeFilter('quickFilterCheckbox', id)}
-                    />
-                    <FilterOption
-                        heading='Quota'
-                        options={filterOptions.quotaCheckbox}
-                        handleReset={() => handleResetFilter('quotaCheckbox')}
-                        handleChange={(id) => handleChangeFilter('quotaCheckbox', id)}
-                    />
-                    <FilterOption
-                        heading='Class'
-                        options={filterOptions.classCheckbox}
-                        handleReset={() => handleResetFilter('classCheckbox')}
-                        handleChange={(id) => handleChangeFilter('classCheckbox', id)}
-                    />
-                    <FilterOption
-                        heading='Departure Station'
-                        options={filterOptions.departureStationCheckbox}
-                        handleReset={() => handleResetFilter('departureStationCheckbox')}
-                        handleChange={(id) => handleChangeFilter('departureStationCheckbox', id)}
-                    />
-                    <FilterOption
-                        heading='Arrival Station'
-                        options={filterOptions.arrivalStationCheckbox}
-                        handleReset={() => handleResetFilter('arrivalStationCheckbox')}
-                        handleChange={(id) => handleChangeFilter('arrivalStationCheckbox', id)}
-                    />
-                    <FilterOption
-                        heading='Arrival Time'
-                        options={filterOptions.arrivalTimeCheckbox}
-                        handleReset={() => handleResetFilter('arrivalTimeCheckbox')}
-                        handleChange={(id) => handleChangeFilter('arrivalTimeCheckbox', id)}
-                    />
-                    <FilterOption
-                        heading='Departure Time'
-                        options={filterOptions.departureTimeCheckbox}
-                        handleReset={() => handleResetFilter('departureTimeCheckbox')}
-                        handleChange={(id) => handleChangeFilter('departureTimeCheckbox', id)}
-                    />
-
+            {isTablet && 
+                <div className='filterFTitle textAlignEnd'>
+                    <div
+                        onClick={() => {
+                            setFilterModalOpen(true);
+                        }}
+                    >
+                        <span className='moreFFilter cursorP'>More Filters <FilterOutlined /> </span>
+                    </div>
+                    <AppModal
+                        title='Filter By'
+                        className='modalFStyle'
+                        open={filterModalOpen}
+                        children={filterByData}
+                        onOk={handleFilterModal}
+                        onCancel={handleFilterModal}
+                    />                 
                 </div>
-            </Card>
+            }
+            {!isTablet && 
+                <Card className='filterTCard'>
+                    {filterByData}    
+                </Card>
+            }
         </div>
     );
 }

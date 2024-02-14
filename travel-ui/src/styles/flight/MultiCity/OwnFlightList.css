@@ -245,9 +245,9 @@
     width: 100%;
 }
 
-.multiCFairDetail .ant-descriptions-item-content {
+/* .multiCFairDetail .ant-descriptions-item-content {
     width: 50%;
-}
+} */
 
 /* ------------- FlightDetailsThirdTab ------------- */
 
@@ -348,6 +348,9 @@
     .multyCityDistanceTLine {
         width: 75%;
         margin: 0 10%;
+    }
+    .multiCFairDetail .ant-descriptions-item-label {
+        font-size: var(--small-font);
     }
     .multiCFairDetail .ant-descriptions-item-content {
         font-size: var(--small-font);

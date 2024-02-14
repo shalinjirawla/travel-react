@@ -32,4 +32,11 @@ export const trainStaionList = [
     { _id: 'Banglore, India', name: 'Banglore, India', value: 'Banglore, India', id: 2 },
     { _id: 'Mumbai, India', name: 'Mumbai, India', value: 'Mumbai, India', id: 3 },
     { _id: 'Delhi, India', name: 'Delhi, India', value: 'Delhi, India', id: 4 }
-]; 
+];
+
+export const ticketStatusList = [
+    { _id: 'pending', label: 'Pending' },
+    { _id: 'rejected', label: 'Rejected' },
+    { _id: 'canceled', label: 'Canceled' },
+    { _id: 'confirmed', label: 'Confirmed' },
+];

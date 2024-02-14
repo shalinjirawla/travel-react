@@ -7,7 +7,6 @@
     height: fit-content;
 }
 
-
 /* -------------------------------- Heading --------------------------- */
 
 .headingTStyle {
@@ -19,7 +18,6 @@
     /* text-align: left; */
 }
 
-
 /* -------------------------------- Heading & ClearAll --------------------------- */
 
 .filterTHead {
@@ -30,14 +28,12 @@
     border-top: 1px solid #c2c2c2;
     border-bottom: 1px solid #c2c2c2;
 }
-
 .filterTHeading {
     font-weight: var(--third-fontWeight);
     font-size: var(--secondary-font);
     line-height: 22px;
     color: #141823;
 }
-
 .filterClearAll {
     font-weight: var(--primary-fontWeight);
     font-size: var(--label-font);
@@ -45,18 +41,15 @@
     cursor: pointer;
 }
 
-
 /* -------------------------------- Checkbox --------------------------- */
 
 .filterTOption {
     margin: 6% 0;
     /* padding: 0; */
 }
-
 .filterTItem {
     margin-bottom: 6%;
 }
-
 .checkBoxLabel .ant-checkbox+span {
     padding-inline-start: 10px;
     /* padding-inline-end: 4px; */
@@ -65,4 +58,54 @@
     /* line-height: 20px; */
     /* display: inline-flex; */
     font-weight: var(--third-fontWeight);
+}
+
+/* -------------------------------- mediaQuery --------------------------- */
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .filterTCard {
+        width: 14rem;
+    }
+    .filterTCard .ant-card-body {
+        padding: 3%;
+    }
+    .headingTStyle {
+        margin-bottom: 1.5%;
+        font-size: var(--third-font);
+    }
+    .filterTHeading {
+        font-size: var(--third-font);
+    }
+    .filterClearAll {
+        font-size: var(--small-font);
+    }
+    .filterTHead {
+        padding: 1% 0;
+    }
+    .filterTOption {
+        margin: 3% 0;
+    }
+    .filterTItem {
+        margin-bottom: 3%;
+    }
+    .checkBoxLabel .ant-checkbox+span {
+        font-size: var(--small-font);
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .modal-Tbody { 
+        height: 24rem;
+        overflow: hidden auto;
+        padding: 0 3% 0 0;
+    }
+    .filterTHead {
+        padding: 1% 0;
+    }
+    .filterTOption {
+        margin: 3% 0;
+    }
+    .filterTItem {
+        margin-bottom: 2%;
+    }
 }

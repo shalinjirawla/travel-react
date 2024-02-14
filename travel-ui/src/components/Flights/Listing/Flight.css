@@ -292,7 +292,7 @@
 
 @media only screen and (min-width: 480px) and (max-width: 768px) {
     .listMainDivTab {
-        margin: 8% 2%;
+        margin: 8% 0;
     }
     .cardHeaderStyle {
         padding: 0;
@@ -395,11 +395,21 @@
 
 @media only screen and (min-width: 600px) and (max-width: 700px) {
     .listMainDivTab {
-        margin: 9% 2%;
+        margin: 9% 0;
     }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
     .listMainDivTab {
-        margin: 10% 2%;
+        margin: 10% 0;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 550px) {
+    .listMainDivTab {
+        margin: 11% 0;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 500px) {
+    .listMainDivTab {
+        margin: 12% 0;
     }
 }

@@ -427,31 +427,22 @@ const OwnFlightList = () => {
     const fareDetailItems = [
         {
             key: '1',
-            children: 'Base Fare (1 Adult)',
-            span: 2
+            label: 'Base Fare (1 Adult)',
+            children: '₹10,279',
+            span: { xs: 1, sm: 2, md: 3, lg: 3, xl: 3, xxl: 3 }
         },
         {
             key: '2',
-            children: '₹10,279',
+            label: 'Taxes and Fees (1 Adult)',
+            children: '₹1,181',
+            span: { xs: 1, sm: 2, md: 3, lg: 3, xl: 3, xxl: 3 }
         },
         {
             key: '3',
-            children: 'Taxes and Fees (1 Adult)',
-            span: 2
-        },
-        {
-            key: '4',
-            children: '₹1,181',
-        },
-        {
-            key: '5',
-            children: 'Total Fare (1 Adult)',
-            span: 2
-        },
-        {
-            key: '6',
+            label: 'Total Fare (1 Adult)',
             children: '₹11,460',
-        },
+            span: { xs: 1, sm: 2, md: 3, lg: 3, xl: 3, xxl: 3 }
+        }
     ];
 
     const fairDetailTab = (
@@ -510,7 +501,7 @@ const OwnFlightList = () => {
             </Card>
 
             <Card className='multiSecCanRuleCard'>
-                <Row align='middle' justify='space-between'>
+                <Row align='top' justify='space-between'>
                     <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                         <div className='multiCityFTable'>
                             <div className='canChargeHeading'>Cancellation Charges</div>

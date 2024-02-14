@@ -7,13 +7,22 @@
     height: 17rem !important;
 }
 .card {
-    width: 95%;
+    /* width: 95%; */
+    width: 93%;
     border-radius: 5px;
     margin: 1% 0 2% 5%;
     box-shadow: 0 0 3px 0 lightgray;
 }
+.fixedButtonContainer{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* width: 100%; */
+    z-index: 999;
+}
 .card-fare {
-    width: 75%;
+    /* width: 75%; */
+    width: 70%;
     border-radius: 5px;
     margin: 1.58% 5%;
     box-shadow: 0 0 3px 0 lightgray;
@@ -27,7 +36,7 @@
     justify-content: left;
 }
 .email {
-    padding: 1% 0% 0% 4%;
+    padding: 0% 0% 0% 4%;
     margin: 0;
 }
 .arrew {
@@ -61,7 +70,7 @@
 .backHeading1 {
     color: white;
     font-weight: var( --third-fontWeight);
-    padding: 2% 6.5%;
+    padding: 2% 6%;
     position: relative;
     z-index: 1;
 }
@@ -73,6 +82,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.all-padding{
+    padding: 3% 0%;
 }
 .date {
     display: flex;
@@ -117,7 +129,7 @@
     padding: 0;
 }
 .num12{
-    font-size: 1rem;
+    font-size: var(--primary-font);
     color: rgb(0, 0, 0);
     font-weight: var(--secondary-fontWeight);
 }
@@ -129,7 +141,6 @@
     font-size: var(--third-font);
     font-weight: var(--primary-fontWeight);
     margin-right: 2.5%;
-    /* padding-bottom: 5%; */
 }
 .total{
     font-weight: var(--third-fontWeight);
@@ -150,9 +161,9 @@
 }
 .add {
     height: 2.2rem;
+    padding-top: 1%;
     font-size: var(--secondary-font);
     font-weight: var(--secondary-fontWeight);
-    color: darkred;
 }
 .add .ant-select-selector{
     font-size: var(--secondary-font);
@@ -162,7 +173,6 @@
     font-weight: var(--secondary-fontWeight);
 }
 .selectDrop {
-    /* margin-top: 1.5% !important; */
     padding-top: 2% !important;
 }
 .cancelatiobn-button {
@@ -187,25 +197,14 @@
     flex: 1px;
 }
 .input-email-address {
-    /* width: 42%;
-    margin-left: 2.2%; */
-    width: 43%;
-    height: 2rem;
     font-size: var(--secondary-font);
     font-weight: var(--secondary-fontWeight);
 }
 .input-mobile {
-    width: 42%;
-    /* margin-left: 1%; */
+    width: 57%;
     font-size: var(--secondary-font);
     font-weight:var(--primary-fontWeight) ;
 }
-/* .input-mobile input {
-    height: 2rem;
-}
-.form-item-label {
-    margin: 3% 1% 0 0;
-} */
 .pin {
     font-weight: bold;
     font-size: var(--primary-font);
@@ -261,6 +260,145 @@
 .food-image{
     width: 19%;
 }
+.flight-faresummery{
+    font-size: var(--primary-font);
+}
+.fixedButtonContainer{
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: aliceblue;
+    bottom: 0px;
+    left: 0px;
+    position: fixed;
+    right: 0px;
+    z-index: 122;
+}
+.modal-fare{
+    width: 50% !important;
+}
+.fare-summery-main{
+    padding: 1%;
+}
+.total-price{
+    font-size: var(--third-font);
+    font-weight: bold;
+}
+.price{
+    font-size: var(--primary-font);
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 1350px) {
+    .txt, .num1{
+        font-size: var(--label-font);
+    }
+    .num12{
+        font-size: var(--third-font)
+    }
+    .total, .flight-faresummery {
+        font-size: var(--secondary-font);
+    }
+    .total1{
+        font-size: var(--medium-icon-size);
+    }
+}
+@media only screen and (max-width: 600px) {
+    .num{
+        padding-left: 9%;
+    }
+    .wrapper-1{
+        width: 40%;
+    }
+    .food-image {
+        width: 35%;
+    }
+    .meal-amount{
+        font-size: var(--third-font) !important;
+        margin: 0;
+    }
+    .title {
+        font-size: var(--label-font);
+        margin: 0;
+    }
+    .add .ant-select-selector{
+        font-size: var(--third-font)
+    }
+    .price-1{
+        width: 183%;
+        padding-right: 40%;
+    }
+    .colored-p{
+        font-size: var(--label-font);
+    }
+    .colored-v{
+        margin: 0;
+        font-size: 24px;
+    }
+    .add .ant-input, .checkbox, .hide-city, .hide-time {
+        font-size: var(--third-font) !important;
+    }
+    .flight{
+        margin: 0;
+        font-size: var(--secondary-font);
+    }
+    .cancle-charge, .gst, .hide-edit, .hide-left {
+        font-size: var(--label-font) !important;
+    }
+    .cancle-information{
+        font-size: var(--secondary-font);
+        font-weight: bold;
+    }
+    .pin{
+        font-size: var(--third-font);
+        font-weight: bold;  
+    }
+    .pin-1{
+        font-size: var(--secondary-font) !important;
+    }
+    .pop-description tbody{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+@media only screen and (max-width: 992px){
+    .card{
+        width: 87%;
+    }
+    .input-email-address{
+        font-size: var(--third-font)
+    }
+    .card-fare{
+        width: 99% !important;
+    }
+    .blur {
+        filter: blur(4px); 
+        backdrop-filter: grayscale(20%);
+    }
+}
+@media only screen and (min-width: 992px){
+    .input-email-address{
+        width: 57%;
+    }
+}
+.summery{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 0 lightgray;
+    padding: 4%;
+}
+.numm{
+    padding-left: 10%;
+    height: 100%; 
+    margin: auto;
+    text-align: center;
+    color: var(--primary-color);
+    border: none;
+    font-size: var(--primary-font);
+}
 .food{
     display: flex;
     gap: 5%;
@@ -268,7 +406,7 @@
     align-items: center;
 }
 .meal-amount {
-    font-size: 1rem;
+    font-size: var(--secondary-font);
     font-weight: var(--primary-fontWeight);
 }
 .wrapper-1 {
@@ -297,7 +435,7 @@
     max-height: 22rem;
 }
 .details-collapse{
-    align-items: baseline;
+    align-items: center;
 }
 .card2{
     padding-top: 1%;
@@ -325,8 +463,7 @@
     font-size: var(--third-font);
     font-weight: var(--third-fontWeight);
     border-radius: 3px;
-    padding: 0 5%;
-    width: 40%;
+    padding: 0 3%;
     border-color: var(--primary-color);
 }
 .skipToPayment:not(:disabled):not(.skipToPayment-disabled):hover {
@@ -352,8 +489,7 @@
     width: 100%;
     -webkit-box-flex: 0;
     border-radius: 5px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 0 5%;
 }
 .curveFWrap {
     width: 100%;
@@ -408,8 +544,8 @@
     padding: 0.5% 6%;
 }
 .selectSpaceSeat {
-    width: 20px;
-    height: 20px;
+    width: 1rem;
+    height: 1rem;
 }
 .curveFWrapBack {
     height: 10rem;
@@ -420,8 +556,8 @@
     height: 280%;
 }
 .selectFSeat {
-    width: 25px;
-    height: 25px;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
 }
 .cursorAuto {
@@ -435,8 +571,8 @@
 .selectFSeatDiv {
     border: 1px solid black;
     border-radius: 5px;
-    width: 25px;
-    height: 25px;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
 }
 .selectFSeatDiv.clickedOrange {
@@ -452,8 +588,8 @@
 .selectFSeatRound {
     border: 1px solid green;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
 }
 .selectFSeatRound.clickedGreen {
@@ -463,7 +599,7 @@
 }
 .selectPerFSeat {
     position: absolute;
-    width: 22px;
+    width: 1.4rem;
     top: calc(50% - 8px);
     font-style: normal;
     line-height: 15px;
@@ -482,28 +618,20 @@
     margin-left: 2%;
 }
 .seatByFPrice {
-    margin-top: 10%;
+    margin: 10% 0 2% 0;
+    line-height: normal;
 }
 .rowFSeatTitle {
     font-size: var(--small-font);
     font-weight: var(--secondary-fontWeight);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .seatFBox {
-    padding: 0% 3%;
+    padding: 0 3%;
     cursor: pointer;
 }
 .perSeatFBox {
     margin: 3% 0;
-}
-.selectPerFSeatTitle {
-    position: absolute;
-    width: 19px;
-    left: calc(50% - 14px);
-    top: calc(50% - 8px);
-    font-style: normal;
-    line-height: 17px;
-    text-align: center;
 }
 .borderFOrange {
     border-color: orange;
@@ -524,7 +652,6 @@
 .hide-edit {
     color: rgb(22, 107, 211);
     cursor: pointer;
-    padding-right: 3%;
     margin: 0;
     font-size: var(--third-font);
     font-weight: var(--third-fontWeight);
@@ -569,11 +696,10 @@
     cursor: pointer;
 }
 .hide-left {
-    padding-left: 0.5%;
+    padding: 0.2%;
     margin: 0;
     background-color: rgb(229, 243, 255);
     border-radius: 4px;
-    width: 16%;
     font-size: var(--third-font);
     font-weight: var( --secondary-fontWeight);
     color: rgb(34, 118, 227);
@@ -596,9 +722,11 @@
     font-weight: var(--primary-fontWeight);
     color: black;
 }
+
+/* ----------------------------------------pop------------------ */
 .pop-card{
     background-color: rgb(247, 247, 247);
-    padding: 2% 0% 2% 5%;
+    padding: 2%;
     border-radius: 16px;
     margin: 1%;
 }
@@ -607,16 +735,64 @@
 }
 .popup-button{
     padding-top: 2%;
-}
+}   
 .pop-main{
     max-height: 280px;
     overflow-y: auto;
 }
-.ant-descriptions .ant-descriptions-item-container{
+.pop-description .ant-descriptions .ant-descriptions-item-container{
     display: grid;
 }
 .confirmModal .ant-modal-close{
     position: absolute;
-    top: 5%;
+    top: 6%;
     left: 92%;
+}
+
+/* ------------------------- Media Query ---------------------- */
+
+@media only screen and (min-width: 1200px) and (max-width: 1350px) {
+    .seatFRow {
+        padding-top: 0.7%;
+        margin: 0 -7%;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .seatFRow {
+        padding: 0.5% 15%;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .seatFRow {
+        padding: 0.5% 8%;
+    }
+    .selectFSeat, .selectFSeatDiv {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+    .selectPerFSeat {
+        width: 1.3rem;
+    }
+    .rightFCol {
+        padding-left: 3%;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 620px) {
+    .seatFRow {
+        padding: 0.7% 0;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 520px) {
+    .seatFRow {
+        padding-top: 0.9%;
+    }
+    .selectFSeat, .selectFSeatDiv {
+        width: 1.3rem;
+        height: 1.3rem;
+        font-size: var(--optimal-font);
+    }
+    .selectPerFSeat {
+        width: 1.2rem;
+        top: calc(50% - 7px);
+    }
 }

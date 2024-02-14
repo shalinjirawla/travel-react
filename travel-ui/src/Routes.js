@@ -15,6 +15,7 @@ import Trains from './pages/Trains';
 import TrainListing from './components/Trains/Listing/TrainListing';
 import Bill from './components/Trains/bookingDetails/Bill';
 import MultiCityList from './components/Flights/Listing/MultiCity/MultiCityList';
+import BookingHistory from './components/Flights/bookingHistory/BookingHistory';
 
 const MainRoutes = () => {
   const { user, currentRole, setIsMobile, setIsTablet, setIsDesktop, rsWidths, setRsWidths } = useContext(AuthContext) ?? {};
@@ -51,6 +52,7 @@ const MainRoutes = () => {
             element={<Navigate to="/flights" replace={true} />}
           />
           <Route path='/flights' element={<Flights />} />
+          <Route path='/flights-booking-history' element={<BookingHistory />} />
           <Route path='/home' element={<Dashboard />} />
           {/* <Route path='*' element={<Flights />} /> */}
           <Route path='/flight-listing' element={<FlightListing />} />

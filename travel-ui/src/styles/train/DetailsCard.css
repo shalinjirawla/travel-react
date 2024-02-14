@@ -31,7 +31,8 @@
     cursor: pointer;
     font-size: var(--third-font);
     font-weight: var(--primary-fontWeight);
-    min-width: 6.9rem;
+    /* min-width: 6.9rem; */
+    min-width: 7rem;
     text-align: center;
 }
 
@@ -99,14 +100,12 @@
 }
 
 .sortedByTSelect {
-    /* align-self: flex-end; */
-    margin-top: 2%;
+    align-self: flex-end;
 }
 
 .labelSortedByTStyle {
     font-weight: var(--label-fontWeight);
     font-size: var(--secondary-font);
-    line-height: 18px;
     color: rgb(100, 122, 151);
 }
 
@@ -154,13 +153,11 @@
     font-weight: var(--third-fontWeight);
     line-height: 28px;
     letter-spacing: 1px;
-    /* text-align: left; */
 }
 .tripCardTStation {
     font-size: var(--tritary-font);
     font-weight: var(--third-fontWeight);
     line-height: 24px;
-    /* text-align: left; */
 }
 .viewRouteTLink {
     font-size: var(--third-font);
@@ -185,32 +182,22 @@
     font-size: var(--third-font);
     line-height: 16px;
     color: #141823;
-    /* text-align: center; */
 }
 
 .stationTTime {
     font-weight: var(--third-fontWeight);
     font-size: var(--secondary-font);
     line-height: 18px;
-    /* text-align: left; */
-}
-/* .alignItem {
-    align-items: center;
-} */
-.alignSelf {
-    align-self: baseline;
 }
 .stationTName {
     font-weight: var(--third-fontWeight);
     font-size: var(--secondary-font);
     line-height: 18px;
-    /* text-align: center; */
 }
 .stationTSName {
     font-weight: var(--primary-fontWeight);
     font-size: var(--secondary-font);
     line-height: 18px;
-    /* text-align: center; */
     color: rgba(53,53,53,.5);
 }
 
@@ -229,7 +216,6 @@
 .backgoundTFirstCard {
     background-color: rgb(254, 251, 242);
     border-color: rgb(254, 251, 242);
-    padding: 0 2%;
 }
 .classTName {
     font-weight: var(--primary-fontWeight);
@@ -242,13 +228,11 @@
     line-height: 18px;
 }
 .viewCardMTAvl {
-    margin: 15% 0;
-    /* min-width: 35%; */
+    margin: 12% 0;
 }
 .backgoundTSecondCard {
     background-color: rgb(254, 245, 225);
     border-color: rgb(254, 245, 225);
-    padding: 0 2%;
 }
 .gClassTName {
     font-weight: var(--label-fontWeight);
@@ -289,7 +273,7 @@
 .distanceTLine{
     position: relative;
     border-top: 1px solid #d8d8d8;
-    width: 250px;
+    width: 200px;
 }
 .dSpanTLine {
     padding: 0 5%;
@@ -331,7 +315,7 @@
 /* ----------------------------------- viewAvailableCard ------------------------------ */
 
 .cardTabTLine {
-    margin-bottom: 0.5%; 
+    margin-bottom: 0.5%;
 }
 .cardTabTLine .ant-card-body {
     padding: 0 !important;
@@ -368,7 +352,7 @@
 }
 
 .tagTTatkal {
-    padding: 3% 14% 4% 14%;
+    padding: 3% 14%;
     background-color: #647a97;
     border-radius: 3px;
     font-size: var(--third-font);
@@ -390,5 +374,415 @@
 .sortTBNIcon {
     font-size: var(--label-font);
     font-weight: var(--primary-fontWeight);
-    padding: 3% 0 0 5%;
+    padding: 3% 0 0 2%;
+}
+
+
+/* -------------------------------- Train-Route --------------------------- */
+
+.routeTrainModalStyle {
+    width: 80% !important;
+}
+.routeTrainCard {
+    border-radius: 3px;
+}
+.dayRoute {
+    padding: 0.2% 1%;
+    background-color: #4f525a;
+    border-radius: 3px;
+    color: #fff;
+}
+.dayOneRoute {
+    margin-left: 1.5%;
+}
+.routeTimeline {
+    margin-top: 2%;
+}
+.divRLine {
+    border-right: 1px solid rgb(231, 235, 239);
+    cursor: pointer;
+    padding: 1% 0;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 0;
+}
+.routeTStationName {
+    font-size: var(--third-font);
+    font-weight: var(--secondary-fontWeight);
+    color: var(--primary-color);
+}
+.routeTStationData {
+    font-weight: var(--secondary-fontWeight);
+}
+
+.routeTrainModalStyle .ant-modal-close {
+    top: auto;
+    display: flex;
+    align-items: end;
+}
+.ant-modal .ant-modal-close:hover {
+    color: rgba(0, 0, 0, 0.45) !important;
+    background-color: white !important;
+}
+.routeTrainModalStyle .ant-modal-title {
+    font-size: var(--primary-font);
+}
+
+
+.trainRouteModalData {
+    height: 30rem; 
+    width: 100%;
+}
+.modal-TR-body { 
+    height: 30rem;
+    overflow: hidden auto;
+}
+
+
+
+/* -------------------------------- mediaQuery --------------------------- */
+
+@media only screen and (max-width: 1450px) {
+    .viewCardMTAvlLow {
+        margin: 2% 0;
+        line-height: 12px;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    .dateTColumn {
+        font-size: 13px;
+    }
+}
+@media only screen and (min-width: 1500px) {
+    .divDateIcon {
+        height: 6rem;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+
+    .divDateIcon {
+        height: 3.4rem;
+    }
+    .dateTColumn {
+        font-size: var(--small-font);
+        min-width: 5rem;
+    }
+    .paraTClass {
+        font-size: var(--label-font);
+        line-height: normal;
+    }
+    .sortedByTSelect {
+        padding-top: 3%;
+    }
+    .labelSortedByTStyle {
+        font-size: var(--label-font);
+    }
+    .backgroundSortedByTStyle .ant-select-selector {
+        font-size: var(--label-font) !important;
+    }
+    .sortedByTOptionStyle .ant-select-item-option-content {
+        font-size: var(--label-font) !important;
+        padding: 0% !important;
+    }
+    .cardTLine .ant-card-body {
+        padding: 0 1.5% !important;
+    }
+    .tripCardTNumber, .tripCardTStation {
+        font-size: var(--primary-font);
+    }
+    .viewRouteTLink {
+        font-size: var(--optimal-font);
+        text-align: start;
+    }
+    .dayTWeek, .eachTDay, .stationTTime, .stationTName, .stationTSName, .classTName, .classTPrice {
+        font-size: var(--label-font);
+    }
+    .distanceTLine{
+        width: 150px;
+    }
+    .dSpanTLine, .gClassTConfirmed {
+        font-size: var(--small-font);
+    }
+    .gClassTName {
+        font-size: var(--optimal-font);
+    }
+    .gClassTTime {
+        font-size: var(--little-font);
+    }
+    .availableTrain {
+        font-size: var(--label-font);
+        line-height: 0rem;
+    }
+
+    .tabTTitle .ant-tabs-tab {
+        font-size: var(--small-font);
+    }
+    .fontT, .tabTDate, .fontTF {
+        font-size: var(--small-font);
+    }
+    .tagTTatkal {
+        padding: 2% 8%;
+        font-size: var(--optimal-font);
+    }
+    .bookNowTBtn {
+        font-size: var(--optimal-font);
+        line-height: 18px;
+    }
+    .sortTBNIcon {
+        font-size: var(--small-font);
+        padding: 3% 0 0 2%;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+
+    .divDateIcon {
+        height: 4rem;
+    }
+    .dateTColumn {
+        font-size: var(--label-font);
+        min-width: 6.3rem;
+    }
+    .paraTClass {
+        font-size: var(--third-font);
+        line-height: normal;
+    }
+    .sortedByTSelect {
+        padding-top: 2%;
+    }
+    .labelSortedByTStyle {
+        font-size: var(--third-font);
+    }
+    .backgroundSortedByTStyle .ant-select-selector {
+        font-size: var(--label-font) !important;
+    }
+    .sortedByTOptionStyle .ant-select-item-option-content {
+        font-size: var(--label-font) !important;
+        padding: 0% !important;
+    }
+
+    .cardTLine .ant-card-body {
+        padding: 0 1.5% !important;
+    }
+    .tripCardTNumber, .tripCardTStation {
+        font-size: var(--medium-icon-size);
+    }
+    .viewRouteTLink {
+        font-size: var(--label-font);
+        text-align: center;
+    }
+    .dayTWeek, .eachTDay, .dSpanTLine, .gClassTName {
+        font-size: var(--label-font);
+    }
+    .stationTTime, .stationTName, .stationTSName, .classTName, .classTPrice {
+        font-size: var(--third-font);
+    }
+    .distanceTLine{
+        width: 170px;
+    }
+    .gClassTTime, .gClassTConfirmed {
+        font-size: var(--optimal-font);
+    }
+    .availableTrain {
+        font-size: var(--third-font);
+        line-height: 0rem;
+    }
+
+    .tabTTitle .ant-tabs-tab {
+        font-size: var(--optimal-font);
+    }
+    .fontT, .tabTDate, .fontTF {
+        font-size: var(--label-font);
+    }
+    .tagTTatkal {
+        padding: 2% 8%;
+        font-size: var(--label-font);
+    }
+    .bookNowTBtn {
+        font-size: var(--third-font);
+        line-height: 18px;
+    }
+    .sortTBNIcon {
+        font-size: var(--optimal-font);
+        padding: 3% 0 0 2%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+
+    .detailsTCard {
+        margin: 2% 0 0 5%;
+        width: 90%;
+    }
+
+    .divDateIcon {
+        height: 4.2rem;
+    }
+    .dateTColumn {
+        font-size: var(--label-font);
+    }
+
+    .paraTClass {
+        font-size: var(--third-font);
+        line-height: 1rem;
+    }
+    .sortedByTSelect {
+        padding-top: 2%;
+    }
+    .labelSortedByTStyle {
+        font-size: var(--third-font);
+    }
+    .backgroundSortedByTStyle .ant-select-selector {
+        font-size: var(--label-font) !important;
+    }
+    .sortedByTOptionStyle .ant-select-item-option-content {
+        font-size: var(--label-font) !important;
+        padding: 0% !important;
+    }
+
+    .cardTLine .ant-card-body {
+        padding: 0 1.5% !important;
+    }
+    .tripCardTNumber, .tripCardTStation {
+        font-size: var(--medium-icon-size);
+    }
+    .viewRouteTLink {
+        font-size: var(--label-font);
+        text-align: center;
+    }
+    .dayTWeek, .eachTDay, .dSpanTLine, .gClassTName {
+        font-size: var(--label-font);
+    }
+    .stationTTime, .stationTName, .stationTSName, .classTName, .classTPrice {
+        font-size: var(--third-font);
+    }
+    .distanceTLine{
+        width: 170px;
+    }
+    .gClassTTime, .gClassTConfirmed {
+        font-size: var(--optimal-font);
+    }
+    .availableTrain {
+        font-size: var(--third-font);
+        line-height: 0rem;
+    }
+
+    .tabTTitle .ant-tabs-tab {
+        font-size: var(--optimal-font);
+    }
+    .fontT, .tabTDate, .fontTF {
+        font-size: var(--label-font);
+    }
+    .tagTTatkal {
+        padding: 2% 8%;
+        font-size: var(--label-font);
+    }
+    .bookNowTBtn {
+        font-size: var(--third-font);
+        line-height: 18px;
+    }
+    .sortTBNIcon {
+        font-size: var(--optimal-font);
+        padding: 3% 0 0 2%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .tripCardTNumber, .tripCardTStation {
+        font-size: var(--primary-font);
+    }
+    .viewRouteTLink {
+        font-size: var(--optimal-font);
+        text-align: start;
+    }
+    .dayTWeek, .eachTDay, .stationTTime, .stationTName, .stationTSName, .classTName, .classTPrice {
+        font-size: var(--label-font);
+    }
+    .distanceTLine{
+        width: 140px;
+    }
+    .dSpanTLine, .gClassTConfirmed {
+        font-size: var(--small-font);
+    }
+    .gClassTName {
+        font-size: var(--optimal-font);
+    }
+    .gClassTTime {
+        font-size: var(--little-font);
+    }
+    .availableTrain {
+        font-size: var(--label-font);
+        line-height: 0rem;
+    }
+
+    .tabTTitle .ant-tabs-tab {
+        font-size: var(--small-font);
+    }
+    .fontT, .tabTDate, .fontTF {
+        font-size: var(--small-font);
+    }
+    .tagTTatkal {
+        padding: 2% 8%;
+        font-size: var(--optimal-font);
+    }
+    .bookNowTBtn {
+        font-size: var(--optimal-font);
+        line-height: 18px;
+    }
+    .sortTBNIcon {
+        font-size: var(--small-font);
+        padding: 3% 0 0 0;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 620px) {
+    .viewRouteTLink, .dayTWeek {
+        line-height: 0;
+    }
+    .distanceTLine{
+        width: 110px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 670px) {
+    .divDateIcon {
+        height: 4rem;
+    }
+    .dateTColumn {
+        min-width: 6rem;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 580px) {
+    .divDateIcon {
+        height: 4rem;
+    }
+    .dateTColumn {
+        min-width: 5.5rem;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 535px) {
+    .divDateIcon {
+        height: 3.7rem;
+    }
+    .dateTColumn {
+        min-width: 6rem;
+    }
+}
+
+/* -------------------------------- Train-Route --------------------------- */
+
+@media only screen and (max-width: 1100px) {
+    .routeTrainModalStyle {
+        width: 100% !important;
+    }
+}
+@media only screen and (max-width: 620px) {
+    .routeResFont {
+        font-size: var(--optimal-font);
+    }
 }

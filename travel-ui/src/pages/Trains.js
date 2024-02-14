@@ -1,4 +1,4 @@
-import { Card, Col, DatePicker, Form, Radio, Row } from 'antd';
+import { Card, Col, DatePicker, Form, Radio, Row, message } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import '../styles/flight.css';
 import '../styles/train.css';
@@ -101,7 +101,8 @@ const Trains = () => {
             if (!trainFrom) tempErr.push({ name: 'trainFrom', errors: ['Source Required!'] });
             if (!trainTo) tempErr.push({ name: 'trainTo', errors: ['Destination Required!'] });
             if (!trainDeptDate) tempErr.push({ name: 'trainDeptDate', errors: ['Departure Date Required!'] });
-            if (tempErr?.length > 0) trainAddForm.setFields(tempErr);
+            if (tempErr?.length > 0 && !isTablet) trainAddForm.setFields(tempErr);
+            if (tempErr?.length > 0 && isTablet) message.error('Please fill all fields!');
         } else {
             navigate('/train-listing', {
                 state: {

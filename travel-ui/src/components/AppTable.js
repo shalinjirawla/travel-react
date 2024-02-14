@@ -10,7 +10,8 @@ const AppTable = ({
   rowClass = '',
   isSmallWidth = false,
   columns, 
-  dataSource, 
+  dataSource,
+  size = 'middle',
   paginationTotal, 
   pageSize,
   showSizeChanger,
@@ -39,6 +40,7 @@ const AppTable = ({
             pagination={pagination}
             className="dataTable"
             style={{ width: isSmallWidth ? '90%' : '100%' }}
+            size={size}
             columns={columns}
             dataSource={dataSource}
         />

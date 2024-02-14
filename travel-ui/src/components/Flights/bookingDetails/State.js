@@ -1,11 +1,10 @@
 import React from 'react';
-import { Card, Checkbox, Col, Form, Input, Row, theme, Collapse } from 'antd';
+import { Card, Checkbox, Col, Row } from 'antd';
 import './bill.css';
 import Selectable from '../../Selectable';
 import TextInput from '../../TextInput';
 
 const State = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons }) => {
-  const { token } = theme.useToken();
   const stateList = [
     { _id: 'gujarat', name: 'Gujarat', value: 'gujarat' },
     { _id: 'maharastra', name: 'Maharastra', value: 'maharastra' },
@@ -38,7 +37,7 @@ const State = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons }) => {
               </div>
               <div className='inbox'>
                 <Row align='middle' justify='space-between'>
-                  <Col xl={{ span: 7 }} lg={{ span: 7 }} md={{ span: 7 }} sm={{ span: 7 }} xs={{ span: 7 }}>
+                  <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                     <TextInput
                       type='text'
                       name='billingAddress'
@@ -48,7 +47,7 @@ const State = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons }) => {
                       requiredMsg='Please enter Address'
                     />
                   </Col>
-                  <Col xl={{ span: 7 }} lg={{ span: 7 }} md={{ span: 7 }} sm={{ span: 7 }} xs={{ span: 7 }}>
+                  <Col xl={7} lg={7} md={7} sm={7} xs={7}>
                     <TextInput
                       type='text'
                       name='pincode'
@@ -58,7 +57,7 @@ const State = ({ isDetailsVisible, setIsDetailsVisible, setIsAddons }) => {
                       requiredMsg='Please enter Pincode'
                     />
                   </Col>
-                  <Col xl={{ span: 7 }} lg={{ span: 7 }} md={{ span: 7 }} sm={{ span: 7 }} xs={{ span: 7 }} className='selectDrop'>
+                  <Col xl={7} lg={7} md={7} sm={7} xs={7} className='selectDrop'>
                     <Selectable
                       firstName='name'
                       placeholder='State'

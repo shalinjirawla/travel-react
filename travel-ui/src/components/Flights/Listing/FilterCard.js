@@ -6,12 +6,12 @@ import { AuthContext } from '../../../context/AuthProvider';
 import { FilterOutlined } from '@ant-design/icons';
 import AppModal from '../../AppModal';
 
-const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
+const FilterCard = ({ handleFilterValues, selectedFlightOption, filterModalOpen, setFilterModalOpen }) => {
 
     const FilterButton = ({ btnHeading, options, handleClick }) => {
         return (
             <div>
-                <h3 className='subHeading'>{btnHeading}</h3>
+                <h3 className={`subHeading ${((selectedFlightOption === 'oneway') && 'subHeadingow')}`}>{btnHeading}</h3>
                 <div className='flexWrap'>
                     {options.map((btn) => (
                         <>
@@ -19,7 +19,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 key={btn.id}
                                 style={{ marginBottom: '4%' }}
                                 size='large'
-                                className={`checkButtonClass ${btn.isChecked ? 'clicked' : ''}`}
+                                className={`checkButtonClass ${((selectedFlightOption === 'oneway') && 'checkButtonClassow')} ${btn.isChecked ? 'clicked' : ''}`}
                                 onClick={() => handleClick(btn.id)}
                                 label={btn.btnValue}
                             />
@@ -90,8 +90,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
         },
     ];
 
-    const { rsWidths: { is1300 }, isTablet } = useContext(AuthContext)??{};
-	const [filterModalOpen, setFilterModalOpen] = useState(false);
+    const { rsWidths: { is1300, is1100 }, isTablet } = useContext(AuthContext)??{};
     const [airlinesCheckbox, setAirlinesCheckbox] = useState(airlinesCheckboxData);
     const [isButtonClickedForDeparture, setButtonClickedForDeparture] = useState(departureButtonData);
     const [isButtonClickedForReturn, setButtonClickedForReturn] = useState(departureButtonData);
@@ -262,26 +261,29 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
 	};
 
     const filterData = <>
-        <div className='filterFModal'>
-            <div className='modal-header'>
+        <div className={`filterFModal ${((selectedFlightOption === 'roundtrip') && 'filterFModalRT')}`}>
+            <div className={`modal-header ${((selectedFlightOption === 'roundtrip') && 'modal-headerRT')}`}>
                 <div className='headerPadding'>
                     <div>
-                        {!isTablet && <div className='headingStyle'>Filters</div>}
-                        <div className='headingStyles'>showing 12 flights</div>
+                        {/* {!isTablet && <div className='headingStyle'>Filters</div>} */}
+                        {((selectedFlightOption === 'oneway') ? !isTablet : (selectedFlightOption === 'roundtrip') ? !is1100 : '') && 
+                            <div className={`headingStyle ${((selectedFlightOption === 'oneway') && 'headingStyleow')}`}>Filters</div>
+                        }
+                        <div className={`headingStyles ${((selectedFlightOption === 'oneway') && 'headingStylesow')}`}>showing 12 flights</div>
                     </div>
-                    <span className='resetStyleShow' onClick={handleResetAll}>Reset All</span>
+                    <span className={`resetStyleShow ${((selectedFlightOption === 'oneway') && 'resetStyleShowOw')}`} onClick={handleResetAll}>Reset All</span>
                 </div><br />
 
                 <div className='justifyBetweens'>
                     <span className='labelClass'>
-                        <Checkbox className='checkBoxFHideLabel' onChange={handleChangeHide} checked={hideChecked}>Hide multi check-in flights</Checkbox>
+                        <Checkbox className={`checkBoxFHideLabel ${((selectedFlightOption === 'oneway') && 'checkBoxFHideLabelow')}`} onChange={handleChangeHide} checked={hideChecked}>Hide multi check-in flights</Checkbox>
                     </span>
                 </div>
             </div>
 
             <div className='borderBottom'></div>
 
-            <div className='modal-body'>
+            <div className={`modal-body ${((selectedFlightOption === 'roundtrip') && 'modal-bodyRT')}`}>
                 <FilterButton
                     btnHeading='Departure'
                     options={isButtonClickedForDeparture}
@@ -315,8 +317,9 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                 <div className='subDiv'>
                     <div>
                         <div className='flex-between'>
-                            <div className='subHeadingStyle'>Price</div>
-                            <span className='resetStyleShow d-flex' onClick={handleResetForPriceSlider}>Reset</span>
+                            <div className={`subHeadingStyle ${((selectedFlightOption === 'oneway') && 'subHeadingStyleow')}`}>Price</div>
+                            {/* <span className='resetStyleShow d-flex' onClick={handleResetForPriceSlider}>Reset</span> */}
+                            <span className={`resetStyleShow d-flex ${((selectedFlightOption === 'oneway') && 'resetStyleShowOw')}`} onClick={handleResetForPriceSlider}>Reset</span>
                         </div>
                         <Slider
                             range
@@ -327,13 +330,14 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                             value={priceRangeSlider}
                             onChange={(val) => handleChangeSlider('price', val, setPriceRangeSlider)}
                             tooltip={{ formatter: null }}
+                            className={`${(selectedFlightOption === 'oneway') && 'sliderFontStyle'}`}
                         />
                     </div>
                     {selectedFlightOption === 'roundtrip' &&
                         <div>
                             <div className='flex-between'>
-                                <div className='subHeadingStyle'>Return Price</div>
-                                <span className='resetStyleShow d-flex' onClick={handleResetForReturnPriceSlider}>Reset</span>
+                                <div className={`subHeadingStyle ${((selectedFlightOption === 'oneway') && 'subHeadingStyleow')}`}>Return Price</div>
+                                <span className={`resetStyleShow d-flex ${((selectedFlightOption === 'oneway') && 'resetStyleShowOw')}`} onClick={handleResetForReturnPriceSlider}>Reset</span>
                             </div>
                             <Slider
                                 range
@@ -344,6 +348,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 value={returnPriceRangeSlider}
                                 onChange={(val) => handleChangeSlider('price', val, setReturnPriceRangeSlider)}
                                 tooltip={{ formatter: null }}
+                                className={`${(selectedFlightOption === 'oneway') && 'sliderFontStyle'}`}
                             />
                         </div>
                     }
@@ -354,8 +359,8 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                 <div className='subDiv'>
                     <div>
                         <div className='flex-between'>
-                            <div className='subHeadingStyle'>Onward Duration</div>
-                            <span className='resetStyleShow d-flex' onClick={handleResetForDurationSlider}>Reset</span>
+                            <div className={`subHeadingStyle ${((selectedFlightOption === 'oneway') && 'subHeadingStyleow')}`}>Onward Duration</div>
+                            <span className={`resetStyleShow d-flex ${((selectedFlightOption === 'oneway') && 'resetStyleShowOw')}`} onClick={handleResetForDurationSlider}>Reset</span>
                         </div>
                         <Slider
                             range
@@ -366,13 +371,14 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                             value={durationRangeSlider}
                             onChange={(val) => handleChangeSlider('duration', val, setDurationRangeSlider)}
                             tooltip={{ formatter: null }}
+                            className={`${(selectedFlightOption === 'oneway') && 'sliderFontStyle'}`}
                         />
                     </div>
                     {selectedFlightOption === 'roundtrip' &&
                         <div>
                             <div className='flex-between'>
-                                <div className='subHeadingStyle'>Return Duration</div>
-                                <span className='resetStyleShow d-flex' onClick={handleResetForReturnDurationSlider}>Reset</span>
+                                <div className={`subHeadingStyle ${((selectedFlightOption === 'oneway') && 'subHeadingStyleow')}`}>Return Duration</div>
+                                <span className={`resetStyleShow d-flex ${((selectedFlightOption === 'oneway') && 'resetStyleShowOw')}`} onClick={handleResetForReturnDurationSlider}>Reset</span>
                             </div>
                             <Slider
                                 range
@@ -383,6 +389,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                                 value={returnDurationRangeSlider}
                                 onChange={(val) => handleChangeSlider('duration', val, setReturnDurationRangeSlider)}
                                 tooltip={{ formatter: null }}
+                                className={`${(selectedFlightOption === 'oneway') && 'sliderFontStyle'}`}
                             />
                         </div>
                     }
@@ -393,18 +400,19 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                 <div className='subDiv'>
                     <div>
                         <div className='flex-between'>
-                            <div className='subHeadingStyle'>Preferred Airlines</div>
-                            <span className='resetStyleShow d-flex' onClick={handleResetForAirlines}>Reset</span>
+                            <div className={`subHeadingStyle ${((selectedFlightOption === 'oneway') && 'subHeadingStyleow')}`}>Preferred Airlines</div>
+                            <span className={`resetStyleShow d-flex ${((selectedFlightOption === 'oneway') && 'resetStyleShowOw')}`} onClick={handleResetForAirlines}>Reset</span>
                         </div>
 
-                        <div className='subHeading'>
+                        <div className={`subHeading ${((selectedFlightOption === 'oneway') && 'subHeadingow')}`}>
                             {airlinesCheckbox.map(o => (
                                 <div className='checkList' key={o.id}>
                                     <div>
-                                        <Checkbox className='checkFBoxLabel' onChange={() => handleChangeHideForAirlines(o.id)} checked={o.isChecked}>{o.airline}</Checkbox>
+                                        <Checkbox className={`checkFBoxLabel ${((selectedFlightOption === 'oneway') && 'checkFBoxLabelow')}`} onChange={() => handleChangeHideForAirlines(o.id)} checked={o.isChecked}>{o.airline}</Checkbox>
                                     </div>
                                     <div>
-                                        <span className='subPriceCheck color'>{o.price}</span>
+                                        {/* <span className='subPriceCheck color'>{o.price}</span> */}
+                                        <span className={`color ${((selectedFlightOption === 'oneway') && 'subPriceCheck')}`}>{o.price}</span>
                                     </div>
                                 </div>
                             ))}
@@ -416,19 +424,23 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
     </>
 
     return (
-        <>  
-            {isTablet && 
-                <div className='filterFTitle textAlignEnd'>
-                    <div
-                        onClick={() => {
-                            setFilterModalOpen(true);
-                        }}
-                    >
-                        <span className='moreFFilter'>More Filters <FilterOutlined /> </span>
-                    </div>
+        <>
+            {((selectedFlightOption === 'oneway') ? isTablet : (selectedFlightOption === 'roundtrip') ? is1100 : '') &&
+                <div className='filterFTitle filterRoudTripTitle textAlignEnd'>
+                    {(selectedFlightOption === 'oneway') && 
+                        <div>
+                            <span 
+                                onClick={() => {
+                                    setFilterModalOpen(true);
+                                }}
+                                className='moreFFilter cursorP'
+                            >More Filters <FilterOutlined /></span>
+                        </div>
+                    }
                     <AppModal
                         title='Filters'
-                        className='modalFStyle'
+                        // className='modalFStyle'
+                        className={`modalFStyle ${((selectedFlightOption === 'roundtrip') && 'modalFStyleRT')}`}
                         open={filterModalOpen}
                         children={filterData}
                         onOk={handleFilterModal}
@@ -436,7 +448,7 @@ const FilterCard = ({ handleFilterValues, selectedFlightOption }) => {
                     />                    
                 </div>
             }
-            {!isTablet && 
+            {((selectedFlightOption === 'oneway') ? !isTablet : (selectedFlightOption === 'roundtrip') ? !is1100 : '') &&
                 <Card className='filterCard'> 
                     {filterData}
                 </Card>

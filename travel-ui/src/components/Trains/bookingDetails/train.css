@@ -1,38 +1,32 @@
-.card0 {
-    width: 57.3%;
-    border-radius: 8px;
-    margin: 1.5% 0% 0% 5%;
-    box-shadow: 0 0 3px 0 lightgray; 
-}
 .card15{
-    width: 89%;
-    margin: 1% 0% 0% 5%;
+    width: 87%;
+    margin: 1% 0% 0% 8%;
     box-shadow: 0 0 3px 0 lightgray; 
-    margin-top: -4.5%;
+    border-radius: 6px;
+}
+.train-main{
+  margin-top: -5%;
+}
+.card-refund{
+    width: 87%;
+    margin: 1% 0% 0% 8%;
+    box-shadow: 0 0 5px 0 lightgray;
+    background: linear-gradient(180deg,#f0f1f4 12.06%,#fff 72.59%);
+    box-shadow: 0 2px 6px rgba(109,122,137,.2);
+    overflow: hidden;
     border-radius: 6px;
 }
 .div{
     width: 89%;
-    margin: 1% 0% 0% 5%;
-    box-shadow: 0 0 3px 0 lightgray; 
-    margin-top: -11%;
-    border-radius: 6px;
-}
-.div1{
-    width: 89%;
-    margin: 1% 0% 0% 5%;
-    box-shadow: 0 0 3px 0 lightgray; 
-    margin-top: 3%;
-}
-.card11{
-    width: 89%; 
     margin: 2% 0% 0% 5%;
     box-shadow: 0 0 3px 0 lightgray; 
-    margin-top: -26.5%;
     border-radius: 6px;
 }
+.label .ant-form-item-label >label {
+    font-size: var(--third-font);
+}
 .add-1{
-    padding: 3%;
+    padding-bottom: 3%;
 }
 .back1{
     background-color: var(--primary-color);
@@ -43,43 +37,23 @@
 .backHeading {
     color: white;
     font-weight: var( --third-fontWeight);
-    padding: 2.5% 5.5%;
+    padding: 2% 5.5%;
 }
 .header-p{
     font-weight: var(--primary-fontWeight);
     font-family: rubik;
     margin-top: 0%;
     font-size: var(--secondary-font);
-    }
-.main-2{
-    justify-content: space-between;
-    margin-right: 1%;
 }
 
-.main-3{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: -2%;
-}
-.irctc-id{
-    font-size: var(--secondary-font);
- }
+/* -------------------boading------- */
 .train-boarding{
     font-weight: var(--primary-fontWeight);
     font-family: rubik;
     line-height: 11px!important;
     font-size: var(--third-font);
     color: #777;
-    margin: 12% 0% 6%;  
-}
-.offers{
-    font-weight: var(--third-fontWeight);
-    font-family: rubik;
-    font-size: var(--tritary-font);
-    line-height: 20px;
-    margin-top: -5%;
-    padding-top: 4%;
+    margin: 3% 0% 6% !important;
 }
 .dark{
     font-weight: var(--secondary-fontWeight);
@@ -94,64 +68,82 @@
     font-size: var(--third-font);
     line-height: 14px;
     color: #777;
-    margin-top: -14%;
 }
 .vertical-line {
     border-left: 1px solid #e1e7ee;
-    height: 41px;
     margin: 18px 15px; 
-}
-.left-2{
-    margin-top: -11%;
-    display: flex;
 }
 .logo11{
     display: flex;  
     flex-direction: column;
     align-items: center;
-    margin-top: 3%;
 }
-.time{
+.time-train{
     font-family: rubik;
     font-weight: var(--label-fontWeight);
     line-height: 17px!important;
     color: #777;
 }
+.left, .right {
+    width: 25%;
+}
+.main-3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.irctc-id{
+    font-size: var(--secondary-font);
+ }
+ /* ------------------------fair------------ */
+.train-fair{
+    padding-top: 4%;
+}
+.offers{
+    margin: 0 ;
+    font-weight: var(--third-fontWeight);
+    font-family: rubik;
+    font-size: var(--tritary-font);
+    line-height: 20px;
+    padding-top: 4%;
+}
+
+/* -----------------Id---------- */
 .id{
     display: flex;
-    margin-top: -4%;    
     font-size: var(--primary-font);
 }
-.id-1{
+.details-header{
+    margin: 0;
     font-weight: var(--third-fontWeight);
-    margin-bottom: 2%;
-    padding-top: 2%;
     font-size: var(--primary-font);
 }
 .id1{
-    margin-top: 8px;
+    margin-top: 8px; 
 }
-.id-2{
+.input-irctc{
+    padding-bottom: 2%;
+}
+.irctc-id-require{
     line-height: 17px!important;
     font-size: var(--third-font);
     color: #777;
-    margin-top: -2%;
+    margin: 0;
+    padding-bottom: 2%;
 }
 .bold{
     font-weight: var( --third-fontWeight);
 }
-.footer{
+.footer-Details{
     display: flex;
     align-items: center;
     padding: 0px 24px;
-    margin: 6% -16px -16px;
     background-color: #f2f8ff;
-    height: 3rem;   
 }
-.btn-2 {
+.Id-btn {
     width: 100%;
 }
-.id4{
+.id-footer{
     line-height: 19px!important;
     font-size: var(--secondary-font);
     color: #777;
@@ -181,39 +173,41 @@
 .refund {
     font-family: rubik;
     font-weight: var(--label-fontWeight);
-    font-size: var(--label-font);
+    font-size: var(--third-font);
     line-height: 12px;  
     color: #777;
 }
 .check1{
-    padding-left: 50px;
-    margin-top: 27px;
+    padding-left: 8%;
+    margin-top: 26px;
 }
-.radio{
+.radio-1{
+    padding: 1% 0%;
+    font-size:  16px !important;
     font-family: rubik;
     font-weight: var(--label-fontWeight);
     line-height: 19px!important;
-    font-size: var(--secondary-font);
 }
-.a{
+.apply{
     float: right;
     padding-right: 6%;
-    margin-top: -13%;
+    margin-top: -10%;
     position: relative;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: var(--secondary-fontWeight);
 }
 .aa{
     color: var(--primary-color);
     cursor: pointer;
 }
-.s{
+.cancelation-refund{
     margin-left: 6px;
     color: #777;
     font-family: rubik;
     font-weight: var(--label-fontWeight);
+    font-size: var(--third-font);
 }
-.footer-1{
+.footer-cancelation{
     display: flex;
     align-items: center;
     background-color: #f2f8ff;
@@ -221,7 +215,12 @@
     margin: 20px -24px -44px;
     align-items: center;
 }
-.footer-p{
+.id-1{
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 2%;
+}
+.footer-cancellation-details{
     display: flex;
     font-family: rubik;
     font-weight: var(--label-fontWeight);
@@ -230,15 +229,6 @@
     color: #777;
     padding-bottom: 1%;
 }
-.card-1{
-    width: 57.3%;
-    margin: 1.5% 0% 0% 5%;
-    box-shadow: 0 0 5px 0 lightgray;
-    background: linear-gradient(180deg,#f0f1f4 12.06%,#fff 72.59%);
-    box-shadow: 0 2px 6px rgba(109,122,137,.2);
-    overflow: hidden;
-    border-radius: 6px;
-}
 .offer{
     font-weight: var(--primary-fontWeight);
     font-family: rubik;
@@ -246,8 +236,146 @@
     line-height: 20px;
     color: #141823!important;
 }
-.card-3-main-1{
-    width: 100%; 
+@media only screen and (max-width: 1172px){
+    .Trainfair{
+        padding-left: 47% !important;
+    }
+    .card15{
+        width: 90%;
+        margin: 1% 0% 1% 5%;
+    }
+      .train-main{
+        margin-top: -7%;
+    }
+    .card-refund{
+        width: 90%;
+        margin: 1% 0% 1% 5%;
+    }
+    .blur-train {
+        filter: blur(4px); 
+        backdrop-filter: grayscale(20%);
+    }
+}
+@media only screen and (max-width: 950px){
+    .Trainfair{
+        padding-left: 47% !important;
+        width: 57%;
+    }  
+    .train-main{
+        margin-top: -9%;
+    }
+}
+@media only screen and (max-width: 850px){
+    .train-main{
+        margin-top: -10%;
+    }
+    .left, .right {
+        width: 30%;
+    }
+}
+@media only screen and (max-width: 700px){
+    .left, .right {
+        width: 35%;
+    }
+}
+@media only screen and (max-width: 530px){
+    .left, .right {
+        width: 38%;
+    }
+}
+@media only screen and (max-width: 600px){
+    .train-boarding {
+        font-size: var(--label-font) !important;
+    }
+    .dark{
+        font-size: 15px !important;
+    }
+   .light{
+    font-size: var(--label-font) !important;
+   }
+   .id-1{
+    font-size: var(--secondary-font) !important;
+   }
+   .details-no-traveller{
+    font-size: 13px !important;
+   }
+   .irctc-id-require{
+    font-size: var(--label-font);
+   }
+   .id-footer{
+    font-size: 13px !important;
+   }
+   .irctc-id{
+    font-size: 13px !important;
+   }
+   .h3{
+    font-size: var(--secondary-font);
+    font-weight: 600 !important;
+   }
+   .footer-cancellation-details{
+    font-size: var(--label-font) !important;
+    padding-bottom: 4% !important;
+   }
+   .checkk{
+    font-size: var(--third-font) !important;
+   }
+   .footer-cancelation{
+    margin: 20px -63px -44px !important;
+   }
+   .radio-1{
+    font-size: var(--label-font) !important;
+   }
+   .add-traveller{
+    padding: 1% 0% 1% 29% !important;
+    font-size: var(--secondary-font) !important;
+   }
+   .datails-name{
+    font-size: var(--third-font) !important;
+   }
+   .pass-edit{
+    font-size: var(--third-font) !important;
+   }
+   .offers{
+    font-size: var(--primary-font) !important;
+   }
+   .apply{
+    margin-top: -11% !important;
+    font-size: var(--third-font) !important;
+   }
+   .agree{
+    font-size: var(--label-font) !important;
+   }
+   .train-main{
+    margin-top: -14% !important;
+  }
+  .btn-5{
+    height: 2rem !important;
+  }
+  .Trainfair{
+    padding-left: 42% !important;
+    width: 60% !important;
+  }
+  
+} 
+@media only screen and (max-width: 500px){
+    .train-main {
+        margin-top: -19% !important;
+    }
+    .span-1{
+        font-size: var(--secondary-font) !important;
+    }
+    .price{
+        font-size: var(--primary-font) !important;
+    }
+    .apply{
+        padding-right: 4% !important;
+        font-size: 13px !important;
+        margin-top: -14% !important;
+    }
+   
+}
+.ant-popover-inner{
+    display: contents !important;
 }
 .card-3-main-2{
     justify-content: space-between;
@@ -262,7 +390,6 @@
     font-size: var(--third-font);
     color: #777;
 }
-
 .price{
    font-weight: var(--secondary-fontWeight);
     font-family: rubik;
@@ -270,16 +397,13 @@
     font-size: 24px;
     color: #141823!important;
 }
-.small-1{
+.details-no-traveller{
     font-family: rubik;
     font-weight: var( --label-fontWeight);
     font-size: var(--third-font);
     line-height: 14px;
     color: #777;
     margin-top: 0%;
-}
-.checkbox-1{
-    padding-left: 10px;
 }
 .span-1{
     font-weight: var(--primary-fontWeight);
@@ -295,7 +419,6 @@
     height: 3rem;
     border-radius: 6px!important;
     width: 100%!important;
-    margin-top: -1%!important;     
 }
 .payment{
     font-weight: 500!important;
@@ -305,7 +428,7 @@
     display: contents;
     text-align: center!important;
 }
-.card-3-main-3{
+.basefare-footer{
     padding: 2% 3%;
     background-color: #f2f8ff;  
     font-family: rubik;
@@ -327,6 +450,73 @@
     font-size: var(--primary-font);
     line-height: 20px;
     color: #141823!important;
-    padding: 0% 0% 2% 2.5%;
+    padding-bottom: 2%;
 }
-   
+.small-1{
+    font-size: var(--third-font);
+    margin: 0;
+    font-weight: 400;
+}
+.traveller-name{
+    display: flex;
+    align-items: center;
+}
+.main-flight-details {
+    width: 100%;
+}
+.confirmModal{
+    width: 40% ;
+}
+.train-pass-check{
+    height: 4vh;
+    color: #1677ff;
+}
+.passanger-details{
+    display: flex;
+    align-items: center;
+}
+.label{
+    font-size: 20px !important;
+}
+.add-traveller{
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 14px;
+    color: #1677ff;
+    margin-top: 0%;
+    padding: 1% 0% 1% 39%;
+    cursor: pointer;
+    /* padding-left: 3%; */
+}
+.pass-detail-button{
+    padding: 1% 0% 0% 0%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.datails-name{
+    font-size: 16px;
+    font-weight: bold;  
+    padding-left: 6%;
+    padding: 1% 3%;
+}
+.bttn{
+    width: 50%;
+}
+.cancle-train{
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 2%;
+    cursor: pointer;
+}
+.train-modal{
+    padding-bottom: 3%;
+    font-size: 21px;
+    font-weight: bolder;
+    padding-left: 1%;
+}
+.pass-edit{
+    font-size: 16px;
+    font-weight: bold;
+}

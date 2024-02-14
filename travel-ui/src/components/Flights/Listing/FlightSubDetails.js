@@ -267,34 +267,22 @@ const FlightSubDetails = ({ type, data, index }) => {
     const fareDetailItems = (data, index) => [
         {
             key: '1',
-            children: 'Base Fare (1 Adult)',
-            // span: 2
+            label: 'Base Fare (1 Adult)',
+            children: `₹${data?.fareDetails?.price?.amount}`,
+            span: { xs: 1, sm: 2, md: 3, lg: 3, xl: 3, xxl: 3 }
         },
         {
             key: '2',
-            children: `₹${data?.fareDetails?.price?.amount}`,
-            span: 2
+            label: 'Taxes and Fees (1 Adult)',
+            children: `₹${data?.fareDetails?.price?.taxAmount}`,
+            span: { xs: 1, sm: 2, md: 3, lg: 3, xl: 3, xxl: 3 }
         },
         {
             key: '3',
-            children: 'Taxes and Fees (1 Adult)',
-            // span: 2
-        },
-        {
-            key: '4',
-            children: `₹${data?.fareDetails?.price?.taxAmount}`,
-            span: 2
-        },
-        {
-            key: '5',
-            children: 'Total Fare (1 Adult)',
-            // span: 2
-        },
-        {
-            key: '6',
+            label: 'Total Fare (1 Adult)',
             children: `₹${data?.fareDetails?.price?.totalAmount}`,
-            span: 2
-        },
+            span: { xs: 1, sm: 2, md: 3, lg: 3, xl: 3, xxl: 3 }
+        }
     ];
 
     const fairDetailTab = (data, index) => (
@@ -357,11 +345,10 @@ const FlightSubDetails = ({ type, data, index }) => {
             <div className='multiCityTabCardStyle'>
                 <Card className='multiFirCanRuleCard'>
                     <Row align='middle' justify='space-between'>
-                        <Col xl={10} lg={10} md={10} sm={10} xs={10}>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <span className='canRuleHeading'><b>Ahmedabad to Mumbai</b></span>
                         </Col>
-                        <Col xl={6} lg={6} md={6} sm={6} xs={6}></Col>
-                        <Col xl={8} lg={8} md={8} sm={8} xs={8} className='textAlignEnd'>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12} className='textAlignEnd'>
                             <Tag className='tagMTParRef'>Partially Refundable</Tag>
                         </Col>
                     </Row>
@@ -369,8 +356,8 @@ const FlightSubDetails = ({ type, data, index }) => {
 
                 {/* <Card className='multiSecCanRuleCard'> */}
                 <Card className={`${(type === 'FlightCombinations') ? 'multiSecCanRuleComboCard' : ((type === 'OwnFlights') ? 'multiSecCanRuleCard' : 'flightDetailSecCanRuleCard')}`}>
-                    <Row align='middle' justify='space-between'>
-                        <Col xl={12} lg={10} md={10} sm={10} xs={10}>
+                    <Row align='top' justify='space-between'>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <div className='multiCityFTable'>
                                 <div className='canChargeHeading'>Cancellation Charges</div>
                                 <div>
@@ -383,7 +370,7 @@ const FlightSubDetails = ({ type, data, index }) => {
                                 </div>
                             </div>
                         </Col>
-                        <Col xl={12} lg={10} md={10} sm={10} xs={10}>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <div className='multiCityFTable'>
                                 <div className='canChargeHeading'>Reschedule Charges</div>
                                 <div>
@@ -402,11 +389,10 @@ const FlightSubDetails = ({ type, data, index }) => {
             {type === 'FlightCombinations' && <div className='multiCityTabCardStyle m-Top'>
                 <Card className='multiFirCanRuleCard'>
                     <Row align='middle' justify='space-between'>
-                        <Col xl={10} lg={10} md={10} sm={10} xs={10}>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <span className='canRuleHeading'><b>Mumbai to New Delhi</b></span>
                         </Col>
-                        <Col xl={6} lg={6} md={6} sm={6} xs={6}></Col>
-                        <Col xl={8} lg={8} md={8} sm={8} xs={8} className='textAlignEnd'>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12} className='textAlignEnd'>
                             <Tag className='tagMTParRef'>Partially Refundable</Tag>
                         </Col>
                     </Row>
@@ -414,8 +400,8 @@ const FlightSubDetails = ({ type, data, index }) => {
 
                 {/* <Card className='multiSecCanRuleCard'> */}
                 <Card className={`${type === 'FlightCombinations' ? 'multiSecCanRuleComboCard' : ''}`}>
-                    <Row align='middle' justify='space-between'>
-                        <Col xl={12} lg={10} md={10} sm={10} xs={10}>
+                    <Row align='top' justify='space-between'>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <div className='multiCityFTable'>
                                 <div className='canChargeHeading'>Cancellation Charges</div>
                                 <div>
@@ -428,7 +414,7 @@ const FlightSubDetails = ({ type, data, index }) => {
                                 </div>
                             </div>
                         </Col>
-                        <Col xl={12} lg={10} md={10} sm={10} xs={10}>
+                        <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <div className='multiCityFTable'>
                                 <div className='canChargeHeading'>Reschedule Charges</div>
                                 <div>

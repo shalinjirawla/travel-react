@@ -2,14 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import '../styles/loader.css';
 import anime from 'animejs/lib/anime.es.js';
 import { Progress } from 'antd';
-import { AuthContext } from '../context/AuthProvider';
 
 const CustomLoader = ({
     progressPercent = 50,
     tipText = '',
+    headerRef
 }) => {
 
-    const { isTablet } = useContext(AuthContext)??{};
     // useEffect(() => {
     //     // const timer 
     //     setTimeout(() => {
@@ -100,7 +99,7 @@ const CustomLoader = ({
                 // size={[900, 15]}
                 showInfo={false}
                 className='progressBar'
-                style={{ top: isTablet ? '5.5rem' : null }}
+                style={{ top: headerRef?.current?.getBoundingClientRect()?.bottom - '10' }}
                 strokeColor={'lightgreen'}
                 // strokeWidth={'100%'}
                 // type='line'

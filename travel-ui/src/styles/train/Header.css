@@ -8,7 +8,6 @@
     background-color: var(--primary-color);
 }
 
-
 /* -------------------------------- labelHeaderStyle --------------------------- */
 
 .labelHeaderTStyle {
@@ -16,7 +15,6 @@
     font-weight: var(--primary-fontWeight);
     /* opacity: 0.6; */
 }
-
 
 /* -------------------------------- InputStyle --------------------------- */
 
@@ -29,7 +27,6 @@
     color: var(--primary-color);
     box-shadow: 0 0 4px 0 lightgray;
 }
-
 
 /* -------------------------------- BackgroundStyle --------------------------- */
 
@@ -48,20 +45,18 @@
     color: white !important;
     font-size: var(--secondary-font) !important;
     font-weight: var(--primary-fontWeight) !important;
+    padding-inline-end: 0 !important;
 }
-
 .backgroundTStyle .ant-picker-input>input::placeholder {
     color: white !important;
     font-size: var(--secondary-font) !important;
     font-weight: var(--primary-fontWeight) !important;
 }
-
 .backgroundTStyle .ant-picker-input >input {
     color: white !important;
     font-size: var(--secondary-font) !important;
     font-weight: var(--primary-fontWeight) !important;
 }
-
 .backgroundTStyle .ant-select-arrow .anticon > svg {
     fill: var(--dark-shadow) !important;
 }
@@ -76,22 +71,134 @@
     padding: 1% !important;
 }
 
-
 /* -------------------------------- SearchButton --------------------------- */
 
 .updateSearchTBtn {
     width: 100%;
     /* min-width: 40%; */
     /* margin: 0 1%; */
-    font-weight: 700 !important;
+    font-weight: var(--third-fontWeight) !important;
     min-height: 40px !important;
     /* color: black; */
     border-color: var(--primary-color);
     border-radius: 3px;
     font-size: var(--primary-font);
 } 
-
 .updateSearchTBtn:not(:disabled):not(.updateSearchTBtn-disabled):hover {
     color: black;
     border-color: var(--primary-color);
+}
+
+/* -------------------------------- mediaQuery --------------------------- */
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .listMainTDiv {
+        margin: 0 2.5%;
+    }
+    .labelHeaderTStyle {
+        font-size: var(--little-font) !important;
+    }
+    .backgroundTStyle .ant-select-selection-item {
+        font-size: var(--label-font) !important;
+        padding-inline-end: 0 !important;
+    }
+    .trainOptionStyle .ant-select-item-option-content {
+        font-size: var(--label-font) !important;
+        padding: 4% 2% !important;
+    }
+    .backgroundTStyle .ant-picker-input>input::placeholder {
+        font-size: var(--label-font);
+    }
+    .backgroundTStyle .ant-picker-input >input {
+        font-size: var(--label-font) !important;
+    }
+    .swapSelectTStyle {
+        font-size: var(--primary-font);
+    }
+    .updateSearchTBtn {
+        width: auto;
+        font-size: var(--label-font);
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+    .cardHeaderStyleT .ant-card-body {
+        padding: 0;
+    }
+    .cardHeaderStyleT {
+        padding: 0;
+        background-color: #fff;
+    }
+    .swapSelectTStyle {
+        border: 1px solid lightgray;
+    }
+    .updateSearchTBtn {
+        min-height: 2rem !important;
+        width: auto;
+        font-size: var(--third-font);
+        font-weight: var(--primary-fontWeight) !important;
+        background-color: var(--primary-color);
+        color: #fff !important;
+    }
+    .collapseTStyle .ant-collapse-header {
+        padding: 1% 0 !important;
+    }
+    .collapseTStyle .ant-collapse-header-text {
+        color: white;
+    }
+    .collapseTStyle .ant-collapse-content-box {
+        padding: 0 !important;
+    }
+    .collapseTStyle .ant-collapse-header {
+        padding: 1% 3% !important;
+        background-color: var(--primary-color) !important;
+    }
+    .activeCollapse .ant-collapse-header {
+        background-color: var(--primary-color) !important;
+    }
+    .collapseTStyle .ant-collapse-header-text {
+        color: white;
+    }
+    .collapseTStyle .ant-collapse-content-box {
+        padding: 0 3% !important;
+    }
+    .collapseTStyle .ant-collapse-item-active {
+        background-color: #fff !important;
+    }
+    .collapseLabel {
+        font-size: var(--third-font);
+        color: white;
+    }
+    .activeLabel {
+        color: var(--dark-shadow);
+        color: #fff;
+    }
+    .labelHeaderTStyle {
+        color: black;
+    }
+    .backgroundTStyle .ant-select-selection-item {
+        color: black !important;
+    }
+    .backgroundTStyle .ant-picker-input>input::placeholder {
+        color: black !important;
+    }
+    .backgroundTStyle .ant-picker-input >input {
+        color: black !important;
+    }
+    .backgroundTStyle {
+        background-color: #fff!important;
+        color: black !important;
+        border-color: lightgray !important;
+    }
+    .backgroundTStyle .ant-select-selector {
+        background-color: #fff !important;
+        color: black !important;
+        border-color: lightgray !important;
+    }
+    .backgroundTStyle .ant-select-arrow .anticon > svg {
+        fill: #fff !important;
+    }
+    .backgroundTStyle .ant-picker-suffix .anticon > svg {
+        fill: #fff !important;
+    }
 }

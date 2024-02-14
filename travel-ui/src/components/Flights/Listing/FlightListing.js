@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import FilghtCard from './FilghtCard';
 import FilterCard from './FilterCard';
 import FlightDetailsCard from './FlightDetailsCard';
@@ -13,11 +13,12 @@ const FlightListing = () => {
 
     const headerRef = useRef(null);
     const location = useLocation();
-    const { isTablet } = useContext(AuthContext)??{};
+    const { isTablet, rsWidths: { is1100 } } = useContext(AuthContext)??{};
     const { selectedFlightOption, searchDetails, travellers } = location?.state??{};
     const [currSearchFlightList, setCurrSearchFlightList] = useState([]);
     const [loadingPercent, setLoadingPercent] = useState(30);
     const [isLoading, setIsLoading] = useState(true);
+    const [filterModalOpen, setFilterModalOpen] = useState(false);
 
     useEffect(() => {
         if (isLoading) {
@@ -28,9 +29,9 @@ const FlightListing = () => {
                 (selectedFlightOption === 'oneway') && setCurrSearchFlightList(oneWayTripData[1]);
                 (selectedFlightOption === 'roundtrip') && setCurrSearchFlightList(roundTripData[1]);
                 setLoadingPercent(100);
-                // setIsLoading(false);
+                setIsLoading(false);
             }, 3000);
-    
+
             return () => {
                 clearTimeout(timer1);
                 clearTimeout(timer2);
@@ -44,21 +45,22 @@ const FlightListing = () => {
 
     return (
         <div className='backColor'>
-            <FilghtCard ref={headerRef} currSearchFlightList={currSearchFlightList} searchDetails={searchDetails} travellers={travellers} selectedFlightOption={selectedFlightOption} /><br />
+            <FilghtCard headerRef={headerRef} currSearchFlightList={currSearchFlightList} searchDetails={searchDetails} travellers={travellers} selectedFlightOption={selectedFlightOption} /><br />
             {isLoading &&
                 <div className='listMainDiv1'>
                     <CustomLoader
                         progressPercent={loadingPercent}
+                        headerRef={headerRef}
                         tipText="Hold on, We're fetching flights for you"
                     />
                 </div>
             }
             {!isLoading &&
                 <>
-                    <div className={isTablet ? 'listMainDivTab' : 'listMainDiv'}>
-                        <FilterCard selectedFlightOption={selectedFlightOption} handleFilterValues={handleFilterValues} />
+                    <div className={isTablet ? 'listMainDivTab' : (selectedFlightOption === 'roundtrip' && is1100 ? '' : 'listMainDiv')}>
+                        <FilterCard selectedFlightOption={selectedFlightOption} handleFilterValues={handleFilterValues} filterModalOpen={filterModalOpen} setFilterModalOpen={setFilterModalOpen} />
                         {selectedFlightOption === 'oneway' && <FlightDetailsCard selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} />}
-                        {selectedFlightOption === 'roundtrip' && <RoundTripList selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} />}
+                        {selectedFlightOption === 'roundtrip' && <RoundTripList selectedFlightOption={selectedFlightOption} currSearchFlightList={currSearchFlightList} travellers={travellers} setFilterModalOpen={setFilterModalOpen} />}
                     </div>
                 </>
             }

@@ -110,51 +110,56 @@
     color: rgb(113, 113, 113);
 }
 
-/* -------------------------------- Responsive (MediaQuery) --------------------------- */
+/* -------------------------------- mediaQuery --------------------------- */
 
 @media only screen and (min-width: 769px) and (max-width: 992px) {
 
     .filterCard .ant-card-body {
         padding: 4%;
     }
-    .headingStyle {
+    .headingStyleow {
         font-size: var(--third-font);
     }
-    .headingStyles, .resetStyleShow, .subPriceCheck {
+    .headingStylesow, .resetStyleShowOw, .subPriceCheck {
         font-size: var(--small-font);
     }
-    .checkBoxFHideLabel .ant-checkbox-inner {
+    .checkBoxFHideLabelow .ant-checkbox-inner {
         width: 0.7rem;
         height: 0.7rem;
     }
-    .checkBoxFHideLabel .ant-checkbox+span {
+    .checkBoxFHideLabelow .ant-checkbox+span {
         font-size: var(--small-font);
     }
-    .subHeading, .subHeadingStyle {
+    .subHeadingow, .subHeadingStyleow {
         font-size: var(--label-font);
     }
-    .checkButtonClass {
+    .checkButtonClassow {
         font-size: var(--small-font) !important;
         padding: 1% !important;
         height: 1.5rem !important;
     }
-    .ant-slider .ant-slider-mark-text {
+    .sliderFontStyle .ant-slider-mark-text {
+        font-size: var(--small-font) !important;
+    }
+    .checkFBoxLabelow .ant-checkbox+span {
         font-size: var(--small-font);
     }
-    .checkFBoxLabel .ant-checkbox+span {
-        font-size: var(--small-font);
-    }
-
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .checkButtonClass {
+    .checkButtonClassow {
         font-size: var(--label-font) !important;
         padding: 1% !important;
         height: 2rem !important;
     }
 }
 
+@media only screen and (min-width: 480px) and (max-width: 1100px) {
+    .moreFFilter {
+        font-size: var(--third-font);
+        color: var(--primary-color);
+    }
+}
 @media only screen and (min-width: 480px) and (max-width: 768px) {
     .filterFTitle {
         margin: 0 0 0 4% !important;
@@ -163,15 +168,11 @@
     .filterCard .ant-card-body {
         padding: 1%;
     }
-    .moreFFilter {
-        font-size: var(--third-font);
-        color: var(--primary-color);
-    }
 
     /* -------------------------------- modal --------------------------- */
 
     .modalFStyle {
-        width: 65% !important;
+        width: 60% !important;
     }
     .modalFStyle .ant-modal-close {
         top: auto;
@@ -209,5 +210,76 @@
     }
     .checkList {
         padding-bottom: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1100px) {
+    .filterRoudTripTitle {
+        margin: 8% 0 0 5% !important;
+        width: 90%;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1000px) {
+    .filterRoudTripTitle {
+        margin: 9% 0 0 5% !important;
+        width: 90%;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 850px) {
+    .filterRoudTripTitle {
+        margin: 10% 0 0 5% !important;
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1100px) {
+
+    /* -------------------------------- roundTrip FIlterCard modal --------------------------- */
+
+    .modalFStyleRT {
+        width: 60% !important;
+    }
+    .modalFStyleRT .ant-modal-close {
+        top: auto;
+        display: flex;
+        align-items: end;
+    }
+    .ant-modal .ant-modal-close:hover {
+        color: rgba(0, 0, 0, 0.45) !important;
+        background-color: white !important;
+    }
+    .modalFStyleRT .ant-modal-title {
+        font-size: var(--primary-font);
+    }
+    .filterFModalRT {
+        height: 24rem; 
+        width: 100%;
+    }
+    .modal-headerRT { 
+        height: 4rem;
+    }
+    .modal-bodyRT { 
+        height: 18rem;
+        overflow: hidden auto;
+        padding: 0 3%;
+    }
+    .borderBottom {
+        padding-top: 2%;
+        margin: 0 -2%;
+    }
+    .subHeading, .flexWrap {
+        padding-top: 2%;
+    }
+    .subDiv {
+        margin-top: 2%;
+    }
+    .checkList {
+        padding-bottom: 0.5rem;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1100px) {
+    /* -------------------------------- roundTrip FIlterCard modal --------------------------- */
+    .modalFStyleRT {
+        width: 40% !important;
     }
 }

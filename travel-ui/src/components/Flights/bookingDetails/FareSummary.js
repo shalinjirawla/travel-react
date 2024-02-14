@@ -38,12 +38,12 @@ const FareSummary = ({ travellers }) => {
     };
 
     return (
-        <Card className='card-fare'>
-            <div className='summery'>
+        <Card className='card-fare all'>
+            <div className=''>
                 <div>
-                    <h2>FARE SUMMARY</h2>
+                    <h2 className='h2-header-fare'>FARE SUMMARY</h2>
                     <p className='fare all'>
-                        {fareSummary.baseFareAdult > 0 && <p>1 Adult</p>}
+                        {fareSummary.baseFareAdult > 0 && <p className='all'>1 Adult</p>}
                         {fareSummary.baseFareChildren > 0 && <p>{fareSummary.baseFareChildren} Children</p>}
                         {fareSummary.baseFareInfant > 0 && <p>{fareSummary.baseFareInfant} Infant</p>}
                     </p>
@@ -56,7 +56,7 @@ const FareSummary = ({ travellers }) => {
                         </div>
                         <div className='base-fair d-flex-between'>
                             <p className='txt all'>Base fare</p>
-                            <p className='num12 all'>₹{fareSummary.baseFareAdult}</p>
+                            <p className='num121 all'>₹{fareSummary.baseFareAdult}</p>
                         </div>
                         <div className='middle-fair d-flex-between'>
                             <div>
@@ -78,13 +78,18 @@ const FareSummary = ({ travellers }) => {
                         </div>
                         <div className='base-fair d-flex-between'>
                             <p className='txt all'>Base fare</p>
-                            <p className='num12 all'>₹{fareSummary.baseFareAdult}</p>
+                            <p className='num121 all'>₹{fareSummary.baseFareAdult}</p>
                         </div>
                     </>
                 )}
                 <hr />
                 <div className='logo '>
                     <p className='txt all'>Taxes and Surcharges</p>
+                    <p className='num12 all'>₹{fareSummary.taxesAndSurcharges}</p>
+                </div>
+                <hr />
+                <div className='logo '>
+                    <p className='txt all'>AddOns(1)</p>
                     <p className='num12 all'>₹{fareSummary.taxesAndSurcharges}</p>
                 </div>
                 <hr />
